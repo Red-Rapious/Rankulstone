@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Server.gd" type="Script" id=1]
+[ext_resource path="res://Client.gd" type="Script" id=2]
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Server" type="Button" parent="VBoxContainer"]
+margin_left = 459.0
+margin_top = 139.0
+margin_right = 565.0
+margin_bottom = 159.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Create a Game"
+script = ExtResource( 1 )
+
+[node name="Client" type="Button" parent="VBoxContainer"]
+margin_left = 469.0
+margin_top = 441.0
+margin_right = 554.0
+margin_bottom = 461.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Join a game"
+script = ExtResource( 2 )
+[connection signal="pressed" from="VBoxContainer/Server" to="VBoxContainer/Server" method="_on_Server_pressed"]
+[connection signal="pressed" from="VBoxContainer/Client" to="VBoxContainer/Client" method="_on_Client_pressed"]
