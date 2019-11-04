@@ -6,7 +6,7 @@ func _ready():
 
 func _on_Client_pressed():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client("192.168.1.191", 666)
+	peer.create_client("192.168.0.30", 666)
 	get_tree().set_network_peer(peer)
 	
 
