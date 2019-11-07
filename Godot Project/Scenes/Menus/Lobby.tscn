@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Server.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Client.gd" type="Script" id=2]
 
-[node name="Lobby" type="Control"]
+[node name="Lobby_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
