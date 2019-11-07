@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Buttons/Quit_Button.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Buttons/IP_Button.gd" type="Script" id=3]
 
 [node name="Waiting_Screen" type="Control"]
 anchor_right = 1.0
@@ -37,6 +39,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 text = "Quitter"
+script = ExtResource( 2 )
 
 [node name="IP_Button" type="Button" parent="All/Buttons"]
 margin_left = 686.0
@@ -45,6 +48,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 text = "Afficher mon adresse IP"
+script = ExtResource( 3 )
 
 [node name="Instructions" type="Label" parent="All"]
 margin_top = 453.0
@@ -53,6 +57,8 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Pour jouer contre quelqu'un, il doit cliquer sur le bouton \"Rejoindre une partie\" du lobby, puis rentrer ton adresse IP dans le champ dédié. 
-Tu peux afficher ton IP en cliquant sur le bouton \"Afficher mon IP\", j'espère que t'avias compris"
+Tu peux afficher ton IP en cliquant sur le bouton \"Afficher mon IP\", j'espère que t'avais compris."
 align = 1
 valign = 1
+[connection signal="pressed" from="All/Buttons/Quit_Button" to="All/Buttons/Quit_Button" method="_on_Quit_Button_pressed"]
+[connection signal="pressed" from="All/Buttons/IP_Button" to="All/Buttons/IP_Button" method="_on_IP_Button_pressed"]
