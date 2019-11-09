@@ -18,7 +18,8 @@ func create_server():
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	
 	
-func create_client():
+func create_client(ip):
+	print(ip)
 	get_tree().connect("connected_to_server", self, "connected")
 	get_tree().connect("connection_failed", self, "failed")
 	
@@ -49,4 +50,4 @@ func failed():
 	
 		
 remote func sayhello():
-	self.text="Hello, I'm "+ str(get_tree().get_network_unique_id())
+	print("Hello, I'm "+ str(get_tree().get_network_unique_id()))

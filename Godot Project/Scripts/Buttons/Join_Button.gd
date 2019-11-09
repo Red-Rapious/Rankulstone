@@ -17,5 +17,5 @@ func _on_Join_Button_pressed():
 
 
 func _on_Join_Button_pressed():
-	global.create_client()
+	#global.create_client()
 	get_tree().change_scene("Scenes/Menus/Join_Screen.tscn")
