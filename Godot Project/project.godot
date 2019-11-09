@@ -19,6 +19,10 @@ config/name="Rankulstone"
 run/main_scene="res://Scenes/Menus/Title_Screen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://Scripts/global.gd"
+
 [debug]
 
 gdscript/warnings/unused_variable=false
