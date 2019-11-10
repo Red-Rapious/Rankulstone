@@ -8,8 +8,11 @@ func _on_LineEdit_text_entered(new_text):
 	
 	
 func join_game(ip):
-	global.create_client(ip)
-	# TODO: change screen
+	network.create_client(ip)
+
+func _connected():
+	#get_tree().change_scene("Scenes/Battle_Screen.tscn")
+	$All/Join_Label.text = "READY TO LAUNCH THE GAME!"
 
 
 

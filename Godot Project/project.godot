@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-global="*res://Scripts/global.gd"
+network="*res://Scripts/network.gd"
 
 [debug]
 
