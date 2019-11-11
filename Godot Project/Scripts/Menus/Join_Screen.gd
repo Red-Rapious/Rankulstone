@@ -11,7 +11,7 @@ func join_game(ip): # called when the player hit the "Rejoindre" button or press
 
 
 func _connected():
-	$All/Join_Label.text = "READY TO LAUNCH THE GAME!"
+	$All/Join_Label.text = "CHARGEMENT DE LA PARTIE EN COURS..."
 
 
 

@@ -35,6 +35,7 @@ func create_client(ip):
 	
 func _player_connected(id):
 	print("Player ", id, " is connected. We can finaly start the game!")
+	self.set_network_master(id) 
 	rpc("send_version", global.VERSION)
 	# send version to the client, in order to version-check
 	
@@ -44,18 +45,20 @@ func _player_disconnected(id):
 
 func _connected():
 	print("Successfully connected to the server!")
+	self.set_network_master(1) 
 	
 func _failed():
 	print("Connection failed...")
 	
 	
-func launch_game():
+remote func launch_game():
 	get_tree().change_scene("Scenes/Battle_Screen.tscn")
 	
 remote func send_version(version): # called on the client when it connect to a game
 	if version == global.VERSION: # check if the 2 players version are the sames
 		print("No version conflict, game accepted.")
 		launch_game()
+		rpc("launch_game")
 	else:
 		print("Version conflict, you or your opponent need to update Rankulstone to the last version. Game canceled.")
 		get_tree().set_network_peer(null) # close the server
