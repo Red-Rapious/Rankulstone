@@ -11,7 +11,7 @@ func create_server():
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, 1)
 	get_tree().set_network_peer(peer)
-	print("Successfully created a server")# with IP: ", IP.get_local_addresses())
+	print("Successfully created a server") # with IP: ", IP.get_local_addresses())
 	
 	get_tree().connect("network_peer_connected", get_tree().get_current_scene(), "_player_connected")
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -35,7 +35,6 @@ func create_client(ip):
 	
 func _player_connected(id):
 	print("Player ", id, " is connected. We can finaly start the game!")
-	self.set_network_master(id) 
 	rpc("send_version", global.VERSION)
 	# send version to the client, in order to version-check
 	
@@ -44,8 +43,7 @@ func _player_disconnected(id):
 
 
 func _connected():
-	print("Successfully connected to the server!")
-	self.set_network_master(1) 
+	print("Successfully connected to the server!") 
 	
 func _failed():
 	print("Connection failed...")
