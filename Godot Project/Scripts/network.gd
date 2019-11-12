@@ -31,7 +31,9 @@ func create_client(ip):
 	# macbook: 82.255.203.114
 	
 	get_tree().set_network_peer(peer)
-	
+
+func delete_network():
+	get_tree().set_network_peer(null)
 	
 func _player_connected(id):
 	print("Player ", id, " is connected. We can finaly start the game!")

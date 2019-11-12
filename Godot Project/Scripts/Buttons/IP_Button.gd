@@ -10,5 +10,6 @@ func switch_text():
 		self.text = "Afficher mon adresse IP"
 		show_ip = false
 	else:
-		self.text = IP.get_local_addresses()[1] + "  (cliquer pour cacher)"
+		#self.text = IP.get_local_addresses()[1] + "  (cliquer pour cacher)"
+		self.text = "www.whatismyip.com"
 		show_ip = true
