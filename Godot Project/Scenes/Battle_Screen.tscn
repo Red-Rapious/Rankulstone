@@ -1,8 +1,12 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Battle_Screen.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=2]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
 [node name="All" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -11,37 +15,53 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = -20.0
 margin_bottom = -10.0
-custom_constants/separation = 0
+custom_constants/separation = 5
 
 [node name="Left" type="VBoxContainer" parent="All"]
-margin_right = 207.0
+margin_right = 201.0
 margin_bottom = 580.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 0
 
 [node name="Opponent" type="VBoxContainer" parent="All/Left"]
-margin_right = 207.0
+editor/display_folded = true
+margin_right = 201.0
 margin_bottom = 288.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Mana_Bar" parent="All/Left/Opponent" instance=ExtResource( 2 )]
+margin_right = 201.0
+margin_bottom = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="All/Left"]
+margin_top = 288.0
+margin_right = 201.0
+margin_bottom = 292.0
+
 [node name="Self" type="VBoxContainer" parent="All/Left"]
 margin_top = 292.0
-margin_right = 207.0
+margin_right = 201.0
 margin_bottom = 580.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="VSeparator" type="VSeparator" parent="All"]
+margin_left = 206.0
+margin_right = 210.0
+margin_bottom = 580.0
+
 [node name="Center" type="VBoxContainer" parent="All"]
-margin_left = 207.0
-margin_right = 828.0
+margin_left = 215.0
+margin_right = 818.0
 margin_bottom = 580.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Opponent_Hand" type="HBoxContainer" parent="All/Center"]
-margin_right = 621.0
+margin_right = 603.0
 margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -49,20 +69,26 @@ size_flags_stretch_ratio = 0.5
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
 margin_top = 118.0
-margin_right = 621.0
+margin_right = 603.0
 margin_bottom = 346.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Hand" type="HBoxContainer" parent="All/Center"]
 margin_top = 350.0
-margin_right = 621.0
+margin_right = 603.0
 margin_bottom = 580.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="VSeparator2" type="VSeparator" parent="All"]
+margin_left = 823.0
+margin_right = 827.0
+margin_bottom = 580.0
+
 [node name="Right" type="VBoxContainer" parent="All"]
-margin_left = 828.0
+editor/display_folded = true
+margin_left = 832.0
 margin_right = 984.0
 margin_bottom = 580.0
 size_flags_horizontal = 3
@@ -71,7 +97,7 @@ size_flags_stretch_ratio = 0.75
 
 [node name="Right_Button" type="Button" parent="All/Right"]
 margin_top = 280.0
-margin_right = 156.0
+margin_right = 152.0
 margin_bottom = 300.0
 size_flags_vertical = 6
 text = "Fin de tour"
