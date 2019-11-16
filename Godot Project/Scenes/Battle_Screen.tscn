@@ -90,8 +90,15 @@ size_flags_stretch_ratio = 0.5
 [node name="Card" parent="All/Center/Self_Hand" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 384.0
-margin_right = 484.0
+margin_left = 166.0
+margin_right = 266.0
+margin_bottom = 150.0
+
+[node name="Card2" parent="All/Center/Self_Hand" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 602.0
+margin_right = 702.0
 margin_bottom = 150.0
 
 [node name="VSeparator2" type="VSeparator" parent="All"]
