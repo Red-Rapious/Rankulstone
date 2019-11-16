@@ -1,7 +1,9 @@
 extends "res://Scripts/Cards/Card.gd"
 
+signal played
+
 func play_card():
-	pass
+	self.emit_signal("played")
 
 func set_ghost(value):
 	pass
@@ -16,4 +18,4 @@ func get_drag_data(_pos): # called when dragged
 	set_drag_preview(label)
 	
 	# return mana cost to see if the card can be played
-	return MANA_COST
+	return name

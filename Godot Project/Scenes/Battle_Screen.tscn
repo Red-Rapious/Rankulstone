@@ -65,33 +65,34 @@ size_flags_stretch_ratio = 3.0
 
 [node name="Opponent_Hand" type="HBoxContainer" parent="All/Center"]
 margin_right = 869.0
-margin_bottom = 138.0
+margin_bottom = 147.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.75
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
-margin_top = 142.0
+margin_top = 151.0
 margin_right = 869.0
-margin_bottom = 418.0
+margin_bottom = 545.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 script = ExtResource( 3 )
 
 [node name="Self_Hand" type="HBoxContainer" parent="All/Center"]
-margin_top = 422.0
+margin_top = 549.0
 margin_right = 869.0
-margin_bottom = 700.0
+margin_bottom = 699.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="Hand_Card" parent="All/Center/Self_Hand" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 384.0
-margin_top = 64.0
 margin_right = 484.0
-margin_bottom = 214.0
+margin_bottom = 150.0
 
 [node name="VSeparator2" type="VSeparator" parent="All"]
 margin_left = 1105.0
@@ -113,3 +114,4 @@ margin_right = 146.0
 margin_bottom = 360.0
 size_flags_vertical = 6
 text = "Fin de tour"
+[connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]

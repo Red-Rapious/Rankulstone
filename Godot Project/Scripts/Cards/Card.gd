@@ -1,4 +1,4 @@
-extends Control
+extends Button
 tool
 
 export var NAME = "Nom de la carte"
