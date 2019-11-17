@@ -4,7 +4,7 @@ signal card_dropped
 
 func can_drop_data(_pos, node_name):
 	# TODO : change to a cleanest version
-	if not node_name == "-1":
+	if node_name != "-1":
 		return get_node("../Self_Hand/"+node_name).MANA_COST <= player.mana
 	else:
 		return false

@@ -4,11 +4,12 @@ extends Node
 var mana_max = 10
 var mana = mana_max
 var your_turn = true
+
 var opponent_hand_size = 30
-var hand = PoolStringArray()
+var hand = Array()
 
 var opponent_library_size = 30
-var library = PoolStringArray()
+var library = Array()
 
 signal self_hand_changed
 signal self_library_changed
@@ -56,3 +57,7 @@ remote func opponent_hand_changed(new_value: int):
 remote func opponent_library_changed(new_value: int):
 	emit_signal("opponent_library_changed")
 	opponent_library_size = new_value
+	
+func card_played(card_name):
+	hand.erase(card_name)
+	emit_signal("self_hand_changed")

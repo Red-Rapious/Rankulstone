@@ -3,7 +3,7 @@ tool
 
 var on_board = false
 
-export var NAME = "Nom de la carte"
+export var NAME = "Card"
 export var MANA_COST = 1
 export var IMAGE = ""
 export var RARITY = 0

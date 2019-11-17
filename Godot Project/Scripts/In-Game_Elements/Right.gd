@@ -11,4 +11,3 @@ func _on_self_library_changed():
 	
 func _on_opponent_library_changed():
 	$Opponent_Library.text = "Cartes restantes : "+str(player.opponent_library_size)
-	#print("im", str(SceneTree.get_network_unique_id()))
