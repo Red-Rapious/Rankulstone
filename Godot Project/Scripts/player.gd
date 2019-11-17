@@ -5,7 +5,7 @@ var mana_max = 10
 var mana = mana_max
 var your_turn = true
 
-var opponent_hand_size = 30
+var opponent_hand_size = 7
 var hand = Array()
 
 var opponent_library_size = 30
@@ -24,11 +24,14 @@ func init():
 		library.append("Card")
 	draw_hand()
 	
+	
 func _on_self_hand_changed():
 	rpc("opponent_hand_changed", len(hand))
 	
 func _on_self_library_changed():
 	rpc("opponent_library_changed", len(library))
+
+
 
 func draw_hand(size=7):
 	for i in range(size):
@@ -49,14 +52,17 @@ func draw_card(signalised: bool):
 		if signalised:
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
-			
+
+
 remote func opponent_hand_changed(new_value: int):
-	emit_signal("opponent_hand_changed")
 	opponent_hand_size = new_value
+	emit_signal("opponent_hand_changed")
 	
 remote func opponent_library_changed(new_value: int):
-	emit_signal("opponent_library_changed")
 	opponent_library_size = new_value
+	emit_signal("opponent_library_changed")
+	
+	
 	
 func card_played(card_name):
 	hand.erase(card_name)
