@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 tool
 
 var on_board = false

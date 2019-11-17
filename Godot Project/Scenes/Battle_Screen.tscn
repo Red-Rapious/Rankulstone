@@ -70,7 +70,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.75
 
-[node name="Board" type="VBoxContainer" parent="All/Center"]
+[node name="Board" type="HBoxContainer" parent="All/Center"]
 margin_top = 163.0
 margin_right = 869.0
 margin_bottom = 588.0
