@@ -13,12 +13,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Top" parent="All" instance=ExtResource( 2 )]
-margin_bottom = 147.0
+margin_right = 1280.0
+margin_bottom = 177.0
 
 [node name="Join_Label" type="Label" parent="All"]
-margin_top = 151.0
-margin_right = 1024.0
-margin_bottom = 298.0
+margin_top = 181.0
+margin_right = 1280.0
+margin_bottom = 358.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Rejoindre une partie"
@@ -26,44 +27,44 @@ align = 1
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="All"]
-margin_top = 302.0
-margin_right = 1024.0
-margin_bottom = 449.0
+margin_top = 362.0
+margin_right = 1280.0
+margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="IP_Label" type="Label" parent="All/HBoxContainer"]
-margin_top = 66.0
-margin_right = 406.0
-margin_bottom = 80.0
+margin_top = 81.0
+margin_right = 508.0
+margin_bottom = 95.0
 size_flags_horizontal = 3
 text = "Adresse IP de l'autre joueur :"
 align = 2
 valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="All/HBoxContainer"]
-margin_left = 410.0
-margin_top = 61.0
-margin_right = 613.0
-margin_bottom = 85.0
+margin_left = 512.0
+margin_top = 76.0
+margin_right = 766.0
+margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.5
-text = "192.168.1.191"
+text = "82.255.203.114"
 
 [node name="Join_Button" type="Button" parent="All/HBoxContainer"]
-margin_left = 617.0
-margin_top = 63.0
-margin_right = 690.0
-margin_bottom = 83.0
+margin_left = 770.0
+margin_top = 78.0
+margin_right = 843.0
+margin_bottom = 98.0
 size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "Rejoindre"
 
 [node name="Instructions" type="Label" parent="All"]
-margin_top = 453.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 543.0
+margin_right = 1280.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Pour jouer avec quelqu'un, il doit avoir préalablement créé une partie depuis le lobby, et t'avoir partagé son adresse IP. 

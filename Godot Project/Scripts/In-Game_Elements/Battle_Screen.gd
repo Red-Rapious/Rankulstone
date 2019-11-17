@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	OS.window_fullscreen = true
+	player.init()
 	
 func _process(delta):
 	if Input.is_action_pressed("ui_escape"):

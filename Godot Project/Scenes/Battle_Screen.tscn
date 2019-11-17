@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=5]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
@@ -107,13 +108,19 @@ margin_right = 1109.0
 margin_bottom = 700.0
 
 [node name="Right" type="VBoxContainer" parent="All"]
-editor/display_folded = true
 margin_left = 1114.0
 margin_right = 1260.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+script = ExtResource( 5 )
+
+[node name="Opponent_Library" type="Label" parent="All/Right"]
+margin_right = 146.0
+margin_bottom = 14.0
+text = "Cartes restantes : 30"
+align = 1
 
 [node name="Right_Button" type="Button" parent="All/Right"]
 margin_top = 340.0
@@ -121,4 +128,11 @@ margin_right = 146.0
 margin_bottom = 360.0
 size_flags_vertical = 6
 text = "Fin de tour"
+
+[node name="Self_Library" type="Label" parent="All/Right"]
+margin_top = 686.0
+margin_right = 146.0
+margin_bottom = 700.0
+text = "Cartes restantes : 30"
+align = 1
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
