@@ -25,7 +25,7 @@ func play_card():
 	
 func create_drag_clone():
 	var label = Label.new()
-	label.text = "test"
+	label.text = NAME
 	return label
 
 func get_drag_data(_pos): # called when dragged

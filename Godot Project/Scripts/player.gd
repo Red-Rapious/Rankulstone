@@ -32,6 +32,8 @@ func init():
 	for i in range(30):
 		library.append("Card")
 	draw_hand()
+	add_self_pv(10)
+	
 	
 	
 func _on_self_hand_changed():
@@ -41,7 +43,7 @@ func _on_self_library_changed():
 	rpc("opponent_library_changed", len(library))
 
 func _on_self_pv_changed():
-	rpc("oppoenet_pv_changed", self_pv)
+	rpc("opponent_pv_changed", self_pv)
 
 func set_self_pv(new_value: int):
 	self_pv = new_value
