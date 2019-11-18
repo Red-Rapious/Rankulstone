@@ -18,6 +18,10 @@ signal opponent_library_changed
 
 	
 func init():
+	"""
+	Called when the game start.
+	Connect signals, draw a hand, and temporarly create a 30 "Card" library
+	"""
 	connect("self_hand_changed", self, "_on_self_hand_changed")
 	connect("self_library_changed", self, "_on_self_library_changed")
 	for i in range(30):
@@ -34,6 +38,9 @@ func _on_self_library_changed():
 
 
 func draw_hand(size=7):
+	"""
+	Draw a hand, by default of 7 cards
+	"""
 	for i in range(size):
 		draw_card(false)
 	emit_signal("self_hand_changed")
@@ -55,15 +62,24 @@ func draw_card(signalised: bool):
 
 
 remote func opponent_hand_changed(new_value: int):
+	"""
+	Called by the player who changed hand (change size, etc) on his opponent side
+	"""
 	opponent_hand_size = new_value
 	emit_signal("opponent_hand_changed")
 	
 remote func opponent_library_changed(new_value: int):
+	"""
+	Called by the player who changed library (change size, etc) on his opponent side
+	"""
 	opponent_library_size = new_value
 	emit_signal("opponent_library_changed")
 	
 	
 	
 func card_played(card_name):
+	"""
+	Delete a card from the hand array
+	"""
 	hand.erase(card_name)
 	emit_signal("self_hand_changed")
