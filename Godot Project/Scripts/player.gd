@@ -3,9 +3,10 @@ extends Node
 
 var mana_max = 10
 var mana = mana_max
+var your_turn = true
+
 var self_pv = 30
 var opponent_pv
-var your_turn = true
 
 var opponent_hand_size = 7
 var hand = Array()
@@ -13,12 +14,16 @@ var hand = Array()
 var opponent_library_size = 30
 var library = Array()
 
+
 signal self_hand_changed
 signal self_library_changed
 signal self_pv_changed
 signal opponent_hand_changed
 signal opponent_library_changed
 signal opponent_pv_changed
+
+signal self_board_changed
+signal opponent_board_changed
 
 	
 func init():
@@ -29,10 +34,12 @@ func init():
 	connect("self_hand_changed", self, "_on_self_hand_changed")
 	connect("self_library_changed", self, "_on_self_library_changed")
 	connect("self_pv_changed", self, "_on_self_pv_changed")
+	
+	connect("self_board_changed", self, "_on_self_board_changed")
+	
 	for i in range(30):
 		library.append("Card")
 	draw_hand()
-	add_self_pv(10)
 	
 	
 	
@@ -99,11 +106,20 @@ remote func opponent_pv_changed(new_value: int):
 	opponent_pv = new_value
 	emit_signal("opponent_pv_changed")
 	
+func _on_self_board_changed(new_card_name: String):
+	rpc("opponent_board_changed", new_card_name)
+	
+remote func opponent_board_changed(new_card_name: String):
+	"""
+	Called by the player who change board
+	"""
+	emit_signal("opponent_board_changed", new_card_name)
 	
 	
-func card_played(card_name):
+func card_played_from_hand(card_name):
 	"""
 	Delete a card from the hand array
 	"""
 	hand.erase(card_name)
 	emit_signal("self_hand_changed")
+	emit_signal("self_board_changed", card_name)
