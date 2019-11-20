@@ -17,7 +17,10 @@ signal quit_battlefield
 signal played
 
 func _ready():
-	$Name.text = NAME
+	$VBoxContainer/Name.text = NAME
+	$VBoxContainer/Action_Text.text = ""
+	#$VBoxContainer/Under_text.text = UNDER_TEXT
+	$VBoxContainer/Under_text.text = ""
 
 func play_card():
 	self.on_board = true
