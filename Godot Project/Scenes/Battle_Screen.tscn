@@ -61,24 +61,24 @@ size_flags_stretch_ratio = 3.0
 [node name="Opponent_Hand" type="HBoxContainer" parent="All/Center"]
 editor/display_folded = true
 margin_right = 869.0
-margin_bottom = 98.0
+margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="Opponent_hand_Label" type="Label" parent="All/Center/Opponent_Hand"]
-margin_top = 42.0
+margin_top = 39.0
 margin_right = 869.0
-margin_bottom = 56.0
+margin_bottom = 53.0
 size_flags_horizontal = 3
 text = "Cartes ennemis : 7"
 align = 1
 script = ExtResource( 2 )
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
-margin_top = 102.0
+margin_top = 96.0
 margin_right = 869.0
-margin_bottom = 497.0
+margin_bottom = 465.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -86,23 +86,24 @@ script = ExtResource( 3 )
 
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 869.0
-margin_bottom = 195.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Board" type="HBoxContainer" parent="All/Center/Board"]
-margin_top = 199.0
+margin_top = 186.0
 margin_right = 869.0
-margin_bottom = 395.0
+margin_bottom = 369.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Hand" type="HBoxContainer" parent="All/Center"]
-margin_top = 501.0
+margin_top = 469.0
 margin_right = 869.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.25
 
 [node name="VSeparator2" type="VSeparator" parent="All"]
 margin_left = 1105.0
@@ -110,7 +111,6 @@ margin_right = 1109.0
 margin_bottom = 700.0
 
 [node name="Right" type="VBoxContainer" parent="All"]
-editor/display_folded = true
 margin_left = 1114.0
 margin_right = 1260.0
 margin_bottom = 700.0
@@ -121,8 +121,9 @@ script = ExtResource( 4 )
 
 [node name="Opponent_Library" type="Label" parent="All/Right"]
 margin_right = 146.0
-margin_bottom = 14.0
-text = "Cartes restantes : 30"
+margin_bottom = 31.0
+text = "Cartes restantes : 30
+PV : 30"
 align = 1
 
 [node name="Right_Button" type="Button" parent="All/Right"]
@@ -133,9 +134,10 @@ size_flags_vertical = 6
 text = "Fin de tour"
 
 [node name="Self_Library" type="Label" parent="All/Right"]
-margin_top = 686.0
+margin_top = 669.0
 margin_right = 146.0
 margin_bottom = 700.0
-text = "Cartes restantes : 30"
+text = "Cartes restantes : 30
+PV : 30"
 align = 1
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]

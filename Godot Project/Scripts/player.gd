@@ -40,6 +40,7 @@ func init():
 	for i in range(30):
 		library.append("Card")
 	draw_hand()
+	set_self_pv(self_pv)
 	
 	
 	

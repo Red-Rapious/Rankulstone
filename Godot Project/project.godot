@@ -18,6 +18,7 @@ _global_script_class_icons={
 config/name="Rankulstone"
 run/main_scene="res://Scenes/Menus/First_time_Screen.tscn"
 config/icon="res://icon.png"
+config/auto_accept_quit=false
 
 [autoload]
 
