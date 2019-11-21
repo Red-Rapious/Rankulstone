@@ -145,11 +145,12 @@ remote func opponent_board_changed(new_card_name: String):
 	emit_signal("opponent_board_changed", new_card_name)
 	
 	
-func card_played_from_hand(card_name):
+func card_played_from_hand(card_name, mana_cost):
 	"""
 	Delete a card from the hand array
 	"""
 	hand.erase(card_name)
+	add_self_mana(-mana_cost)
 	emit_signal("self_hand_changed")
 	emit_signal("self_board_changed", card_name)
 	

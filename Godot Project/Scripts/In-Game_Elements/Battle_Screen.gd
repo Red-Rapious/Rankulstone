@@ -63,7 +63,7 @@ func play_card_from_hand(node_name: String):
 	# delete hand card
 	get_node("All/Center/Self_Hand/"+node_name).queue_free()
 	add_card_to_board(true,card.NAME)
-	player.card_played_from_hand(card.NAME)
+	player.card_played_from_hand(card.NAME, card.MANA_COST)
 
 func _on_opponent_board_changed(card_name):
 	add_card_to_board(false, card_name)
