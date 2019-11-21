@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Creature.gd" type="Script" id=2]
+
+[node name="Creature" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+margin_bottom = 152.0
+
+[node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="4"]
+margin_top = 156.0
+margin_right = 110.0
+margin_bottom = 170.0
+
+[node name="Attack" type="Label" parent="VBoxContainer/Bottom" index="0"]
+margin_right = 53.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+
+[node name="PV" type="Label" parent="VBoxContainer/Bottom" index="1"]
+margin_left = 57.0
+margin_right = 110.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+align = 2
+[connection signal="attack_changed" from="." to="." method="_on_Creature_attack_changed"]
+[connection signal="pv_changed" from="." to="." method="_on_Creature_pv_changed"]

@@ -9,11 +9,6 @@ export var IMAGE = ""
 export var RARITY = 0
 export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
 
-""" -> on creature
-signal enter_battlefield
-signal quit_battlefield
-"""
-
 signal played
 
 func _ready():
@@ -36,6 +31,5 @@ func get_drag_data(_pos): # called when dragged
 		return "-1"
 	
 	set_drag_preview(create_drag_clone())
-	
-	# return mana cost to see if the card can be played
+	# return card name
 	return name
