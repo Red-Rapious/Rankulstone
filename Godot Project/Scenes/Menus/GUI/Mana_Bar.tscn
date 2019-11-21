@@ -1,5 +1,10 @@
 [gd_scene format=2]
 
-[node name="Mana_Bar" type="TextureProgress"]
+[node name="Mana_Bar" type="Label"]
 margin_right = 223.0
 margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Mana : 0"
+align = 1
+valign = 1

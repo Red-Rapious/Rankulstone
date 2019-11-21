@@ -11,7 +11,7 @@ func _ready():
 	_on_opponent_library_changed() # initialize the opponent hand
 	
 	if not player.your_turn:
-		$Right_Button.text = "En attente..."
+		_on_self_end_of_turn()
 	
 func _on_self_library_changed():
 	$Self_Library.text = "Cartes restantes : "+str(len(player.library)) +"\n"+str(player.self_pv)
@@ -31,6 +31,8 @@ func _on_Right_Button_pressed():
 		
 func _on_self_end_of_turn():
 	$Right_Button.text = "En attente..."
+	$Right_Button.disabled = true
 	
 func _on_opponent_end_of_turn():
 	$Right_Button.text = "Fin de tour"
+	$Right_Button.disabled = false

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/In-Game_Elements/Left.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=6]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
@@ -27,12 +29,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.75
 custom_constants/separation = 0
+script = ExtResource( 2 )
 
 [node name="Opponent" type="VBoxContainer" parent="All/Left"]
 margin_right = 217.0
 margin_bottom = 348.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Opponent_Mana_bar" parent="All/Left/Opponent" instance=ExtResource( 3 )]
+margin_top = 167.0
+margin_right = 217.0
+margin_bottom = 181.0
+text = "Mana : 0/0"
 
 [node name="HSeparator" type="HSeparator" parent="All/Left"]
 margin_top = 348.0
@@ -45,6 +54,12 @@ margin_right = 217.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Self_Mana_bar" parent="All/Left/Self" instance=ExtResource( 3 )]
+margin_top = 167.0
+margin_right = 217.0
+margin_bottom = 181.0
+text = "Mana : 0/0"
 
 [node name="VSeparator" type="VSeparator" parent="All"]
 margin_left = 222.0
@@ -74,7 +89,7 @@ margin_bottom = 53.0
 size_flags_horizontal = 3
 text = "Cartes ennemis : 7"
 align = 1
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
 margin_top = 96.0
@@ -83,7 +98,7 @@ margin_bottom = 465.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 869.0
@@ -118,7 +133,7 @@ margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="Opponent_Library" type="Label" parent="All/Right"]
 margin_right = 146.0

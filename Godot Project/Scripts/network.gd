@@ -77,9 +77,9 @@ remote func launch_game():
 	
 remote func start_first(yes: bool):
 	if yes:
-		player.your_turn = true
+		player._on_first_player_tour()
 	else:
-		player.your_turn = false
+		pass
 	
 remote func send_version(version):
 	"""

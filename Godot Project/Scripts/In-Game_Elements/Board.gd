@@ -10,7 +10,7 @@ func can_drop_data(_pos, node_name):
 	
 	# TODO : change to a cleanest version
 	if node_name != "-1":
-		return player.your_turn and get_node("../Self_Hand/"+node_name).MANA_COST <= player.mana # temporary mana check
+		return player.your_turn and get_node("../Self_Hand/"+node_name).MANA_COST <= player.self_mana # temporary mana check
 	else:
 		return false
 	
