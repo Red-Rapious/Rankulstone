@@ -42,11 +42,8 @@ func add_card_to_board(self_side, card_name):
 	
 func _on_self_hand_changed():
 	for node in $All/Center/Self_Hand.get_children():
-		node.queue_free()
-	#$All/Center/Self_Hand.rect_size = Vector2(869,231)
-	print($All/Center/Self_Hand.get_children())
+		$All/Center/Self_Hand.remove_child(node)
 	load_hand()
-	print($All/Center/Self_Hand.get_children())
 	
 func play_card_from_hand(node_name: String):
 	"""
