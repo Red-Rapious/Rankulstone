@@ -75,6 +75,12 @@ remote func launch_game():
 	"""
 	get_tree().change_scene("Scenes/Battle_Screen.tscn")
 	
+remote func start_first(yes: bool):
+	if yes:
+		player.your_turn = true
+	else:
+		player.your_turn = false
+	
 remote func send_version(version):
 	"""
 	Check if both versions of the game are the same.
@@ -82,6 +88,14 @@ remote func send_version(version):
 	"""
 	if version == global.VERSION: # check if the 2 players version are the sames
 		#print("No version conflict, game accepted.")
+		
+		if randi()%2 == 0:
+			start_first(true)
+			rpc("start_first",false)
+		else:
+			start_first(false)
+			rpc("start_first",true)
+			
 		launch_game()
 		rpc("launch_game")
 	else:

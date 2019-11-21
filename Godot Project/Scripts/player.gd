@@ -3,6 +3,7 @@ extends Node
 
 var mana_max = 10
 var mana = mana_max
+
 var your_turn = true
 
 var self_pv = 30
@@ -25,6 +26,10 @@ signal opponent_pv_changed
 signal self_board_changed
 signal opponent_board_changed
 
+signal self_end_of_turn
+signal opponent_end_of_turn
+signal self_tour_begin
+
 	
 func init():
 	"""
@@ -36,6 +41,7 @@ func init():
 	connect("self_pv_changed", self, "_on_self_pv_changed")
 	
 	connect("self_board_changed", self, "_on_self_board_changed")
+	connect("self_tour_begin", self, "_on_self_tour_begin")
 	
 	for i in range(30):
 		library.append("Card")
@@ -71,7 +77,7 @@ func draw_hand(size=7):
 	emit_signal("self_hand_changed")
 	emit_signal("self_library_changed")
 
-func draw_card(signalised: bool):
+func draw_card(signalised=true):
 	""" bool -> void
 	A function who pick a random card in the library and move it to the hand.
 	If signalised, emit signals each when the hand change and the library change.
@@ -124,3 +130,16 @@ func card_played_from_hand(card_name):
 	hand.erase(card_name)
 	emit_signal("self_hand_changed")
 	emit_signal("self_board_changed", card_name)
+	
+func end_of_turn():
+	emit_signal("self_end_of_turn")
+	rpc("opponent_end_of_turn")
+	your_turn = false
+	
+remote func opponent_end_of_turn():
+	emit_signal("opponent_end_of_turn")
+	your_turn = true
+	emit_signal("self_tour_begin")
+	
+func _on_self_tour_begin():
+	draw_card()

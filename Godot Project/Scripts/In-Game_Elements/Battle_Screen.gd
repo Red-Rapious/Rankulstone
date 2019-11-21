@@ -2,9 +2,10 @@ extends Control
 
 func _ready():
 	player.connect("opponent_board_changed", self, "_on_opponent_board_changed")
+	player.connect("self_hand_changed", self, "_on_self_hand_changed")
 	#OS.window_fullscreen = true
 	player.init()
-	load_hand()
+	_on_self_hand_changed()
 	
 func _process(delta):
 	if Input.is_action_pressed("ui_escape"):
@@ -39,7 +40,13 @@ func add_card_to_board(self_side, card_name):
 	else:
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
 	
-	
+func _on_self_hand_changed():
+	for node in $All/Center/Self_Hand.get_children():
+		node.queue_free()
+	#$All/Center/Self_Hand.rect_size = Vector2(869,231)
+	print($All/Center/Self_Hand.get_children())
+	load_hand()
+	print($All/Center/Self_Hand.get_children())
 	
 func play_card_from_hand(node_name: String):
 	"""

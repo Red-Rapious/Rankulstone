@@ -17,6 +17,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
+rect_clip_content = true
 custom_constants/separation = 5
 
 [node name="Left" type="VBoxContainer" parent="All"]
@@ -141,3 +142,4 @@ text = "Cartes restantes : 30
 PV : 30"
 align = 1
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
+[connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]
