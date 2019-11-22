@@ -43,6 +43,14 @@ func add_pv_max(value: int, fill=true):
 	
 func fill_pv():
 	pv = pv_max
+	
+func check_pv():
+	if pv<0:
+		pass
+		
+func die():
+	emit_signal("quit_battlefield")
+	queue_free()
 
 
 func _on_Creature_attack_changed():
