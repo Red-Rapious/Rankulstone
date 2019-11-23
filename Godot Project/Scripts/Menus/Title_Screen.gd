@@ -1,7 +1,8 @@
 extends Control
 
 func _ready():
-	load_infos()
+	#load_infos()
+	pass
 
 func load_infos():
 	var file = File.new()

@@ -18,7 +18,6 @@ func save_infos(pseudo):
 	file.open("res://Saved_files/infos.save", File.WRITE)
 	
 	file.store_line(to_json({"pseudo": pseudo}))
-	#file.store_line(to_json({"saved": true}))
 	file.close()
 	
 	get_tree().change_scene("Scenes/Menus/Title_Screen.tscn")
@@ -34,8 +33,7 @@ func read_infos():
 	var pseudo = parse_json(file.get_line())
 	if pseudo != null:
 		global.self_pseudo = pseudo["pseudo"]
-		#global.information_loaded = true
-	print(global.self_pseudo)
+		global.information_loaded = true
 	file.close()
 
 	
