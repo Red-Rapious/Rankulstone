@@ -37,10 +37,17 @@ margin_bottom = 348.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Opponent_Mana_bar" parent="All/Left/Opponent" instance=ExtResource( 3 )]
-margin_top = 167.0
+[node name="Pseudo" type="Label" parent="All/Left/Opponent"]
 margin_right = 217.0
-margin_bottom = 181.0
+margin_bottom = 14.0
+text = "Pseudo1"
+align = 1
+valign = 1
+
+[node name="Opponent_Mana_bar" parent="All/Left/Opponent" instance=ExtResource( 3 )]
+margin_top = 176.0
+margin_right = 217.0
+margin_bottom = 190.0
 text = "Mana : 0/0"
 
 [node name="HSeparator" type="HSeparator" parent="All/Left"]
@@ -56,10 +63,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Mana_bar" parent="All/Left/Self" instance=ExtResource( 3 )]
-margin_top = 167.0
+margin_top = 158.0
 margin_right = 217.0
-margin_bottom = 181.0
+margin_bottom = 172.0
 text = "Mana : 0/0"
+
+[node name="Pseudo" type="Label" parent="All/Left/Self"]
+margin_top = 334.0
+margin_right = 217.0
+margin_bottom = 348.0
+text = "Pseudo2"
+align = 1
+valign = 1
 
 [node name="VSeparator" type="VSeparator" parent="All"]
 margin_left = 222.0

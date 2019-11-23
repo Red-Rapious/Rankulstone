@@ -18,6 +18,7 @@ var hand = Array()
 var opponent_library_size = 30
 var library = Array()
 
+signal game_started
 
 signal self_hand_changed
 signal self_library_changed
@@ -56,12 +57,13 @@ func init():
 	for i in range(30): # temporarly create a full of "Card" cards library
 		library.append("Card")
 
-	draw_hand()
+	draw_hand(7)
 	set_self_pv(self_pv)
 	emit_signal("self_mana_max_changed")
 	emit_signal("opponent_mana_max_changed")
 	emit_signal("self_mana_changed")
 	emit_signal("opponent_mana_changed")
+	emit_signal("game_started")
 
 
 
