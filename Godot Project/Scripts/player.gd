@@ -73,6 +73,7 @@ func _on_self_library_changed():
 
 func _on_self_pv_changed():
 	rpc("opponent_pv_changed", self_pv)
+	pv_check() # see if after this pv change, the player loose
 
 func set_self_pv(new_value: int):
 	"""
@@ -89,6 +90,13 @@ func add_self_pv(value: int):
 	self_pv += value
 	emit_signal("self_pv_changed")
 
+func pv_check():
+	"""
+	A function that check if pv is 0 or less.
+	If true, it send a message to say that the player loosed
+	"""
+	if self_pv <= 0:
+		loose()
 
 func draw_hand(size=7):
 	"""
@@ -140,8 +148,9 @@ func _on_self_board_changed(new_card_name: String):
 
 remote func opponent_board_changed(new_card_name: String):
 	"""
-	Called by the player who change board
+	Called by the player who change board, on the opponent side, like when plays a card
 	"""
+	add_self_pv(-10)
 	emit_signal("opponent_board_changed", new_card_name)
 
 
@@ -207,7 +216,11 @@ func _on_self_mana_max_changed():
 	
 remote func loose():
 	rpc("win")
-	get_tree().change_scene("Scenes/Title_Screen.tscn")
+	end_game(false)
 	
 remote func win():
-	get_tree().change_scene("Scenes/Title_Screen.tscn")
+	end_game(true)
+	
+func end_game(win: bool):
+	global.win=win
+	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
