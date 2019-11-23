@@ -42,7 +42,7 @@ func delete_network():
 	get_tree().set_network_peer(null)
 	
 func quit_game():
-	rpc("opponent_disconnected")
+	#rpc("opponent_disconnected")
 	delete_network()
 	
 remote func opponent_disconnected():

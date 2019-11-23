@@ -1,7 +1,7 @@
 extends Node
 
 const VERSION = "0.0.1"
-var is_player_information_loaded = false
+var information_loaded = false
 var favorite_icon = 0
 var win = false
 
