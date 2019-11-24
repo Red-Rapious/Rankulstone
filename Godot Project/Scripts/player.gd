@@ -55,7 +55,7 @@ func init():
 	connect("self_mana_max_changed", self, "_on_self_mana_max_changed")
 
 	for i in range(30): # temporarly create a full of "Card" cards library
-		library.append("Card")
+		library.append("Creature")
 
 	draw_hand(7)
 	set_self_pv(self_pv)
@@ -152,7 +152,7 @@ remote func opponent_board_changed(new_card_name: String):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
-	#add_self_pv(-10)
+	add_self_pv(-10)
 	emit_signal("opponent_board_changed", new_card_name)
 
 

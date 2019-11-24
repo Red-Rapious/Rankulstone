@@ -1,4 +1,8 @@
-extends TextureButton
+extends "res://Scripts/Cards/Card.gd"
+tool
+
+var on_board = false
+var is_self_side
 
 export var pv_max = 1
 export var attack = 1

@@ -7,10 +7,10 @@ func can_drop_data(_pos, node_name):
 	When an item is dragged on top of the board, this function is called.
 	Return true if item can be dropped, false if it can't
 	"""
-	
+	var card=get_node("../Self_Hand/"+node_name)
 	# TODO : change to a cleanest version
 	if node_name != "-1":
-		return player.your_turn and get_node("../Self_Hand/"+node_name).MANA_COST <= player.self_mana # temporary mana check
+		return (not card.on_board) and player.your_turn and get_node("../Self_Hand/"+node_name).MANA_COST <= player.self_mana # temporary mana check
 	else:
 		return false
 	

@@ -1,8 +1,11 @@
 extends TextureButton
 tool
 
-var on_board = false
+enum {CREATURE, SPELL}
 
+#var on_board = false
+
+export var type = 0
 export var NAME = "Card"
 export var MANA_COST = 1
 export var IMAGE = ""
@@ -27,8 +30,8 @@ func create_drag_clone():
 	return label
 
 func get_drag_data(_pos): # called when dragged
-	if on_board:
-		return "-1"
+	#if on_board:
+	#	return "-1"
 	
 	set_drag_preview(create_drag_clone())
 	# return card name

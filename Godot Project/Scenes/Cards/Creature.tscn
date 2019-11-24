@@ -5,6 +5,10 @@
 
 [node name="Creature" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+NAME = "Creature"
+
+[node name="Name" parent="VBoxContainer" index="0"]
+text = "Creature"
 
 [node name="Under_text" parent="VBoxContainer" index="3"]
 margin_bottom = 152.0

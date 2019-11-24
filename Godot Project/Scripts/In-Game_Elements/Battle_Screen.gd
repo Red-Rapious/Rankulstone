@@ -41,12 +41,14 @@ func add_card_to_board(self_side, card_name):
 	var scene = load("res://Scenes/Cards/"+card_name+".tscn")
 	var scene_instance = scene.instance()
 	scene_instance.play_card()
+	scene_instance.is_self_side = self_side
 	
 	# add instance to the board
 	if self_side:
 		$All/Center/Board/Self_Board.add_child(scene_instance)
 	else:
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
+		
 	
 func _on_self_hand_changed():
 	# reset hand, by cleaning all and reloading the whole hand
@@ -55,15 +57,21 @@ func _on_self_hand_changed():
 	
 func play_card_from_hand(node_name: String):
 	"""
-	A function that delete a node card in the hand to reinstance it on the board
+	A function that :
+		- delete a node card in the hand to reinstance it on the board if its a creature
+		- launch the spell if its a spell
 	"""
 	
 	var card=get_node("All/Center/Self_Hand/"+node_name)
 	
 	# delete hand card
-	get_node("All/Center/Self_Hand/"+node_name).queue_free()
-	add_card_to_board(true,card.NAME)
-	player.card_played_from_hand(card.NAME, card.MANA_COST)
+	if card.type == card.CREATURE:
+		get_node("All/Center/Self_Hand/"+node_name).queue_free()
+		add_card_to_board(true,card.NAME)
+		player.card_played_from_hand(card.NAME, card.MANA_COST)
+	else:
+		# TODO : launch the spell
+		pass
 
 func _on_opponent_board_changed(card_name):
 	add_card_to_board(false, card_name)
