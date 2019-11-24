@@ -152,7 +152,7 @@ remote func opponent_board_changed(new_card_name: String):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
-	add_self_pv(-10)
+	#add_self_pv(-10)
 	emit_signal("opponent_board_changed", new_card_name)
 
 

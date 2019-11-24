@@ -2,12 +2,16 @@ extends Node
 
 const PORT = 5000
 
+signal network_infos_get
+
 func create_server():
 	"""
 	Create a server on the PORT port, can be called from anywhere
 	"""
 	# TODO : dont use UPNP if a checkbox is set to "local"
 	var upnp = UPNP.new()
+	upnp.discover(2000, 2, "InternetGatewayDevice")
+	upnp.add_port_mapping(PORT)
 	#print("Discover the network with " + str(PORT) + " port... Output: "+ str(upnp.discover(2000, 2, "InternetGatewayDevice")))
 	#print("Add the port to port mapping... Output: "+str(upnp.add_port_mapping(PORT)))
 	
@@ -74,6 +78,7 @@ remote func launch_game():
 	Called by the client on both client and server
 	"""
 	get_tree().change_scene("Scenes/Battle_Screen.tscn")
+	#emit_signal("network_game_start")
 	
 remote func start_first(yes: bool):
 	if yes:
@@ -88,7 +93,6 @@ remote func send_version(version):
 	"""
 	if version == global.VERSION: # check if the 2 players version are the sames
 		#print("No version conflict, game accepted.")
-		
 		if randi()%2 == 0:
 			start_first(true)
 			rpc("start_first",false)
@@ -96,9 +100,19 @@ remote func send_version(version):
 			start_first(false)
 			rpc("start_first",true)
 			
+		send_self_infos()
+		rpc("send_self_infos")
+		
 		launch_game()
 		rpc("launch_game")
 	else:
 		print("Version conflict, you or your opponent need to update Rankulstone to the last version. Game canceled.")
 		delete_network() # close the server
 		get_tree().change_scene("Scenes/Menus/Lobby_Screen.tscn") # go back to the lobby
+		
+remote func send_self_infos():
+	rpc("get_opponent_infos", global.self_pseudo)
+	
+remote func get_opponent_infos(pseudo):
+	global.opponent_pseudo = pseudo
+	emit_signal("network_infos_get")

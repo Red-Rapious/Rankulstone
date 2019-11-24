@@ -24,7 +24,6 @@ func save_infos(pseudo):
 	
 
 func read_infos():
-	
 	#A function that open a file and load all the informations it contains
 	#to specific variables
 	

@@ -5,8 +5,8 @@ var information_loaded = false
 var favorite_icon = 0
 var win = false
 
-var self_pseudo = "RedRapious"
-var opponent_pseudo = "RedRapious"
+var self_pseudo = "No pseudo detected"
+var opponent_pseudo = "No pseudo detected"
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
