@@ -5,6 +5,6 @@ func _ready():
 	
 func update():
 	if global.win:
-		$VBoxContainer/Label.text = "Victoire !"
+		$VBoxContainer/Label.text = "VICTOIRE ! Vous avez gagné contre " + global.opponent_pseudo
 	else:
-		$VBoxContainer/Label.text = "Défaite..."
+		$VBoxContainer/Label.text = "DEFAITE... Vous avez perdu contre " + global.opponent_pseudo
