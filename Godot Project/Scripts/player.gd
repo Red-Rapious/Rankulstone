@@ -66,7 +66,12 @@ func init():
 	emit_signal("game_started")
 
 
-
+"""
+Some self signals implementation
+Generaly follow the patern:
+	on self xxx changed
+	say to the opponent that xxx changed
+"""
 func _on_self_hand_changed():
 	rpc("opponent_hand_changed", len(hand))
 
@@ -76,7 +81,20 @@ func _on_self_library_changed():
 func _on_self_pv_changed():
 	rpc("opponent_pv_changed", self_pv)
 	pv_check() # see if after this pv change, the player loose
+	
+func _on_self_board_changed(new_card_name: String):
+	rpc("opponent_board_changed", new_card_name)
+	
+	
+func _on_self_mana_changed():
+	rpc("opponent_mana_changed", self_mana)
 
+func _on_self_mana_max_changed():
+	rpc("opponent_mana_max_changed", self_mana_max)
+
+
+
+# some pv setters
 func set_self_pv(new_value: int):
 	"""
 	Set the player pv to a certain amount
@@ -98,8 +116,10 @@ func pv_check():
 	If true, it send a message to say that the player loosed
 	"""
 	if self_pv <= 0:
-		loose()
+		loose(true)
 
+
+# some drawing functions
 func draw_hand(size=7):
 	"""
 	Draw a hand, by default of 7 cards
@@ -123,7 +143,12 @@ func draw_card(signalised=true):
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
 
+"""
+Functions called via rpc by the opponent
+See _on_xxx_changed()
 
+Update the good variables
+"""
 remote func opponent_hand_changed(new_value: int):
 	"""
 	Called by the player who changed hand (change size, etc) on his opponent side
@@ -145,9 +170,6 @@ remote func opponent_pv_changed(new_value: int):
 	opponent_pv = new_value
 	emit_signal("opponent_pv_changed")
 
-func _on_self_board_changed(new_card_name: String):
-	rpc("opponent_board_changed", new_card_name)
-
 remote func opponent_board_changed(new_card_name: String):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
@@ -155,9 +177,19 @@ remote func opponent_board_changed(new_card_name: String):
 	#add_self_pv(-10)
 	emit_signal("opponent_board_changed", new_card_name)
 
+remote func opponent_mana_changed(new_value: int):
+	opponent_mana = new_value
+	emit_signal("opponent_mana_changed")
+
+remote func opponent_mana_max_changed(new_value: int):
+	opponent_mana_max = new_value
+	emit_signal("opponent_mana_changed")
+
+
 
 func card_played_from_hand(card_name, mana_cost):
 	"""
+	Called by BattleScreen when a card is played via d&d
 	Delete a card from the hand array
 	"""
 	hand.erase(card_name)
@@ -165,24 +197,41 @@ func card_played_from_hand(card_name, mana_cost):
 	emit_signal("self_hand_changed")
 	emit_signal("self_board_changed", card_name)
 
+
+# functions about tour end 
 func end_of_turn():
+	"""
+	Called when the button is pressed
+	"""
 	emit_signal("self_end_of_turn")
 	rpc("opponent_end_of_turn")
 	your_turn = false
 
 remote func opponent_end_of_turn():
+	"""
+	Called by the opponent on his end of turn
+	This means its now your turn
+	"""
 	emit_signal("opponent_end_of_turn")
 	your_turn = true
 	emit_signal("self_tour_begin")
+
 
 func _on_self_tour_begin():
 	draw_card()
 	set_self_mana_max(self_mana_max+1)
 
 func _on_first_player_tour():
+	"""
+	Specific lines for the player who play first
+	"""
 	your_turn = true
-	set_self_mana_max(1)
+	set_self_mana_max(1) # add an initial mana, else he cant play
 
+
+
+
+# some mana & mana max setters
 func set_self_mana(new_value: int):
 	self_mana = new_value
 	if self_mana>self_mana_max:
@@ -202,26 +251,20 @@ func add_self_mana(value: int):
 func full_mana_bar():
 	set_self_mana(self_mana_max)
 
-remote func opponent_mana_changed(new_value: int):
-	opponent_mana = new_value
-	emit_signal("opponent_mana_changed")
 
-remote func opponent_mana_max_changed(new_value: int):
-	opponent_mana_max = new_value
-	emit_signal("opponent_mana_changed")
 
-func _on_self_mana_changed():
-	rpc("opponent_mana_changed", self_mana)
 
-func _on_self_mana_max_changed():
-	rpc("opponent_mana_max_changed", self_mana_max)
+# functions called by self or the opponent when something makes loose or win
+# generaly when someone pv<=0
+remote func loose(inform_opponent: bool):
+	if inform_opponent:
+		rpc("win", false) # pass the info to the opponent
+	end_game(false) # end game with loose
 	
-remote func loose():
-	rpc("win")
-	end_game(false)
-	
-remote func win():
-	end_game(true)
+remote func win(inform_opponent: bool):
+	if inform_opponent:
+		rpc("loose", false) # pass the info to the opponent
+	end_game(true) # end game with win
 	
 func end_game(win: bool):
 	global.win=win

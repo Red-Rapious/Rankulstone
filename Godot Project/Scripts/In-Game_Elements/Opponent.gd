@@ -8,6 +8,8 @@ func _ready():
 	network.connect("network_infos_get", self, "_on_network_infos_get")
 	_on_network_infos_get()
 	
+	
+# some label update stuff
 func _on_network_infos_get():
 	$Pseudo.text = global.opponent_pseudo
 	

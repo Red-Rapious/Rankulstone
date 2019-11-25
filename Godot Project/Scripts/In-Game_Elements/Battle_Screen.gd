@@ -74,9 +74,17 @@ func play_card_from_hand(node_name: String):
 		pass
 
 func _on_opponent_board_changed(card_name):
-	add_card_to_board(false, card_name)
+	"""
+	Called when the opponent plays a card
+	Simply add the card to the board
+	"""
+	add_card_to_board(false, card_name) # "false" to put in the opponent side
 
 func _on_Opponent_card_attacked(data):
-	player.self_card_attack_opponent(data[global.ATTACK_VALUE])
-	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false
+	"""
+	Called when you attack the opponent with a card
+	Inform player.gd and change can_attack on the card, so it cant attack twice
+	"""
+	player.self_card_attack_opponent(data[global.ATTACK_VALUE]) # inform player
+	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false # block a second attempt
 	pass

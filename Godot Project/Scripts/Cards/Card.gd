@@ -1,9 +1,7 @@
 extends TextureButton
 tool
 
-enum {CREATURE, SPELL}
-
-#var on_board = false
+enum {CREATURE, SPELL} # differents kinds of cards
 
 export var type = 0
 export var NAME = "Card"
@@ -21,18 +19,22 @@ func _ready():
 	$VBoxContainer/Under_text.text = ""
 
 func play_card():
+	"""
+	Called when this card is played
+	Do some routine
+	"""
 	self.on_board = true
 	self.emit_signal("played")
 	
 func create_play_drag_clone():
-	var label = Label.new()
+	"""
+	Return the object created under the mouse when dragged
+	"""
+	var label = Label.new() # just create a simple label
 	label.text = NAME
 	return label
 
 func get_drag_data(_pos): # called when dragged
-	#if on_board:
-	#	return "-1"
-	
-	set_drag_preview(create_play_drag_clone())
+	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
 	# return card name
-	return [0,NAME, name, false, 0]
+	return [0,NAME, name, false, 0] # return an array, see global enums (DRAG_TYPE, etc...)
