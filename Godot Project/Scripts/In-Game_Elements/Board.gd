@@ -18,4 +18,4 @@ func can_drop_data(_pos, data):
 	
 func drop_data(_pos, data):
 	# called when a card if dropped
-	emit_signal("card_dropped", data[1])
+	emit_signal("card_dropped", data[global.CARD_NAME])

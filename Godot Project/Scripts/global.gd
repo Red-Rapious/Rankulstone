@@ -1,6 +1,7 @@
 extends Node
 
 enum {PLAY, ATTACK}
+enum {DRAG_TYPE, CARD_NAME, NODE_NAME, CAN_ATTACK, ATTACK_VALUE}
 
 const VERSION = "0.0.1"
 var information_loaded = false

@@ -75,3 +75,8 @@ func play_card_from_hand(node_name: String):
 
 func _on_opponent_board_changed(card_name):
 	add_card_to_board(false, card_name)
+
+func _on_Opponent_card_attacked(data):
+	player.self_card_attack_opponent(data[global.ATTACK_VALUE])
+	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false
+	pass

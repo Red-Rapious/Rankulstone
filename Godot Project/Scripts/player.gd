@@ -84,7 +84,7 @@ func set_self_pv(new_value: int):
 	self_pv = new_value
 	emit_signal("self_pv_changed")
 
-func add_self_pv(value: int):
+remote func add_self_pv(value: int):
 	"""
 	Add a certain amount of pv to the player.
 	If the value given is negative, it will remove some pv
@@ -152,7 +152,7 @@ remote func opponent_board_changed(new_card_name: String):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
-	add_self_pv(-10)
+	#add_self_pv(-10)
 	emit_signal("opponent_board_changed", new_card_name)
 
 
@@ -226,3 +226,6 @@ remote func win():
 func end_game(win: bool):
 	global.win=win
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
+	
+func self_card_attack_opponent(attack_value):
+	rpc("add_self_pv", -attack_value)

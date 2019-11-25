@@ -35,4 +35,4 @@ func get_drag_data(_pos): # called when dragged
 	
 	set_drag_preview(create_play_drag_clone())
 	# return card name
-	return [0,name, false]
+	return [0,NAME, name, false, 0]

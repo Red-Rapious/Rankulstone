@@ -134,5 +134,6 @@ margin_bottom = 700.0
 text = "Cartes restantes : 30
 PV : 30"
 align = 1
+[connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
 [connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]

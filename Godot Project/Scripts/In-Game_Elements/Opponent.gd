@@ -22,7 +22,7 @@ func can_drop_data(_pos, data):
 	depending on the turn and if the card as already attacked
 	"""
 	
-	return data[0]==global.ATTACK and data[2] and player.your_turn 
+	return data[global.DRAG_TYPE]==global.ATTACK and data[global.CAN_ATTACK] and player.your_turn 
 	
 func drop_data(_pos, data):
-	emit_signal("card_attacked", data[1])
+	emit_signal("card_attacked", data)
