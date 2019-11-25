@@ -3,6 +3,7 @@ tool
 
 var on_board = false
 var is_self_side
+var can_attack = true
 
 export var pv_max = 1
 export var attack = 1
@@ -56,9 +57,23 @@ func die():
 	emit_signal("quit_battlefield")
 	queue_free()
 
+func create_attack_drag_clone():
+	var label = Label.new()
+	label.text = "Attaquer"
+	return label
 
 func _on_Creature_attack_changed():
 	$VBoxContainer/Bottom/Attack.text = attack
 
 func _on_Creature_pv_changed():
 	$VBoxContainer/Bottom/PV.text = pv
+	
+func get_drag_data(_pos): # called when dragged
+	if on_board:
+		set_drag_preview(create_attack_drag_clone())
+		return [1,name,can_attack]
+		
+	else:
+		set_drag_preview(create_play_drag_clone())
+		# return card name
+		return [0,name,false]

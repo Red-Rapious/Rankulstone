@@ -24,7 +24,7 @@ func play_card():
 	self.on_board = true
 	self.emit_signal("played")
 	
-func create_drag_clone():
+func create_play_drag_clone():
 	var label = Label.new()
 	label.text = NAME
 	return label
@@ -33,6 +33,6 @@ func get_drag_data(_pos): # called when dragged
 	#if on_board:
 	#	return "-1"
 	
-	set_drag_preview(create_drag_clone())
+	set_drag_preview(create_play_drag_clone())
 	# return card name
-	return name
+	return [0,name, false]

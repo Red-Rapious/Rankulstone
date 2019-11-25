@@ -1,5 +1,7 @@
 extends Node
 
+enum {PLAY, ATTACK}
+
 const VERSION = "0.0.1"
 var information_loaded = false
 var favorite_icon = 0
