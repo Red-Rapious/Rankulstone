@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/In-Game_Elements/Left.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/In-game-elements/Self.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=6]
@@ -29,52 +29,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.75
 custom_constants/separation = 0
-script = ExtResource( 2 )
 
-[node name="Opponent" type="VBoxContainer" parent="All/Left"]
-margin_right = 217.0
-margin_bottom = 348.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Pseudo" type="Label" parent="All/Left/Opponent"]
-margin_right = 217.0
-margin_bottom = 14.0
-text = "Pseudo1"
-align = 1
-valign = 1
-
-[node name="Opponent_Mana_bar" parent="All/Left/Opponent" instance=ExtResource( 3 )]
-margin_top = 176.0
-margin_right = 217.0
-margin_bottom = 190.0
-text = "Mana : 0/0"
+[node name="Opponent" parent="All/Left" instance=ExtResource( 2 )]
 
 [node name="HSeparator" type="HSeparator" parent="All/Left"]
 margin_top = 348.0
 margin_right = 217.0
 margin_bottom = 352.0
 
-[node name="Self" type="VBoxContainer" parent="All/Left"]
-margin_top = 352.0
-margin_right = 217.0
-margin_bottom = 700.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Self_Mana_bar" parent="All/Left/Self" instance=ExtResource( 3 )]
-margin_top = 158.0
-margin_right = 217.0
-margin_bottom = 172.0
-text = "Mana : 0/0"
-
-[node name="Pseudo" type="Label" parent="All/Left/Self"]
-margin_top = 334.0
-margin_right = 217.0
-margin_bottom = 348.0
-text = "Pseudo2"
-align = 1
-valign = 1
+[node name="Self" parent="All/Left" instance=ExtResource( 3 )]
 
 [node name="VSeparator" type="VSeparator" parent="All"]
 margin_left = 222.0

@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+"""
 func _ready():
 	player.connect("self_mana_changed", self, "_on_self_mana_changed")
 	player.connect("self_mana_max_changed", self, "_on_self_mana_changed")
@@ -17,3 +18,4 @@ func _on_opponent_mana_changed():
 func _on_network_infos_get():
 	$Opponent/Pseudo.text = global.opponent_pseudo
 	$Self/Pseudo.text = global.self_pseudo
+"""

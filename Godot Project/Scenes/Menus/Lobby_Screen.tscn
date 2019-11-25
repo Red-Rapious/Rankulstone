@@ -11,48 +11,54 @@ anchor_bottom = 1.0
 [node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 
 [node name="Top" parent="All" instance=ExtResource( 1 )]
+margin_right = 1250.0
+margin_bottom = 151.0
 
 [node name="Buttons" type="HBoxContainer" parent="All"]
-margin_top = 135.0
-margin_right = 1024.0
-margin_bottom = 332.0
+margin_top = 155.0
+margin_right = 1250.0
+margin_bottom = 382.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
 [node name="Create_Button" type="Button" parent="All/Buttons"]
-margin_left = 191.0
-margin_top = 88.0
-margin_right = 318.0
-margin_bottom = 108.0
+margin_left = 248.0
+margin_top = 103.0
+margin_right = 375.0
+margin_bottom = 123.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "+ Créer une partie"
 script = ExtResource( 2 )
 
 [node name="Join_Button" type="Button" parent="All/Buttons"]
-margin_left = 689.0
-margin_top = 88.0
-margin_right = 848.0
-margin_bottom = 108.0
+margin_left = 859.0
+margin_top = 103.0
+margin_right = 1018.0
+margin_bottom = 123.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "-> Rejoindre une partie"
 script = ExtResource( 3 )
 
 [node name="Deck_Container" type="HBoxContainer" parent="All"]
-margin_top = 336.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 386.0
+margin_right = 1250.0
+margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="Panel" type="Panel" parent="All/Deck_Container"]
-margin_right = 1024.0
-margin_bottom = 264.0
+margin_right = 1250.0
+margin_bottom = 304.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 [connection signal="pressed" from="All/Buttons/Create_Button" to="All/Buttons/Create_Button" method="_on_Create_Button_pressed"]
