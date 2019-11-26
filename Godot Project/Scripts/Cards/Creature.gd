@@ -84,12 +84,12 @@ func _on_Creature_pv_changed():
 func get_drag_data(_pos): # called when dragged
 	if on_board:
 		set_drag_preview(create_attack_drag_clone())
-		return [1,NAME, name, can_attack, attack]
+		return [1,NAME, name, can_attack, attack, is_self_side]
 		
 	else:
 		set_drag_preview(create_play_drag_clone())
 		# return card name
-		return [0,NAME,name,false, 0]
+		return [0,NAME,name,false, 0, false]
 		
 func _on_self_tour_begin():
 	"""

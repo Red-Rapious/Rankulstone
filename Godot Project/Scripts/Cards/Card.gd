@@ -37,4 +37,4 @@ func create_play_drag_clone():
 func get_drag_data(_pos): # called when dragged
 	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
 	# return card name
-	return [0,NAME, name, false, 0] # return an array, see global enums (DRAG_TYPE, etc...)
+	return [0,NAME, name, false, 0, false] # return an array, see global enums (DRAG_TYPE, etc...)
