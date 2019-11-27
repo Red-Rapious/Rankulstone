@@ -18,19 +18,24 @@ var hand = Array()
 var opponent_library_size = 30
 var library = Array()
 
+var self_board = Array()
+var opponent_board = Array()
+
 signal game_started
 
 signal self_hand_changed
 signal self_library_changed
 signal self_pv_changed
-signal self_board_changed
+signal self_creature_played
+#signal self_creature_died
 signal self_mana_changed
 signal self_mana_max_changed
 
 signal opponent_hand_changed
 signal opponent_library_changed
 signal opponent_pv_changed
-signal opponent_board_changed
+signal opponent_creature_played
+#signal opponent_creature_died
 signal opponent_mana_changed
 signal opponent_mana_max_changed
 
@@ -48,7 +53,7 @@ func init():
 	connect("self_library_changed", self, "_on_self_library_changed")
 	connect("self_pv_changed", self, "_on_self_pv_changed")
 
-	connect("self_board_changed", self, "_on_self_board_changed")
+	connect("self_creature_played", self, "_on_self_creature_played")
 	connect("self_tour_begin", self, "_on_self_tour_begin")
 
 	connect("self_mana_changed", self, "_on_self_mana_changed")
@@ -82,8 +87,9 @@ func _on_self_pv_changed():
 	rpc("opponent_pv_changed", self_pv)
 	pv_check() # see if after this pv change, the player loose
 	
-func _on_self_board_changed(new_card_name: String):
-	rpc("opponent_board_changed", new_card_name)
+func _on_self_creature_played(new_card_name: String):
+	self_board.append(new_card_name)
+	rpc("opponent_creature_played", new_card_name)
 	
 	
 func _on_self_mana_changed():
@@ -143,6 +149,8 @@ func draw_card(signalised=true):
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
 
+
+
 """
 Functions called via rpc by the opponent
 See _on_xxx_changed()
@@ -170,12 +178,13 @@ remote func opponent_pv_changed(new_value: int):
 	opponent_pv = new_value
 	emit_signal("opponent_pv_changed")
 
-remote func opponent_board_changed(new_card_name: String):
+remote func opponent_creature_played(new_card_name: String):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
 	#add_self_pv(-10)
-	emit_signal("opponent_board_changed", new_card_name)
+	opponent_board.append(new_card_name)
+	emit_signal("opponent_creature_played", new_card_name)
 
 remote func opponent_mana_changed(new_value: int):
 	opponent_mana = new_value
@@ -195,7 +204,7 @@ func card_played_from_hand(card_name, mana_cost):
 	hand.erase(card_name)
 	add_self_mana(-mana_cost)
 	emit_signal("self_hand_changed")
-	emit_signal("self_board_changed", card_name)
+	emit_signal("self_creature_played", card_name)
 
 
 # functions about tour end 
@@ -257,11 +266,18 @@ func full_mana_bar():
 # functions called by self or the opponent when something makes loose or win
 # generaly when someone pv<=0
 remote func loose(inform_opponent: bool):
+	"""
+	To avoid cyclic calls, a bool is passed in argument
+	If this bool is true, it call the opponent, but with a false bool, so the opponent will not call us again
+	"""
 	if inform_opponent:
 		rpc("win", false) # pass the info to the opponent
 	end_game(false) # end game with loose
 	
 remote func win(inform_opponent: bool):
+	"""
+	Same as loose(), except in this case we won
+	"""
 	if inform_opponent:
 		rpc("loose", false) # pass the info to the opponent
 	end_game(true) # end game with win

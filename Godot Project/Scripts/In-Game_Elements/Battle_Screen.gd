@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	player.connect("opponent_board_changed", self, "_on_opponent_board_changed")
+	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
 	#OS.window_fullscreen = true
 	player.init()
@@ -12,6 +12,8 @@ func _process(delta):
 	if Input.is_action_pressed("ui_escape"):
 		get_tree().quit()
 
+
+# some hand interactions methods
 func load_hand():
 	"""
 	This function look at player.hand, and add the specifics nodes to the Control hand
@@ -27,6 +29,13 @@ func clean_hand():
 	"""
 	for node in $All/Center/Self_Hand.get_children():
 		$All/Center/Self_Hand.remove_child(node)
+
+func _on_self_hand_changed():
+	# reset hand, by cleaning all and reloading the whole hand
+	clean_hand()
+	load_hand()
+
+
 
 func _on_Board_card_dropped(node_name):
 	play_card_from_hand(node_name)
@@ -50,11 +59,7 @@ func add_card_to_board(self_side, card_name):
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
 		
 	
-func _on_self_hand_changed():
-	# reset hand, by cleaning all and reloading the whole hand
-	clean_hand()
-	load_hand()
-	
+
 func play_card_from_hand(node_name: String):
 	"""
 	A function that :
@@ -73,7 +78,7 @@ func play_card_from_hand(node_name: String):
 		# TODO : launch the spell
 		pass
 
-func _on_opponent_board_changed(card_name):
+func _on_opponent_creature_played(card_name):
 	"""
 	Called when the opponent plays a card
 	Simply add the card to the board
