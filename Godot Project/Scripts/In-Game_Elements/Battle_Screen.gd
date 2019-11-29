@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
+	player.connect("opponent_creature_died", self, "_on_opponent_creature_died")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
 	#OS.window_fullscreen = true
 	player.init()
@@ -84,6 +85,10 @@ func _on_opponent_creature_played(card_name):
 	Simply add the card to the board
 	"""
 	add_card_to_board(false, card_name) # "false" to put in the opponent side
+	
+func _on_opponent_creature_died(node_name):
+	#print("yes")
+	get_node("All/Center/Board/Opponent_Board/"+node_name).queue_free()
 
 func _on_Opponent_card_attacked(data):
 	"""
@@ -92,4 +97,5 @@ func _on_Opponent_card_attacked(data):
 	"""
 	player.self_card_attack_opponent(data[global.ATTACK_VALUE]) # inform player
 	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false # block a second attempt
+	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).die()
 	pass

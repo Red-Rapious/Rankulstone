@@ -27,7 +27,7 @@ signal self_hand_changed
 signal self_library_changed
 signal self_pv_changed
 signal self_creature_played
-#signal self_creature_died
+signal self_creature_died
 signal self_mana_changed
 signal self_mana_max_changed
 
@@ -35,7 +35,7 @@ signal opponent_hand_changed
 signal opponent_library_changed
 signal opponent_pv_changed
 signal opponent_creature_played
-#signal opponent_creature_died
+signal opponent_creature_died
 signal opponent_mana_changed
 signal opponent_mana_max_changed
 
@@ -54,6 +54,7 @@ func init():
 	connect("self_pv_changed", self, "_on_self_pv_changed")
 
 	connect("self_creature_played", self, "_on_self_creature_played")
+	connect("self_creature_died", self, "_on_self_creature_died")
 	connect("self_tour_begin", self, "_on_self_tour_begin")
 
 	connect("self_mana_changed", self, "_on_self_mana_changed")
@@ -90,6 +91,10 @@ func _on_self_pv_changed():
 func _on_self_creature_played(new_card_name: String):
 	self_board.append(new_card_name)
 	rpc("opponent_creature_played", new_card_name)
+	
+func _on_self_creature_died(card_name: String):
+	#self_board.append(card_name)
+	rpc("opponent_creature_died", card_name)
 	
 	
 func _on_self_mana_changed():
@@ -185,6 +190,13 @@ remote func opponent_creature_played(new_card_name: String):
 	#add_self_pv(-10)
 	opponent_board.append(new_card_name)
 	emit_signal("opponent_creature_played", new_card_name)
+	
+remote func opponent_creature_died(card_name: String):
+	"""
+	Called by the player who change board, on the opponent side, like when plays a card
+	"""
+	#opponent_board.append(card_name)
+	emit_signal("opponent_creature_died", card_name)
 
 remote func opponent_mana_changed(new_value: int):
 	opponent_mana = new_value
@@ -224,6 +236,12 @@ remote func opponent_end_of_turn():
 	emit_signal("opponent_end_of_turn")
 	your_turn = true
 	emit_signal("self_tour_begin")
+	
+func creature_died(node_name):
+	"""
+	Called when a creature died
+	"""
+	emit_signal("self_creature_died", node_name)
 
 
 func _on_self_tour_begin():

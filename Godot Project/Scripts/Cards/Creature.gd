@@ -3,7 +3,7 @@ tool
 
 var on_board = false
 var is_self_side
-var can_attack = true
+var can_attack = false # attack is false by default to simulate invocation sickness
 
 export var pv_max = 1
 export var attack = 1
@@ -61,6 +61,7 @@ func check_pv(): # a function that checks if pv is under 0
 		
 func die():
 	emit_signal("quit_battlefield")
+	player.creature_died(name)
 	queue_free()
 
 func create_attack_drag_clone():
@@ -79,14 +80,12 @@ func _on_Creature_attack_changed():
 func _on_Creature_pv_changed():
 	$VBoxContainer/Bottom/PV.text = pv
 	
-	
-	
 func get_drag_data(_pos): # called when dragged
 	if on_board:
 		set_drag_preview(create_attack_drag_clone())
 		return [1,NAME, name, can_attack, attack, is_self_side]
 		
-	else:
+	else: # if the card is still in the hand
 		set_drag_preview(create_play_drag_clone())
 		# return card name
 		return [0,NAME,name,false, 0, false]
