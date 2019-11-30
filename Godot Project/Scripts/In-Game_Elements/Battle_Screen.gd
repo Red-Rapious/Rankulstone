@@ -95,7 +95,12 @@ func _on_Opponent_card_attacked(data):
 	Called when you attack the opponent with a card
 	Inform player.gd and change can_attack on the card, so it cant attack twice
 	"""
-	player.self_card_attack_opponent(data[global.ATTACK_VALUE]) # inform player
-	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false # block a second attempt
-	get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).die()
+	#player.self_card_attack_opponent(data[global.ATTACK_VALUE]) # inform player
+	#get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).can_attack = false # block a second attempt
+	#get_node("All/Center/Board/Self_Board/"+data[global.NODE_NAME]).die()
+	
+	
+	player.self_card_attack_opponent(data["attack_value"]) # inform player
+	get_node("All/Center/Board/Self_Board/"+data["node_name"]).can_attack = false # block a second attempt
+	get_node("All/Center/Board/Self_Board/"+data["node_name"]).die()
 	pass

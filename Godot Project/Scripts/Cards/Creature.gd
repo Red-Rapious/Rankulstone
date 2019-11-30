@@ -16,8 +16,11 @@ signal attack_changed
 signal pv_changed
 signal pv_max_changed
 
+
+
 func _ready():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
+
 
 
 # some attacks setters
@@ -54,7 +57,9 @@ func add_pv_max(value: int, fill=true):
 func fill_pv():
 	pv = pv_max
 	
-	
+
+
+# some die functions
 func check_pv(): # a function that checks if pv is under 0
 	if pv<0:
 		pass # dont do anything for now
@@ -64,6 +69,8 @@ func die():
 	player.creature_died(name)
 	queue_free()
 
+
+# specific to creature
 func create_attack_drag_clone():
 	""" --> Control node
 	Return the object created under the mouse when dragged
@@ -73,23 +80,36 @@ func create_attack_drag_clone():
 	label.text = "Attaquer" # just a label with a short descriptive text
 	return label
 
-# some labels updaters for creature stat
+
+
+# labels updaters for creature stats
 func _on_Creature_attack_changed():
 	$VBoxContainer/Bottom/Attack.text = attack
 
 func _on_Creature_pv_changed():
 	$VBoxContainer/Bottom/PV.text = pv
 	
+	
+
 func get_drag_data(_pos): # called when dragged
 	if on_board:
 		set_drag_preview(create_attack_drag_clone())
-		return [1,NAME, name, can_attack, attack, is_self_side]
+		#return [1,NAME, name, can_attack, attack, is_self_side]
 		
 	else: # if the card is still in the hand
 		set_drag_preview(create_play_drag_clone())
 		# return card name
-		return [0,NAME,name,false, 0, false]
+		#return [0,NAME,name,false, 0, false]
+	return create_drop_dico()
 		
+		
+func create_drop_dico():
+	if on_board:
+		return {"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+	else:
+		return {"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+		
+# signals implementation
 func _on_self_tour_begin():
 	"""
 	Called when the tour begin
