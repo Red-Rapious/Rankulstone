@@ -13,7 +13,11 @@ export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
 signal played
 
 func _ready():
-	$VBoxContainer/Name.text = NAME
+	update_labels()
+
+func update_labels():
+	$VBoxContainer/Top/Name.text = NAME
+	$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
 	$VBoxContainer/Action_Text.text = ""
 	#$VBoxContainer/Under_text.text = UNDER_TEXT
 	$VBoxContainer/Under_text.text = ""

@@ -58,6 +58,23 @@ func fill_pv():
 	pv = pv_max
 	
 
+func play_card():
+	"""
+	Called when this card is played
+	Do some routine
+	"""
+	self.on_board = true
+	self.emit_signal("played")
+	
+func update_labels():
+	$VBoxContainer/Top/Name.text = NAME
+	if on_board:
+		$VBoxContainer/Top/Mana_cost.text = ""
+	else:
+		$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
+	$VBoxContainer/Action_Text.text = ""
+	#$VBoxContainer/Under_text.text = UNDER_TEXT
+	$VBoxContainer/Under_text.text = ""
 
 # some die functions
 func check_pv(): # a function that checks if pv is under 0
