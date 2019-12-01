@@ -4,6 +4,7 @@ func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("opponent_creature_died", self, "_on_opponent_creature_died")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
+	player.connect("self_creature_fight", self, "_on_self_creature_fight")
 	#OS.window_fullscreen = true
 	player.init()
 	_on_self_hand_changed()
@@ -97,7 +98,10 @@ func _on_Opponent_card_attacked(data):
 	"""
 	
 	
-	player.self_card_attack_opponent(data["attack_value"]) # inform player
-	get_node("All/Center/Board/Self_Board/"+data["node_name"]).can_attack = false # block a second attempt
-	get_node("All/Center/Board/Self_Board/"+data["node_name"]).die()
+	player.self_card_attack_opponent(data) # inform player
+	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).can_attack = false # block a second attempt
+	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).die()
+	pass
+
+func _on_self_creature_fight(data):
 	pass

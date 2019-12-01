@@ -2,6 +2,7 @@ extends Node
 
 enum {PLAY, ATTACK} # differents drag types
 enum {DRAG_TYPE, CARD_NAME, NODE_NAME, CAN_ATTACK, ATTACK_VALUE, IS_SELF_SIDE} # the array passed with d&d description
+enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array will be passed, containing both creatures data
 
 const VERSION = "0.0.1"
 var information_loaded = false # if it has been set by the First time screen

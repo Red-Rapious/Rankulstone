@@ -20,6 +20,8 @@ signal pv_max_changed
 
 func _ready():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
+	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
+	player.connect("self_creature_fight", self, "_on_creature_fight")
 
 
 
@@ -130,3 +132,23 @@ func _on_self_tour_begin():
 	Do some routine, like attack reset
 	"""
 	can_attack = true
+	
+	
+	
+func can_drop_data(_pos, data):
+	""" --> bool
+	When a card is dragged on top of the opponent UI group, this function is called.
+	Return true if item can be dropped, false if it can't, 
+	depending on the turn and if the card as already attacked
+	"""
+	return (not is_self_side) and data["is_self_side"] and data["drag_type"]==global.ATTACK and data["can_attack"] and player.your_turn 
+	
+func drop_data(_pos, data):
+	player.fight_requested([create_drop_dico(), data])
+	
+func _on_creature_attack_something(data):
+	if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
+		can_attack = false
+		
+func _on_creature_fight(data):
+	_on_creature_attack_something(data[global.SELF_CREATURE_DATA])

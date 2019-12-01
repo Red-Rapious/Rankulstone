@@ -43,6 +43,11 @@ signal self_end_of_turn
 signal opponent_end_of_turn
 signal self_tour_begin
 
+signal self_creature_fight
+signal opponent_creature_fight
+
+signal self_creature_attack_opponent
+
 
 func init():
 	"""
@@ -59,6 +64,8 @@ func init():
 
 	connect("self_mana_changed", self, "_on_self_mana_changed")
 	connect("self_mana_max_changed", self, "_on_self_mana_max_changed")
+	
+	connect("self_creature_fight", self, "_on_self_creature_fight")
 
 	for i in range(30): # temporarly create a full of "Card" cards library
 		library.append("Creature")
@@ -102,6 +109,9 @@ func _on_self_mana_changed():
 
 func _on_self_mana_max_changed():
 	rpc("opponent_mana_max_changed", self_mana_max)
+	
+func _on_self_creature_fight(data):
+	rpc("opponent_creature_fight", data)
 
 
 
@@ -205,6 +215,10 @@ remote func opponent_mana_changed(new_value: int):
 remote func opponent_mana_max_changed(new_value: int):
 	opponent_mana_max = new_value
 	emit_signal("opponent_mana_changed")
+	
+remote func opponent_creature_fight(data):
+	emit_signal("opponent_creature_fight", data)
+
 
 
 
@@ -304,5 +318,9 @@ func end_game(win: bool):
 	global.win=win
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
 	
-func self_card_attack_opponent(attack_value):
-	rpc("add_self_pv", -attack_value)
+func self_card_attack_opponent(data):
+	emit_signal("self_creature_attack_opponent", data)
+	rpc("add_self_pv", -data["attack_value"])
+	
+func fight_requested(data):
+	emit_signal("self_creature_fight", data)
