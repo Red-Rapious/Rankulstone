@@ -48,6 +48,9 @@ signal opponent_creature_fight
 
 signal self_creature_attack_opponent
 
+signal self_creature_hp_changed
+signal opponent_creature_hp_changed
+
 
 func init():
 	"""
@@ -66,6 +69,7 @@ func init():
 	connect("self_mana_max_changed", self, "_on_self_mana_max_changed")
 	
 	connect("self_creature_fight", self, "_on_self_creature_fight")
+	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 	for i in range(30): # temporarly create a full of "Card" cards library
 		library.append("Creature")
@@ -99,9 +103,9 @@ func _on_self_creature_played(new_card_name: String):
 	self_board.append(new_card_name)
 	rpc("opponent_creature_played", new_card_name)
 	
-func _on_self_creature_died(card_name: String):
+func _on_self_creature_died(data):
 	#self_board.append(card_name)
-	rpc("opponent_creature_died", card_name)
+	rpc("opponent_creature_died", data)
 	
 	
 func _on_self_mana_changed():
@@ -111,8 +115,12 @@ func _on_self_mana_max_changed():
 	rpc("opponent_mana_max_changed", self_mana_max)
 	
 func _on_self_creature_fight(data):
+	emit_signal("self_creature_hp_changed", [data[global.SELF_CREATURE_DATA], -data[global.OPPONENT_CREATURE_DATA]["attack_value"]])
+	emit_signal("self_creature_hp_changed", [data[global.OPPONENT_CREATURE_DATA], -data[global.SELF_CREATURE_DATA]["attack_value"]])
 	rpc("opponent_creature_fight", data)
 
+func _on_self_creature_hp_changed(data):
+	rpc("opponent_creature_hp_changed", data)
 
 
 # some pv setters
@@ -201,12 +209,12 @@ remote func opponent_creature_played(new_card_name: String):
 	opponent_board.append(new_card_name)
 	emit_signal("opponent_creature_played", new_card_name)
 	
-remote func opponent_creature_died(card_name: String):
+remote func opponent_creature_died(data):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
 	#opponent_board.append(card_name)
-	emit_signal("opponent_creature_died", card_name)
+	emit_signal("opponent_creature_died", data)
 
 remote func opponent_mana_changed(new_value: int):
 	opponent_mana = new_value
@@ -218,6 +226,9 @@ remote func opponent_mana_max_changed(new_value: int):
 	
 remote func opponent_creature_fight(data):
 	emit_signal("opponent_creature_fight", data)
+	
+remote func opponent_creature_hp_changed():
+	emit_signal("opponent_creature_hp_changed")
 
 
 
@@ -251,11 +262,14 @@ remote func opponent_end_of_turn():
 	your_turn = true
 	emit_signal("self_tour_begin")
 	
-func creature_died(node_name):
+func creature_died(data):
 	"""
 	Called when a creature died
 	"""
-	emit_signal("self_creature_died", node_name)
+	if data["is_self_side"]:
+		emit_signal("self_creature_died", data)
+	else:
+		emit_signal("opponent_creature_died", data)
 
 
 func _on_self_tour_begin():

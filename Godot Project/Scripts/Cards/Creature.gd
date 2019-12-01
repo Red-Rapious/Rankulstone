@@ -80,12 +80,12 @@ func update_labels():
 
 # some die functions
 func check_pv(): # a function that checks if pv is under 0
-	if pv<0:
-		pass # dont do anything for now
+	if pv<=0:
+		die() # dont do anything for now
 		
 func die():
 	emit_signal("quit_battlefield")
-	player.creature_died(name)
+	player.creature_died(create_drop_dico())
 	queue_free()
 
 
@@ -103,10 +103,11 @@ func create_attack_drag_clone():
 
 # labels updaters for creature stats
 func _on_Creature_attack_changed():
-	$VBoxContainer/Bottom/Attack.text = attack
+	$VBoxContainer/Bottom/Attack.text = str(attack)
 
 func _on_Creature_pv_changed():
-	$VBoxContainer/Bottom/PV.text = pv
+	check_pv()
+	$VBoxContainer/Bottom/PV.text = str(pv)
 	
 	
 

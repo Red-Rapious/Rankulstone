@@ -5,6 +5,7 @@ func _ready():
 	player.connect("opponent_creature_died", self, "_on_opponent_creature_died")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
 	player.connect("self_creature_fight", self, "_on_self_creature_fight")
+	player.connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 	#OS.window_fullscreen = true
 	player.init()
 	_on_self_hand_changed()
@@ -87,9 +88,8 @@ func _on_opponent_creature_played(card_name):
 	"""
 	add_card_to_board(false, card_name) # "false" to put in the opponent side
 	
-func _on_opponent_creature_died(node_name):
-	#print("yes")
-	get_node("All/Center/Board/Opponent_Board/"+node_name).queue_free()
+func _on_opponent_creature_died(data):
+	get_node("All/Center/Board/Opponent_Board/"+data["node_name"]).queue_free()
 
 func _on_Opponent_card_attacked(data):
 	"""
@@ -103,5 +103,14 @@ func _on_Opponent_card_attacked(data):
 	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).die()
 	pass
 
-func _on_self_creature_fight(data):
+func _on_self_creature_fight(data): # called when 2 creatures will fight each others
 	pass
+	
+func _on_self_creature_hp_changed(data): # called when a hp modification on creature is needed
+	var creature
+	if data[0]["is_self_side"]:
+		creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
+	else:
+		creature = get_node("All/Center/Board/Opponent_Board/"+data[0]["node_name"])
+		
+	creature.add_pv(data[1])
