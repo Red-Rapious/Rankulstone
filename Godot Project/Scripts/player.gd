@@ -227,8 +227,8 @@ remote func opponent_mana_max_changed(new_value: int):
 remote func opponent_creature_fight(data):
 	emit_signal("opponent_creature_fight", data)
 	
-remote func opponent_creature_hp_changed():
-	emit_signal("opponent_creature_hp_changed")
+remote func opponent_creature_hp_changed(data):
+	emit_signal("opponent_creature_hp_changed", data)
 
 
 

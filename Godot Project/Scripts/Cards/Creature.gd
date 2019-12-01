@@ -22,6 +22,8 @@ func _ready():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
 	player.connect("self_creature_fight", self, "_on_creature_fight")
+	update_labels()
+	check_pv()
 
 
 
@@ -43,6 +45,7 @@ func add_pv(value: int):
 	pv += value
 	if pv > pv_max:
 		pv = pv_max
+	check_pv()
 	emit_signal("pv_changed")
 	
 func set_pv_max(new_value: int):
@@ -77,6 +80,8 @@ func update_labels():
 	$VBoxContainer/Action_Text.text = ""
 	#$VBoxContainer/Under_text.text = UNDER_TEXT
 	$VBoxContainer/Under_text.text = ""
+	$VBoxContainer/Bottom/PV.text = str(pv)
+	$VBoxContainer/Bottom/Attack.text = str(attack)
 
 # some die functions
 func check_pv(): # a function that checks if pv is under 0
@@ -103,12 +108,10 @@ func create_attack_drag_clone():
 
 # labels updaters for creature stats
 func _on_Creature_attack_changed():
-	$VBoxContainer/Bottom/Attack.text = str(attack)
+	update_labels()
 
 func _on_Creature_pv_changed():
-	check_pv()
-	$VBoxContainer/Bottom/PV.text = str(pv)
-	
+	update_labels()
 	
 
 func get_drag_data(_pos): # called when dragged
