@@ -24,7 +24,6 @@ func can_drop_data(_pos, data):
 	depending on the turn and if the card as already attacked
 	"""
 	
-	#return data[global.IS_SELF_SIDE] and data[global.DRAG_TYPE]==global.ATTACK and data[global.CAN_ATTACK] and player.your_turn 
 	return data["is_self_side"] and data["drag_type"]==global.ATTACK and data["can_attack"] and player.your_turn 
 	
 func drop_data(_pos, data):

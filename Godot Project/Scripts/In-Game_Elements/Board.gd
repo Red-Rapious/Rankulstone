@@ -14,12 +14,10 @@ func can_drop_data(_pos, data):
 	if data["drag_type"]==global.PLAY:
 		#var card=get_node("../Self_Hand/"+data[global.NODE_NAME])
 		var card=get_node("../Self_Hand/"+data["node_name"])
-		#return (not card.on_board) and player.your_turn and get_node("../Self_Hand/"+data[global.NODE_NAME]).MANA_COST <= player.self_mana
 		return (not card.on_board) and player.your_turn and get_node("../Self_Hand/"+data["node_name"]).MANA_COST <= player.self_mana
 	else:
 		return false
 	
 func drop_data(_pos, data):
 	# called when a card if dropped
-	#emit_signal("card_dropped", data[global.CARD_NAME])
 	emit_signal("card_dropped", data["card_name"])
