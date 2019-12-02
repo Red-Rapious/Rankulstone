@@ -102,12 +102,10 @@ func _on_Opponent_card_attacked(data):
 	Called when you attack the opponent with a card
 	Inform player.gd and change can_attack on the card, so it cant attack twice
 	"""
-	
-	
+
 	player.self_card_attack_opponent(data) # inform player
-	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).can_attack = false # block a second attempt
-	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).die()
-	pass
+
+
 
 func _on_self_creature_fight(data): # called when 2 creatures will fight each others
 	pass # nothing for now, maybe animations later

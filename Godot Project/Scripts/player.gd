@@ -121,6 +121,8 @@ func _on_self_creature_fight(data):
 
 func _on_self_creature_hp_changed(data):
 	rpc("opponent_creature_hp_changed", data)
+	
+""" End """
 
 
 # some pv setters
@@ -146,6 +148,7 @@ func pv_check():
 	"""
 	if self_pv <= 0:
 		loose(true)
+# end
 
 
 # some drawing functions
@@ -171,6 +174,7 @@ func draw_card(signalised=true):
 		if signalised:
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
+# end
 
 
 
@@ -230,6 +234,8 @@ remote func opponent_creature_fight(data):
 remote func opponent_creature_hp_changed(data):
 	emit_signal("opponent_creature_hp_changed", data)
 
+""" End """
+
 
 
 
@@ -282,6 +288,7 @@ func _on_first_player_tour():
 	"""
 	your_turn = true
 	set_self_mana_max(1) # add an initial mana, else he cant play
+# end
 
 
 
@@ -305,12 +312,11 @@ func add_self_mana(value: int):
 
 func full_mana_bar():
 	set_self_mana(self_mana_max)
-
+# end 
 
 
 
 # functions called by self or the opponent when something makes loose or win
-# generaly when someone pv<=0
 remote func loose(inform_opponent: bool):
 	"""
 	To avoid cyclic calls, a bool is passed in argument
@@ -329,14 +335,28 @@ remote func win(inform_opponent: bool):
 	end_game(true) # end game with win
 	
 func end_game(win: bool):
+	"""
+	Called by win() or loose()
+	Save the result of the game for the EndGameScreen
+	"""
 	global.win=win
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
+# end
+	
+	
+	
+	
 	
 func self_card_attack_opponent(data):
+	"""
+	Called by BattleScreen when an attack against the opponent has been requested
+	"""
 	emit_signal("self_creature_attack_opponent", data)
 	rpc("add_self_pv", -data["attack_value"])
 	
-	
-	
+
 func fight_requested(data):
+	"""
+	Called by a creature when a fight has been requested by d&d
+	"""
 	emit_signal("self_creature_fight", data)

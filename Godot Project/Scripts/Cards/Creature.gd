@@ -74,7 +74,9 @@ func play_card():
 	self.emit_signal("played")
 	
 func update_labels():
-	# see Card.update_labels
+	""" 
+	See Card.update_labels
+	"""
 	$VBoxContainer/Top/Name.text = NAME
 	
 	if on_board: # if on board, dont show mana cost
@@ -87,6 +89,8 @@ func update_labels():
 	$VBoxContainer/Under_text.text = ""
 	$VBoxContainer/Bottom/PV.text = str(pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack)
+
+
 
 # some die functions
 func check_pv(): # a function that checks if pv is under 0
@@ -119,6 +123,7 @@ func _on_Creature_pv_changed():
 	update_labels()
 	
 
+# drag&drop functions
 func get_drag_data(_pos): # called when dragged
 	if on_board:
 		set_drag_preview(create_attack_drag_clone())
@@ -133,16 +138,6 @@ func create_drop_dico():
 		return {"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 	else:
 		return {"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
-		
-# signals implementation
-func _on_self_tour_begin():
-	"""
-	Called when the tour begin
-	Do some routine, like attack reset
-	"""
-	can_attack = true
-	
-	
 	
 func can_drop_data(_pos, data):
 	""" --> bool
@@ -155,6 +150,20 @@ func can_drop_data(_pos, data):
 func drop_data(_pos, data):
 	player.fight_requested([create_drop_dico(), data])
 	
+	
+	
+	
+# signals implementation
+func _on_self_tour_begin():
+	"""
+	Called when the tour begin
+	Do some routine, like attack reset
+	"""
+	can_attack = true
+	
+	
+	
+# fight functions
 func _on_creature_attack_something(data):
 	if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
 		can_attack = false
