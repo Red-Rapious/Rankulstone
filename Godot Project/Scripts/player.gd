@@ -336,5 +336,7 @@ func self_card_attack_opponent(data):
 	emit_signal("self_creature_attack_opponent", data)
 	rpc("add_self_pv", -data["attack_value"])
 	
+	
+	
 func fight_requested(data):
 	emit_signal("self_creature_fight", data)

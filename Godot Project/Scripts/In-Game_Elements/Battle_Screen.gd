@@ -9,7 +9,7 @@ func _ready():
 	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
 	#OS.window_fullscreen = true
 	player.init()
-	_on_self_hand_changed()
+	_on_self_hand_changed() # update hand
 	
 func _process(delta):
 	# quit game if escape is pressed
@@ -110,9 +110,13 @@ func _on_Opponent_card_attacked(data):
 	pass
 
 func _on_self_creature_fight(data): # called when 2 creatures will fight each others
-	pass
+	pass # nothing for now, maybe animations later
 	
-func _on_creature_hp_changed(data): # called when a hp modification on creature is needed
+func _on_creature_hp_changed(data): 
+	""" 
+	Called when a hp modification on creature is needed
+	Data[0] contain creature dico, and data[1] contains an int with the damage to do to the creature
+	"""
 	var creature
 	if data[0]["is_self_side"]:
 		creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])

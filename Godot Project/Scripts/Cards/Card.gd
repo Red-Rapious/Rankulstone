@@ -16,6 +16,9 @@ func _ready():
 	update_labels()
 
 func update_labels():
+	""" --> void
+	Simply update all the card labels
+	"""
 	$VBoxContainer/Top/Name.text = NAME
 	$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
 	$VBoxContainer/Action_Text.text = ""
@@ -39,12 +42,14 @@ func create_play_drag_clone():
 	return label
 	
 func create_drop_dico():
+	"""
+	Return a dictionnary with many informations
+	Mainly used for drag&drop 
+	"""
 	return {"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 
 func get_drag_data(_pos): # called when dragged
 	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
-	# return card name
-	#return [0,NAME, name, false, 0, false] # return an array, see global enums (DRAG_TYPE, etc...)
 	return create_drop_dico()
 	
 	

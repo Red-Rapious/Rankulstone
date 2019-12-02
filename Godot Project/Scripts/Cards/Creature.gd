@@ -5,7 +5,7 @@ var on_board = false
 var is_self_side
 var can_attack = false # attack is false by default to simulate invocation sickness
 
-export var pv_max = 1
+export var pv_max = 2
 export var attack = 1
 var pv = pv_max
 
@@ -36,6 +36,7 @@ func add_attack(value: int):
 	attack += value
 	emit_signal("attack_changed")
 	
+	
 # some pv & pv_max setters
 func set_pv(new_value: int):
 	pv = new_value
@@ -63,6 +64,7 @@ func fill_pv():
 	pv = pv_max
 	
 
+
 func play_card():
 	"""
 	Called when this card is played
@@ -72,11 +74,14 @@ func play_card():
 	self.emit_signal("played")
 	
 func update_labels():
+	# see Card.update_labels
 	$VBoxContainer/Top/Name.text = NAME
-	if on_board:
+	
+	if on_board: # if on board, dont show mana cost
 		$VBoxContainer/Top/Mana_cost.text = ""
 	else:
 		$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
+		
 	$VBoxContainer/Action_Text.text = ""
 	#$VBoxContainer/Under_text.text = UNDER_TEXT
 	$VBoxContainer/Under_text.text = ""
@@ -141,8 +146,8 @@ func _on_self_tour_begin():
 	
 func can_drop_data(_pos, data):
 	""" --> bool
-	When a card is dragged on top of the opponent UI group, this function is called.
-	Return true if item can be dropped, false if it can't, 
+	When a card is dragged on top of a creature this function is called.
+	Return true if creature can be dropped for engage a fight, false if it can't, 
 	depending on the turn and if the card as already attacked
 	"""
 	return (not is_self_side) and data["is_self_side"] and data["drag_type"]==global.ATTACK and data["can_attack"] and player.your_turn 
@@ -155,4 +160,4 @@ func _on_creature_attack_something(data):
 		can_attack = false
 		
 func _on_creature_fight(data):
-	_on_creature_attack_something(data[global.SELF_CREATURE_DATA])
+	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
