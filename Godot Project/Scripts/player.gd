@@ -360,3 +360,9 @@ func fight_requested(data):
 	Called by a creature when a fight has been requested by d&d
 	"""
 	emit_signal("self_creature_fight", data)
+	
+	
+	
+	
+	
+	

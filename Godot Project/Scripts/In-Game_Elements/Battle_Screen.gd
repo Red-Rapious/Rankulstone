@@ -115,7 +115,7 @@ func _on_creature_hp_changed(data):
 	Called when a hp modification on creature is needed
 	Data[0] contain creature dico, and data[1] contains an int with the damage to do to the creature
 	"""
-	print(data)
+	#print(data)
 	var creature
 	if data[0]["is_self_side"]:
 		creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])

@@ -26,6 +26,7 @@ func update_labels():
 	#$VBoxContainer/Under_text.text = UNDER_TEXT
 	$VBoxContainer/Under_text.text = ""
 
+#func play_card(id):
 func play_card():
 	"""
 	Called when this card is played
