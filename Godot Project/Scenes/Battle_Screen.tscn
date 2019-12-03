@@ -81,6 +81,7 @@ script = ExtResource( 5 )
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 869.0
 margin_bottom = 182.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -88,6 +89,7 @@ size_flags_vertical = 3
 margin_top = 186.0
 margin_right = 869.0
 margin_bottom = 369.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -95,6 +97,7 @@ size_flags_vertical = 3
 margin_top = 469.0
 margin_right = 869.0
 margin_bottom = 700.0
+rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.25

@@ -74,7 +74,7 @@ func init():
 	for i in range(30): # temporarly create a full of "Card" cards library
 		library.append("Creature")
 
-	draw_hand(7)
+	draw_hand()
 	set_self_pv(self_pv)
 	emit_signal("self_mana_max_changed")
 	emit_signal("opponent_mana_max_changed")

@@ -170,3 +170,7 @@ func _on_creature_attack_something(data):
 		
 func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
+
+func _on_Creature_pressed():
+	print(name)
+	print(get_node("../"+name))

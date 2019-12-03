@@ -13,6 +13,7 @@ export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
 signal played
 
 func _ready():
+	
 	update_labels()
 
 func update_labels():
