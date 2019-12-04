@@ -10,6 +10,8 @@ export var IMAGE = ""
 export var RARITY = 0
 export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
 
+var uniq_id = -1
+
 signal played
 
 func _ready():
@@ -26,12 +28,13 @@ func update_labels():
 	#$VBoxContainer/Under_text.text = UNDER_TEXT
 	$VBoxContainer/Under_text.text = ""
 
-#func play_card(id):
-func play_card():
+func play_card(id):
+#func play_card():
 	"""
 	Called when this card is played
 	Do some routine
 	"""
+	self.uniq_id = id
 	self.on_board = true
 	self.emit_signal("played")
 	
@@ -48,7 +51,7 @@ func create_drop_dico():
 	Return a dictionnary with many informations
 	Mainly used for drag&drop 
 	"""
-	return {"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+	return {"uniq_id": uniq_id, "drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 
 func get_drag_data(_pos): # called when dragged
 	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function

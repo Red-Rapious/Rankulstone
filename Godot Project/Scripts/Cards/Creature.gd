@@ -8,7 +8,7 @@ var can_attack = false # attack is false by default to simulate invocation sickn
 export var pv_max = 2
 export var attack = 1
 var pv = pv_max
-var uniq_id
+
 
 signal enter_battlefield
 signal quit_battlefield
@@ -65,13 +65,13 @@ func fill_pv():
 	pv = pv_max
 	
 
-#func play_card(id):
-func play_card():
+func play_card(id):
+#func play_card():
 	"""
 	Called when this card is played
 	Do some routine
 	"""
-	#self.uniq_id = id
+	
 	self.on_board = true
 	self.emit_signal("played")
 	
@@ -137,9 +137,9 @@ func get_drag_data(_pos): # called when dragged
 		
 func create_drop_dico():
 	if on_board:
-		return {"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+		return {"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 	else:
-		return {"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+		return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 	
 func can_drop_data(_pos, data):
 	""" --> bool

@@ -41,8 +41,8 @@ func _on_self_hand_changed():
 
 
 
-func _on_Board_card_dropped(node_name):
-	play_card_from_hand(node_name)
+func _on_Board_card_dropped(card_dico):
+	play_card_from_hand(card_dico["card_name"])
 	
 func add_card_to_board(self_side, card_name):
 	"""
@@ -53,7 +53,8 @@ func add_card_to_board(self_side, card_name):
 	# instance card
 	var scene = load("res://Scenes/Cards/"+card_name+".tscn")
 	var scene_instance = scene.instance()
-	scene_instance.play_card()
+	var card_uniq_id = player.ask_new_uniq_id()
+	scene_instance.play_card(card_uniq_id)
 	scene_instance.is_self_side = self_side
 	
 	# add instance to the board
