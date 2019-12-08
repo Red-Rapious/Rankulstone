@@ -44,7 +44,7 @@ func _on_self_hand_changed():
 func _on_Board_card_dropped(card_dico):
 	play_card_from_hand(card_dico["card_name"])
 	
-func add_card_to_board(self_side, card_name):
+func add_card_to_board(self_side, card_name, card_uniq_id):
 	"""
 	A function that add a card to the board. If self_side is true, add it to your own hand.
 	Else, add it to the opponent hand
@@ -53,7 +53,7 @@ func add_card_to_board(self_side, card_name):
 	# instance card
 	var scene = load("res://Scenes/Cards/"+card_name+".tscn")
 	var scene_instance = scene.instance()
-	var card_uniq_id = player.ask_new_uniq_id()
+	
 	scene_instance.play_card(card_uniq_id)
 	scene_instance.is_self_side = self_side
 	
@@ -77,7 +77,8 @@ func play_card_from_hand(node_name: String):
 	# delete hand card
 	if card.type == card.CREATURE:
 		get_node("All/Center/Self_Hand/"+node_name).queue_free()
-		add_card_to_board(true,card.NAME)
+		var card_uniq_id = player.ask_new_uniq_id(true)
+		add_card_to_board(true, card.NAME, card_uniq_id)
 		player.card_played_from_hand(card.NAME, card.MANA_COST)
 	else:
 		# TODO : launch the spell
@@ -88,7 +89,8 @@ func _on_opponent_creature_played(card_name):
 	Called when the opponent plays a card
 	Simply add the card to the board
 	"""
-	add_card_to_board(false, card_name) # "false" to put in the opponent side
+	var card_uniq_id = player.ask_new_uniq_id(false)
+	add_card_to_board(false, card_name, card_uniq_id) # "false" to put in the opponent side
 	
 func _on_opponent_creature_died(data):
 	pass
@@ -116,12 +118,14 @@ func _on_creature_hp_changed(data):
 	Called when a hp modification on creature is needed
 	Data[0] contain creature dico, and data[1] contains an int with the damage to do to the creature
 	"""
-	#print(data)
+
 	var creature
-	if data[0]["is_self_side"]:
-		creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
+	if player.uniq_ids_list[data[0]["uniq_id"]]:
+		#creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
+		creature = get_node("All/Center/Board/Self_Board/"+str(data[0]["uniq_id"]))
 	else:
-		creature = get_node("All/Center/Board/Opponent_Board/"+data[0]["node_name"])
+		creature = get_node("All/Center/Board/Opponent_Board/"+str(data[0]["uniq_id"]))
+		#creature = get_node("All/Center/Board/Opponent_Board/"+data[0]["node_name"])
 		
 	if creature != null:
 		creature.add_pv(data[1])

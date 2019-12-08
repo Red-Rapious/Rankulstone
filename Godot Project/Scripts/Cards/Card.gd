@@ -51,7 +51,7 @@ func create_drop_dico():
 	Return a dictionnary with many informations
 	Mainly used for drag&drop 
 	"""
-	return {"uniq_id": uniq_id, "drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+	return {"uniq_id": uniq_id, "drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false, "mana_cost":MANA_COST}
 
 func get_drag_data(_pos): # called when dragged
 	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function

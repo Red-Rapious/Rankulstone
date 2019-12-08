@@ -22,6 +22,7 @@ var self_board = Array()
 var opponent_board = Array()
 
 var uniq_ids_counter = -1
+var uniq_ids_list = []
 
 signal game_started
 
@@ -366,10 +367,11 @@ func fight_requested(data):
 	
 	
 	
-func ask_new_uniq_id():
+func ask_new_uniq_id(self_side: bool):
 	"""
 	Create a new uniq id for a card, and said it to the opponent
 	"""
 	uniq_ids_counter += 1
+	uniq_ids_list.append(self_side)
 	return uniq_ids_counter
 	

@@ -10,11 +10,10 @@ func can_drop_data(_pos, data):
 	"""
 
 	
-	#if data[global.DRAG_TYPE]==global.PLAY:
 	if data["drag_type"]==global.PLAY:
-		#var card=get_node("../Self_Hand/"+data[global.NODE_NAME])
-		var card=get_node("../Self_Hand/"+data["node_name"])
-		return (not card.on_board) and player.your_turn and get_node("../Self_Hand/"+data["node_name"]).MANA_COST <= player.self_mana
+		#var card=get_node("../Self_Hand/"+str(data["uniq_id"]))
+		#var card=get_node("../Self_Hand/"+data["node_name"])
+		return  player.your_turn and data["mana_cost"] <= player.self_mana
 	else:
 		return false
 	

@@ -72,6 +72,8 @@ func play_card(id):
 	Do some routine
 	"""
 	
+	self.uniq_id = id
+	self.name = str(uniq_id)
 	self.on_board = true
 	self.emit_signal("played")
 	
@@ -137,10 +139,12 @@ func get_drag_data(_pos): # called when dragged
 		
 func create_drop_dico():
 	if on_board:
-		return {"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+		#return {"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 	else:
-		return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
-	
+		#return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "can_attack": false, "attack_value": 0, "is_self_side": false}
+
 func can_drop_data(_pos, data):
 	""" --> bool
 	When a card is dragged on top of a creature this function is called.
@@ -167,14 +171,16 @@ func _on_self_tour_begin():
 	
 # fight functions
 func _on_creature_attack_something(data):
-	if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
+	#if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
+	if data["uniq_id"] == uniq_id:
 		can_attack = false
 		
 func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
 
-""" DEBUG ONLY
+#DEBUG ONLY
 func _on_Creature_pressed():
 	print(name)
-	print(get_node("../"+name))
-"""
+	#print(name)
+	#print(get_node("../"+name))
+
