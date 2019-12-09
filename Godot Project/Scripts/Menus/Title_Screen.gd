@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	#load_infos()
+	$All/Down_text/Version.text = "Version " + global.VERSION
 	pass
 
 func load_infos():

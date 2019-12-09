@@ -59,7 +59,6 @@ text = "Options"
 script = ExtResource( 4 )
 
 [node name="Down_text" type="HBoxContainer" parent="All"]
-editor/display_folded = true
 margin_top = 601.0
 margin_right = 1200.0
 margin_bottom = 720.0
