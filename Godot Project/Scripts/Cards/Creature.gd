@@ -5,9 +5,9 @@ var on_board = false
 var is_self_side
 var can_attack = false # attack is false by default to simulate invocation sickness
 
-export var pv_max = 2
+export var pv = 2
 export var attack = 1
-var pv = pv_max
+var pv_max = pv
 
 
 signal enter_battlefield

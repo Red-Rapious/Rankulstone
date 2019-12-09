@@ -75,7 +75,7 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 	for i in range(30): # temporarly create a full of "Card" cards library
-		library.append("Creature")
+		library.append("Soraka")
 
 	draw_hand()
 	set_self_pv(self_pv)

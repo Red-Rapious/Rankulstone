@@ -8,14 +8,19 @@
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Creature"
+pv = 1
+
+[node name="Top" parent="VBoxContainer" index="0"]
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Creature"
 
-[node name="Under_text" parent="VBoxContainer" index="3"]
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
 margin_bottom = 152.0
 
-[node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="4"]
+[node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="3"]
 margin_top = 156.0
 margin_right = 110.0
 margin_bottom = 170.0
@@ -33,7 +38,7 @@ margin_right = 110.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "2"
+text = "1"
 align = 2
 [connection signal="attack_changed" from="." to="." method="_on_Creature_attack_changed"]
 [connection signal="pressed" from="." to="." method="_on_Creature_pressed"]

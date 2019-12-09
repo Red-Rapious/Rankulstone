@@ -24,37 +24,42 @@ rect_clip_content = true
 custom_constants/separation = 5
 
 [node name="Left" type="VBoxContainer" parent="All"]
-margin_right = 217.0
+margin_right = 192.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.75
-custom_constants/separation = 0
+size_flags_stretch_ratio = 0.65
+custom_constants/separation = 30
 
 [node name="Opponent" parent="All/Left" instance=ExtResource( 2 )]
+margin_right = 192.0
+margin_bottom = 318.0
 
 [node name="HSeparator" type="HSeparator" parent="All/Left"]
 margin_top = 348.0
-margin_right = 217.0
+margin_right = 192.0
 margin_bottom = 352.0
 
 [node name="Self" parent="All/Left" instance=ExtResource( 3 )]
+margin_top = 382.0
+margin_right = 192.0
 
 [node name="VSeparator" type="VSeparator" parent="All"]
-margin_left = 222.0
-margin_right = 226.0
+margin_left = 197.0
+margin_right = 201.0
 margin_bottom = 700.0
 
 [node name="Center" type="VBoxContainer" parent="All"]
-margin_left = 231.0
-margin_right = 1100.0
+editor/display_folded = true
+margin_left = 206.0
+margin_right = 1096.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="Opponent_Hand" type="HBoxContainer" parent="All/Center"]
-margin_right = 869.0
+margin_right = 890.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,7 +79,7 @@ script = ExtResource( 5 )
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
 margin_top = 96.0
-margin_right = 869.0
+margin_right = 890.0
 margin_bottom = 465.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -82,7 +87,7 @@ size_flags_stretch_ratio = 2.0
 script = ExtResource( 6 )
 
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
-margin_right = 869.0
+margin_right = 890.0
 margin_bottom = 182.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -90,7 +95,7 @@ size_flags_vertical = 3
 
 [node name="Self_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_top = 186.0
-margin_right = 869.0
+margin_right = 890.0
 margin_bottom = 369.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -98,7 +103,7 @@ size_flags_vertical = 3
 
 [node name="Self_Hand" type="HBoxContainer" parent="All/Center"]
 margin_top = 469.0
-margin_right = 869.0
+margin_right = 890.0
 margin_bottom = 700.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -106,12 +111,12 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.25
 
 [node name="VSeparator2" type="VSeparator" parent="All"]
-margin_left = 1105.0
-margin_right = 1109.0
+margin_left = 1101.0
+margin_right = 1105.0
 margin_bottom = 700.0
 
 [node name="Right" type="VBoxContainer" parent="All"]
-margin_left = 1114.0
+margin_left = 1110.0
 margin_right = 1260.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
@@ -120,7 +125,7 @@ size_flags_stretch_ratio = 0.5
 script = ExtResource( 7 )
 
 [node name="Opponent_Library" type="Label" parent="All/Right"]
-margin_right = 146.0
+margin_right = 150.0
 margin_bottom = 31.0
 text = "Cartes restantes : 30
 PV : 30"
@@ -128,14 +133,14 @@ align = 1
 
 [node name="Right_Button" type="Button" parent="All/Right"]
 margin_top = 340.0
-margin_right = 146.0
+margin_right = 150.0
 margin_bottom = 360.0
 size_flags_vertical = 6
 text = "Fin de tour"
 
 [node name="Self_Library" type="Label" parent="All/Right"]
 margin_top = 669.0
-margin_right = 146.0
+margin_right = 150.0
 margin_bottom = 700.0
 text = "Cartes restantes : 30
 PV : 30"
