@@ -51,7 +51,6 @@ margin_right = 201.0
 margin_bottom = 700.0
 
 [node name="Center" type="VBoxContainer" parent="All"]
-editor/display_folded = true
 margin_left = 206.0
 margin_right = 1096.0
 margin_bottom = 700.0

@@ -1,6 +1,7 @@
 extends Control
 
 var creature_focus_mode = false
+var waiting_spell = null
 
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
@@ -66,9 +67,6 @@ func add_card_to_board(self_side, card_name, card_uniq_id):
 		$All/Center/Board/Self_Board.add_child(scene_instance)
 	else:
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
-		
-		
-		
 	
 
 func play_card_from_hand(node_name: String):
@@ -80,7 +78,6 @@ func play_card_from_hand(node_name: String):
 	
 	var card=get_node("All/Center/Self_Hand/"+node_name)
 	
-	# delete hand card
 	if card.type == card.CREATURE:
 		var card_uniq_id = player.ask_new_uniq_id(true)
 		add_card_to_board(true, card.NAME, card_uniq_id)
@@ -89,6 +86,10 @@ func play_card_from_hand(node_name: String):
 	elif card.type == card.SPELL:
 		card.play_card(-1)
 		player.spell_played_from_hand(card.NAME, card.MANA_COST)
+		
+	elif card.type == card.FOCUS_SPELL:
+		waiting_spell = card
+		player.ask_side_popup("Sélectionne\nune créture")
 
 
 func _on_opponent_creature_played(card_name):
@@ -139,4 +140,17 @@ func _on_ask_side_popup(text):
 	$Side_Popup.popup()
 
 func _on_Side_Popup_popup_hide():
-	creature_focus_mode = false
+	pass
+	#creature_focus_mode = false
+
+func creature_pressed(creature_id):
+	"""
+	Called by a creature when it's pressed
+	"""
+	if creature_focus_mode:
+		apply_effect_to_creature(creature_id)
+		
+func apply_effect_to_creature(creature_id):
+	if waiting_spell != null:
+		player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+		waiting_spell.apply_effect_to_creature(creature_id)

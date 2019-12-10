@@ -141,10 +141,10 @@ func get_drag_data(_pos): # called when dragged
 func create_drop_dico():
 	if on_board:
 		#return {"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
-		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 	else:
 		#return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
-		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "can_attack": false, "attack_value": 0, "is_self_side": false}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 
 func can_drop_data(_pos, data):
 	""" --> bool
@@ -179,9 +179,8 @@ func _on_creature_attack_something(data):
 func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
 
-#DEBUG ONLY
 func _on_Creature_pressed():
-	print(name)
-	#print(name)
-	#print(get_node("../"+name))
+	# CHANGE THIS LATER
+	if on_board:
+		get_node("../../../../../").creature_pressed(uniq_id)
 

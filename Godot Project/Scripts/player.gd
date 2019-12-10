@@ -77,7 +77,7 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 	for i in range(10): # temporarly create a full of "Card" cards library
-		library.append("Spell")
+		library.append("Focus_Spell")
 		library.append("Creature")
 		library.append("Soraka")
 
@@ -402,3 +402,12 @@ func ask_new_uniq_id(self_side: bool):
 	
 func ask_side_popup(text):
 	emit_signal("ask_side_popup", text)
+	
+	
+	
+func change_creature_hp(data):
+	"""
+	Called when a specific creature hp need to change
+	Data is a list. data[0] is the creature dico, and data[1] is the value of the damage to deal
+	"""
+	emit_signal("self_creature_hp_changed", data)

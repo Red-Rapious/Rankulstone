@@ -1,7 +1,8 @@
 extends "res://Scripts/Cards/Card.gd"
 
 func _ready():
-	type = SPELL
+	node_name = "Focus_Spell"
+	type = FOCUS_SPELL
 
 func play_card(id):
 	"""
@@ -11,8 +12,6 @@ func play_card(id):
 	#self.uniq_id = id
 	#self.on_board = true
 	self.emit_signal("played")
-	apply_effect()
 	
-func apply_effect():
+func apply_effect_to_creature(creature_id):
 	pass
-	#player.ask_side_popup("Sélectionne\nune créture !")

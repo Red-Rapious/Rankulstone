@@ -1,10 +1,11 @@
 extends TextureButton
 tool
 
-enum {NONE, CREATURE, SPELL} # differents kinds of cards
+enum {NONE, CREATURE, SPELL, FOCUS_SPELL} # differents kinds of cards
 
 var type = NONE
 export var NAME = "Card"
+var node_name
 export var MANA_COST = 1
 #export var IMAGE = ""
 export var RARITY = 0
@@ -17,6 +18,7 @@ var uniq_id = -1
 signal played
 
 func _ready():
+	node_name = NAME
 	update_labels()
 
 func update_labels():
@@ -52,7 +54,7 @@ func create_drop_dico():
 	Return a dictionnary with many informations
 	Mainly used for drag&drop 
 	"""
-	return {"uniq_id": uniq_id, "drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false, "mana_cost":MANA_COST}
+	return {"uniq_id": uniq_id, "drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false, "mana_cost":MANA_COST}
 
 func get_drag_data(_pos): # called when dragged
 	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
