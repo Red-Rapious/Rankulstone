@@ -147,9 +147,9 @@ PV : 30"
 align = 1
 
 [node name="Side_Popup" parent="." instance=ExtResource( 8 )]
-margin_left = 1132.47
+margin_left = 1119.58
 margin_top = 391.356
-margin_right = 1252.47
+margin_right = 1239.58
 margin_bottom = 641.356
 [connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]

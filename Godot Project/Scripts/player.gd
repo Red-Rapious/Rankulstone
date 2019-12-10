@@ -77,7 +77,7 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 	for i in range(10): # temporarly create a full of "Card" cards library
-		library.append("Focus_Spell")
+		library.append("Electrocute")
 		library.append("Creature")
 		library.append("Soraka")
 
@@ -122,8 +122,8 @@ func _on_self_mana_max_changed():
 	rpc("opponent_mana_max_changed", self_mana_max)
 	
 func _on_self_creature_fight(data):
-	emit_signal("self_creature_hp_changed", [data[global.SELF_CREATURE_DATA], -data[global.OPPONENT_CREATURE_DATA]["attack_value"]])
-	emit_signal("self_creature_hp_changed", [data[global.OPPONENT_CREATURE_DATA], -data[global.SELF_CREATURE_DATA]["attack_value"]])
+	emit_signal("self_creature_hp_changed", [data[global.SELF_CREATURE_DATA]["uniq_id"], -data[global.OPPONENT_CREATURE_DATA]["attack_value"]])
+	emit_signal("self_creature_hp_changed", [data[global.OPPONENT_CREATURE_DATA]["uniq_id"], -data[global.SELF_CREATURE_DATA]["attack_value"]])
 	rpc("opponent_creature_fight", data)
 
 func _on_self_creature_hp_changed(data):
@@ -408,6 +408,6 @@ func ask_side_popup(text):
 func change_creature_hp(data):
 	"""
 	Called when a specific creature hp need to change
-	Data is a list. data[0] is the creature dico, and data[1] is the value of the damage to deal
+	Data is a list. data[0] is the creature id, and data[1] is the value of the damage to deal
 	"""
 	emit_signal("self_creature_hp_changed", data)

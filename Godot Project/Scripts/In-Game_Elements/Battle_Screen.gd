@@ -120,15 +120,15 @@ func _on_self_creature_fight(data): # called when 2 creatures will fight each ot
 func _on_creature_hp_changed(data): 
 	""" 
 	Called when a hp modification on creature is needed
-	Data[0] contain creature dico, and data[1] contains an int with the damage to do to the creature
+	Data[0] contain creature id, and data[1] contains an int with the damage to do to the creature
 	"""
 
 	var creature
-	if player.uniq_ids_list[data[0]["uniq_id"]]:
+	if player.uniq_ids_list[data[0]]:
 		#creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
-		creature = get_node("All/Center/Board/Self_Board/"+str(data[0]["uniq_id"]))
+		creature = get_node("All/Center/Board/Self_Board/"+str(data[0]))
 	else:
-		creature = get_node("All/Center/Board/Opponent_Board/"+str(data[0]["uniq_id"]))
+		creature = get_node("All/Center/Board/Opponent_Board/"+str(data[0]))
 		#creature = get_node("All/Center/Board/Opponent_Board/"+data[0]["node_name"])
 		
 	if creature != null:
