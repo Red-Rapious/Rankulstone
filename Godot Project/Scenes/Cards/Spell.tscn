@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/Electrocute.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Spell.gd" type="Script" id=3]
+
+[node name="Spell" index="0" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Spell"
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+text = "Spell"

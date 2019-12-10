@@ -1,12 +1,12 @@
 extends TextureButton
 tool
 
-enum {CREATURE, SPELL} # differents kinds of cards
+enum {NONE, CREATURE, SPELL} # differents kinds of cards
 
-export var type = 0
+var type = NONE
 export var NAME = "Card"
 export var MANA_COST = 1
-export var IMAGE = ""
+#export var IMAGE = ""
 export var RARITY = 0
 export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
 
@@ -36,7 +36,7 @@ func play_card(id):
 	Do some routine
 	"""
 	self.uniq_id = id
-	self.on_board = true
+	#self.on_board = true
 	self.emit_signal("played")
 	
 func create_play_drag_clone():

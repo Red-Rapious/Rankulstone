@@ -20,6 +20,7 @@ signal pv_max_changed
 
 
 func _ready():
+	type = CREATURE
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
 	player.connect("self_creature_fight", self, "_on_creature_fight")

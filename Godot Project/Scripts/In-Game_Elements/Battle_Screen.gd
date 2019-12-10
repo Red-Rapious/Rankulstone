@@ -41,6 +41,7 @@ func _on_self_hand_changed():
 
 
 
+
 func _on_Board_card_dropped(card_dico):
 	play_card_from_hand(card_dico["card_name"])
 	
@@ -63,6 +64,8 @@ func add_card_to_board(self_side, card_name, card_uniq_id):
 	else:
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
 		
+		
+		
 	
 
 func play_card_from_hand(node_name: String):
@@ -76,13 +79,14 @@ func play_card_from_hand(node_name: String):
 	
 	# delete hand card
 	if card.type == card.CREATURE:
-		get_node("All/Center/Self_Hand/"+node_name).queue_free()
 		var card_uniq_id = player.ask_new_uniq_id(true)
 		add_card_to_board(true, card.NAME, card_uniq_id)
-		player.card_played_from_hand(card.NAME, card.MANA_COST)
-	else:
-		# TODO : launch the spell
-		pass
+		player.creature_played_from_hand(card.NAME, card.MANA_COST)
+		
+	elif card.type == card.SPELL:
+		card.play_card(-1)
+		player.spell_played_from_hand(card.NAME, card.MANA_COST)
+
 
 func _on_opponent_creature_played(card_name):
 	"""
@@ -92,13 +96,9 @@ func _on_opponent_creature_played(card_name):
 	var card_uniq_id = player.ask_new_uniq_id(false)
 	add_card_to_board(false, card_name, card_uniq_id) # "false" to put in the opponent side
 	
+	
 func _on_opponent_creature_died(data):
 	pass
-	#if data["is_self_side"]:
-	#	pass
-	#	#get_node("All/Center/Board/Self_Board/"+data["node_name"]).queue_free()
-	#else:
-		#get_node("All/Center/Board/Opponent_Board/"+data["node_name"]).queue_free()
 
 func _on_Opponent_card_attacked(data):
 	"""

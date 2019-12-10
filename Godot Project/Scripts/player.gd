@@ -75,7 +75,7 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 	for i in range(30): # temporarly create a full of "Card" cards library
-		library.append("Soraka")
+		library.append("Creature")
 
 	draw_hand()
 	set_self_pv(self_pv)
@@ -163,6 +163,10 @@ func draw_hand(size=7):
 		draw_card(false)
 	emit_signal("self_hand_changed")
 	emit_signal("self_library_changed")
+	
+func delete_hand_card(card_name):
+	hand.erase(card_name)
+	emit_signal("self_hand_changed")
 
 func draw_card(signalised=true):
 	""" bool -> void
@@ -240,17 +244,32 @@ remote func opponent_creature_hp_changed(data):
 """ End """
 
 
-
-
 func card_played_from_hand(card_name, mana_cost):
 	"""
-	Called by BattleScreen when a card is played via d&d
+	Called by creature_played_from_hand when a card is played
 	Delete a card from the hand array
 	"""
-	hand.erase(card_name)
+	delete_hand_card(card_name)
 	add_self_mana(-mana_cost)
 	emit_signal("self_hand_changed")
-	emit_signal("self_creature_played", card_name)
+
+
+func creature_played_from_hand(creature_name, mana_cost):
+	"""
+	Called by BattleScreen when a creature is played via d&d
+	Delete a card from the hand array
+	"""
+	card_played_from_hand(creature_name, mana_cost)
+	emit_signal("self_creature_played", creature_name)
+	
+	
+func spell_played_from_hand(spell_name, mana_cost):
+	"""
+	Called by BattleScreen when a creature is played via d&d
+	Delete a card from the hand array
+	"""
+	card_played_from_hand(spell_name, mana_cost)
+	#emit_signal("self_creature_played", spell_name)
 
 
 # functions about tour end 
