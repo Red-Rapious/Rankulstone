@@ -2,6 +2,7 @@ extends Control
 
 var creature_focus_mode = false
 var waiting_spell = null
+var creature_focus_timer
 
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
@@ -134,14 +135,41 @@ func _on_creature_hp_changed(data):
 	if creature != null:
 		creature.add_pv(data[1])
 		
+		
+		
+		
 func _on_ask_side_popup(text):
 	creature_focus_mode = true
 	$Side_Popup.set_text_to_show(text)
 	$Side_Popup.popup()
 
 func _on_Side_Popup_popup_hide():
-	pass
-	#creature_focus_mode = false
+	create_creature_focus_timer()
+
+
+
+func create_creature_focus_timer():
+	"""
+	To resolve a silly bug, the creature focus mode (bool) is going to be set to false
+	only 0.5 seconds ater the popup is hiding.
+	This timer is here for that.
+	"""
+	creature_focus_timer = Timer.new()
+	creature_focus_timer.name = "Timer"
+	creature_focus_timer.connect("timeout",self,"_on_creature_focus_timer_timeout") 
+	creature_focus_timer.set_wait_time(0.5)
+	add_child(creature_focus_timer) #to process
+	creature_focus_timer.start() #to start
+
+func _on_creature_focus_timer_timeout():
+	"""
+	Called when the timer timeout. Only set the bool to false, and delete the node to avoid conflicts
+	"""
+	creature_focus_mode = false
+	get_node("Timer").queue_free()
+
+
+
 
 func creature_pressed(creature_id):
 	"""
