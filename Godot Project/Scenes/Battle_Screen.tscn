@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=8]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
@@ -145,6 +146,13 @@ margin_bottom = 700.0
 text = "Cartes restantes : 30
 PV : 30"
 align = 1
+
+[node name="Side_Popup" parent="." instance=ExtResource( 8 )]
+margin_left = 1132.47
+margin_top = 391.356
+margin_right = 1252.47
+margin_bottom = 641.356
 [connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
 [connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]
+[connection signal="popup_hide" from="Side_Popup" to="." method="_on_Side_Popup_popup_hide"]

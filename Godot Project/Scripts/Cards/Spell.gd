@@ -14,4 +14,4 @@ func play_card(id):
 	apply_effect()
 	
 func apply_effect():
-	pass
+	player.ask_side_popup("Sélectionne\nune créture !")

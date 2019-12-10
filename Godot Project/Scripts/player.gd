@@ -54,6 +54,8 @@ signal self_creature_attack_opponent
 signal self_creature_hp_changed
 signal opponent_creature_hp_changed
 
+signal ask_side_popup
+
 
 func init():
 	"""
@@ -74,8 +76,10 @@ func init():
 	connect("self_creature_fight", self, "_on_self_creature_fight")
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
-	for i in range(30): # temporarly create a full of "Card" cards library
+	for i in range(10): # temporarly create a full of "Card" cards library
+		library.append("Spell")
 		library.append("Creature")
+		library.append("Soraka")
 
 	draw_hand()
 	set_self_pv(self_pv)
@@ -394,3 +398,7 @@ func ask_new_uniq_id(self_side: bool):
 	uniq_ids_list.append(self_side)
 	return uniq_ids_counter
 	
+	
+	
+func ask_side_popup(text):
+	emit_signal("ask_side_popup", text)

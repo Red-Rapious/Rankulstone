@@ -1,5 +1,7 @@
 extends Control
 
+var creature_focus_mode = false
+
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("opponent_creature_died", self, "_on_opponent_creature_died")
@@ -7,6 +9,7 @@ func _ready():
 	player.connect("self_creature_fight", self, "_on_self_creature_fight")
 	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
+	player.connect("ask_side_popup", self, "_on_ask_side_popup")
 	#OS.window_fullscreen = true
 	player.init()
 	_on_self_hand_changed() # update hand
@@ -129,3 +132,11 @@ func _on_creature_hp_changed(data):
 		
 	if creature != null:
 		creature.add_pv(data[1])
+		
+func _on_ask_side_popup(text):
+	creature_focus_mode = true
+	$Side_Popup.set_text_to_show(text)
+	$Side_Popup.popup()
+
+func _on_Side_Popup_popup_hide():
+	creature_focus_mode = false
