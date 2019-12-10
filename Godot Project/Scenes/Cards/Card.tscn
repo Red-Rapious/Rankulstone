@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Default.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=1]
 [ext_resource path="res://Scripts/Cards/Card.gd" type="Script" id=2]
 
 [node name="Card" type="TextureButton" groups=[

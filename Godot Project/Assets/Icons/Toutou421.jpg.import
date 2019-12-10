@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Toutou421.jpg-20dc248eaee1b1be93aa14e65b0fdaec.stex"
+path="res://.import/Toutou421.jpg-4abe49f6b577d5c88c5a2384fc0a2735.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Toutou421.jpg"
-dest_files=[ "res://.import/Toutou421.jpg-20dc248eaee1b1be93aa14e65b0fdaec.stex" ]
+source_file="res://Assets/Icons/Toutou421.jpg"
+dest_files=[ "res://.import/Toutou421.jpg-4abe49f6b577d5c88c5a2384fc0a2735.stex" ]
 
 [params]
 
