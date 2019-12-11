@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/Sibre_mage.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Sbire_mage.gd" type="Script" id=3]
+
+[node name="Sbire_mage" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Sbire Mage"
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+text = "Sbire Mage"

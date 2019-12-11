@@ -81,12 +81,12 @@ func play_card_from_hand(node_name: String):
 	
 	if card.type == card.CREATURE:
 		var card_uniq_id = player.ask_new_uniq_id(true)
-		add_card_to_board(true, card.NAME, card_uniq_id)
-		player.creature_played_from_hand(card.NAME, card.MANA_COST)
+		add_card_to_board(true, card.node_name, card_uniq_id)
+		player.creature_played_from_hand(card.node_name, card.MANA_COST)
 		
 	elif card.type == card.SPELL:
 		card.play_card(-1)
-		player.spell_played_from_hand(card.NAME, card.MANA_COST)
+		player.spell_played_from_hand(card.node_name , card.MANA_COST)
 		
 	elif card.type == card.FOCUS_SPELL:
 		waiting_spell = card

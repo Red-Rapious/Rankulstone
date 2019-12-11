@@ -76,10 +76,12 @@ func init():
 	connect("self_creature_fight", self, "_on_self_creature_fight")
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
-	for i in range(10): # temporarly create a full of "Card" cards library
-		library.append("Electrocute")
-		library.append("Sbire")
-		library.append("Soraka")
+	for i in range(7): # temporarly create a full of "Card" cards library
+		library.append("Electrocution")
+		library.append("Sbire_canon")
+		library.append("Sbire_mage")
+		library.append("Super_sbire")
+		#library.append("Soraka")
 
 	draw_hand()
 	set_self_pv(self_pv)

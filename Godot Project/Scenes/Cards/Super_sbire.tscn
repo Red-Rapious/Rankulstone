@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/Super_sbire.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Super_sbire.gd" type="Script" id=3]
+
+[node name="Super_sbire" index="0" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Super Sbire"
+MANA_COST = 2
+pv = 3
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+text = "Super Sbire"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+text = "2"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+text = "3"
