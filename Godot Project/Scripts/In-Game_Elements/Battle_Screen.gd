@@ -59,15 +59,15 @@ func add_card_to_board(self_side, card_name, card_uniq_id):
 	# instance card
 	var scene = load("res://Scenes/Cards/"+card_name+".tscn")
 	var scene_instance = scene.instance()
-	
-	scene_instance.play_card(card_uniq_id)
-	scene_instance.is_self_side = self_side
-	
+
 	# add instance to the board
 	if self_side:
 		$All/Center/Board/Self_Board.add_child(scene_instance)
 	else:
 		$All/Center/Board/Opponent_Board.add_child(scene_instance)
+		
+	scene_instance.play_card(card_uniq_id)
+	scene_instance.is_self_side = self_side
 	
 
 func play_card_from_hand(node_name: String):

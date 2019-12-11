@@ -83,10 +83,11 @@ func play_card(id):
 	Do some routine
 	"""
 	
-	self.uniq_id = id
-	self.name = str(uniq_id)
-	self.on_board = true
-	self.emit_signal("played")
+	uniq_id = id
+	name = str(uniq_id)
+	on_board = true
+	enter_battlefield_effect()
+	emit_signal("played")
 	
 func update_labels():
 	""" 
@@ -113,6 +114,7 @@ func check_pv(): # a function that checks if pv is under 0
 		die() # dont do anything for now
 		
 func die():
+	die_effect()
 	emit_signal("quit_battlefield")
 	player.creature_died(create_drop_dico())
 	queue_free()
@@ -178,6 +180,7 @@ func _on_self_tour_begin():
 	"""
 	can_attack = true
 	guinsoo_available = true
+	tour_begin_effect()
 	
 	
 	
@@ -185,6 +188,7 @@ func _on_self_tour_begin():
 func _on_creature_attack_something(data):
 	#if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
 	if data["uniq_id"] == uniq_id:
+		attack_effect()
 		if "Guinsoo" in keywords and guinsoo_available:
 			guinsoo_available = false
 		else:
@@ -198,3 +202,18 @@ func _on_Creature_pressed():
 	if on_board:
 		get_node("../../../../../").creature_pressed(uniq_id)
 
+
+
+# reimplementation functions for inheritance :
+
+func tour_begin_effect():
+	pass
+
+func attack_effect():
+	pass
+	
+func die_effect():
+	pass
+	
+func enter_battlefield_effect():
+	pass

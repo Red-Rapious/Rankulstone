@@ -147,6 +147,7 @@ PV : 30"
 align = 1
 
 [node name="Side_Popup" parent="." instance=ExtResource( 8 )]
+visible = false
 margin_left = 1119.58
 margin_top = 391.356
 margin_right = 1239.58

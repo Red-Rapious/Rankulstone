@@ -81,7 +81,8 @@ func init():
 		library.append("Sbire_canon")
 		library.append("Sbire_mage")
 		library.append("Super_sbire")
-		#library.append("Soraka")
+		library.append("Soin")
+		library.append("Soraka")
 
 	draw_hand()
 	set_self_pv(self_pv)
@@ -407,9 +408,8 @@ func ask_side_popup(text):
 	
 	
 	
-func change_creature_hp(data):
+func change_creature_hp(creature_id, value):
 	"""
 	Called when a specific creature hp need to change
-	Data is a list. data[0] is the creature id, and data[1] is the value of the damage to deal
 	"""
-	emit_signal("self_creature_hp_changed", data)
+	emit_signal("self_creature_hp_changed", [creature_id, value])
