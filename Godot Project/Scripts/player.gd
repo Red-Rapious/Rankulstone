@@ -78,7 +78,7 @@ func init():
 
 	for i in range(10): # temporarly create a full of "Card" cards library
 		library.append("Electrocute")
-		library.append("Creature")
+		library.append("Sbire")
 		library.append("Soraka")
 
 	draw_hand()

@@ -5,9 +5,14 @@ var on_board = false
 var is_self_side
 var can_attack = false # attack is false by default to simulate invocation sickness
 
-export var pv = 2
+export var pv = 1
 export var attack = 1
+export var keywords = [] # Alpha, Guinsoo...
 var pv_max = pv
+
+
+# keywords
+var guinsoo_available = true
 
 
 signal enter_battlefield
@@ -25,6 +30,10 @@ func _ready():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
 	player.connect("self_creature_fight", self, "_on_creature_fight")
+	
+	if "Alpha" in keywords:
+		can_attack = true # disable invocation sickness
+		
 	update_labels()
 	check_pv()
 
@@ -168,6 +177,7 @@ func _on_self_tour_begin():
 	Do some routine, like attack reset
 	"""
 	can_attack = true
+	guinsoo_available = true
 	
 	
 	
@@ -175,7 +185,10 @@ func _on_self_tour_begin():
 func _on_creature_attack_something(data):
 	#if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
 	if data["uniq_id"] == uniq_id:
-		can_attack = false
+		if "Guinsoo" in keywords and guinsoo_available:
+			guinsoo_available = false
+		else:
+			can_attack = false
 		
 func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)

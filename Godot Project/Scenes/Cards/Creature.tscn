@@ -3,19 +3,14 @@
 [ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Cards/Creature.gd" type="Script" id=2]
 
-[node name="Creature" index="0" groups=[
+[node name="Creature" groups=[
 "Creature",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Creature"
-pv = 1
-
-[node name="Top" parent="VBoxContainer" index="0"]
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Creature"
-
-[node name="Action_Text" parent="VBoxContainer" index="1"]
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
 margin_bottom = 152.0
