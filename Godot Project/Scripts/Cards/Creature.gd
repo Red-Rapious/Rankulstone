@@ -35,6 +35,7 @@ func _ready():
 		can_attack = true # disable invocation sickness
 		
 	update_labels()
+	pv_max = pv
 	check_pv()
 
 
@@ -112,6 +113,8 @@ func update_labels():
 func check_pv(): # a function that checks if pv is under 0
 	if pv<=0:
 		die() # dont do anything for now
+	if pv > pv_max:
+		pv = pv_max
 		
 func die():
 	die_effect()
