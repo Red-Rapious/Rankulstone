@@ -1,6 +1,8 @@
 # a global script for all in-game needs, but particulary for values storage
 extends Node
 
+enum {SELF_SIDE, CREATURE_NAME}
+
 var self_mana_max = 0
 var self_mana = self_mana_max
 
@@ -55,6 +57,7 @@ signal self_creature_hp_changed
 signal opponent_creature_hp_changed
 
 signal ask_side_popup
+signal ask_creature_kill
 
 
 func init():
@@ -75,9 +78,11 @@ func init():
 	
 	connect("self_creature_fight", self, "_on_self_creature_fight")
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
+	
+	connect("ask_creature_kill", self, "_on_ask_creature_kill")
 
 	for i in range(7): # temporarly create a full of "Card" cards library
-		library.append("Electrocution")
+		library.append("Flash_kick")
 		library.append("Sbire_canon")
 		library.append("Sbire_mage")
 		library.append("Super_sbire")
@@ -132,6 +137,9 @@ func _on_self_creature_fight(data):
 func _on_self_creature_hp_changed(data):
 	rpc("opponent_creature_hp_changed", data)
 	
+func _on_ask_creature_kill(creature_id):
+	rpc("opponent_ask_creature_kill", creature_id)
+	
 """ End """
 
 
@@ -171,9 +179,6 @@ func draw_hand(size=7):
 	emit_signal("self_hand_changed")
 	emit_signal("self_library_changed")
 	
-func delete_hand_card(card_name):
-	hand.erase(card_name)
-	emit_signal("self_hand_changed")
 
 func draw_card(signalised=true):
 	""" bool -> void
@@ -183,14 +188,19 @@ func draw_card(signalised=true):
 
 	if len(library) != 0: # avoid the case of an empty library
 		var card_picked = randi()%(len(library))
-		hand.append(library[card_picked])
+		add_card_to_hand(library[card_picked])
 		library.remove(card_picked)
 		if signalised:
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
 # end
 
+func add_card_to_hand(card_name):
+	hand.append(card_name)
 
+func delete_hand_card(card_name):
+	hand.erase(card_name)
+	emit_signal("self_hand_changed")
 
 """
 Functions called via rpc by the opponent
@@ -247,6 +257,10 @@ remote func opponent_creature_fight(data):
 	
 remote func opponent_creature_hp_changed(data):
 	emit_signal("opponent_creature_hp_changed", data)
+	
+remote func opponent_ask_creature_kill(creature_id):
+	pass
+	#emit_signal("ask_creature_kill", creature_id)
 
 """ End """
 
@@ -394,12 +408,12 @@ func fight_requested(double_creature_dico):
 	
 	
 	
-func ask_new_uniq_id(self_side: bool):
+func ask_new_uniq_id(self_side: bool, node_name):
 	"""
 	Create a new uniq id for a card, and add it to the uniq_ids_list
 	"""
 	uniq_ids_counter += 1
-	uniq_ids_list.append(self_side)
+	uniq_ids_list.append([self_side, node_name])
 	return uniq_ids_counter
 	
 	
@@ -414,3 +428,7 @@ func change_creature_hp(creature_id, value):
 	Called when a specific creature hp need to change
 	"""
 	emit_signal("self_creature_hp_changed", [creature_id, value])
+	
+	
+func kill_creature(creature_id):
+	emit_signal("ask_creature_kill", creature_id)

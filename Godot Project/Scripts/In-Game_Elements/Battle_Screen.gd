@@ -12,6 +12,7 @@ func _ready():
 	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("ask_side_popup", self, "_on_ask_side_popup")
+	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
 	#OS.window_fullscreen = true
 	player.init()
 	_on_self_hand_changed() # update hand
@@ -80,7 +81,7 @@ func play_card_from_hand(node_name: String):
 	var card=get_node("All/Center/Self_Hand/"+node_name)
 	
 	if card.type == card.CREATURE:
-		var card_uniq_id = player.ask_new_uniq_id(true)
+		var card_uniq_id = player.ask_new_uniq_id(true, node_name)
 		add_card_to_board(true, card.node_name, card_uniq_id)
 		player.creature_played_from_hand(card.node_name, card.MANA_COST)
 		
@@ -98,7 +99,7 @@ func _on_opponent_creature_played(card_name):
 	Called when the opponent plays a card
 	Simply add the card to the board
 	"""
-	var card_uniq_id = player.ask_new_uniq_id(false)
+	var card_uniq_id = player.ask_new_uniq_id(false, card_name)
 	add_card_to_board(false, card_name, card_uniq_id) # "false" to put in the opponent side
 	
 	
@@ -125,7 +126,7 @@ func _on_creature_hp_changed(data):
 	"""
 
 	var creature
-	if player.uniq_ids_list[data[0]]:
+	if player.uniq_ids_list[data[0]][player.SELF_SIDE]:
 		#creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
 		creature = get_node("All/Center/Board/Self_Board/"+str(data[0]))
 	else:
@@ -169,6 +170,12 @@ func _on_creature_focus_timer_timeout():
 	get_node("Timer").queue_free()
 
 
+func get_creature_by_id(creature_id):
+	if player.uniq_ids_list[creature_id][player.SELF_SIDE]:
+		return get_node("All/Center/Board/Self_Board/"+str(creature_id))
+	else:
+		return get_node("All/Center/Board/Opponent_Board/"+str(creature_id))
+
 
 
 func creature_pressed(creature_id):
@@ -182,3 +189,7 @@ func apply_effect_to_creature(creature_id):
 	if waiting_spell != null:
 		player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
 		waiting_spell.apply_effect_to_creature(creature_id)
+		
+		
+func _on_ask_creature_kill(creature_id):
+	get_creature_by_id(creature_id).die()

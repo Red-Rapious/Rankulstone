@@ -75,7 +75,7 @@ func fill_pv(): # simply fill the pv to pv_max
 	
 func check_pv(): # a function that checks if pv is under 0
 	if pv<=0:
-		die() # dont do anything for now
+		die()
 	if pv > pv_max:
 		pv = pv_max
 

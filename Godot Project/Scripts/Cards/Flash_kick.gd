@@ -5,4 +5,5 @@ func _ready():
 	node_name = "Flash_kick"
 
 func apply_effect_to_creature(creature_id):
-	pass # TODO: ask player.gd to desinvoke creture
+	player.kill_creature(creature_id) # kill the creature
+	player.add_card_to_hand(player.uniq_ids_list[creature_id][player.CREATURE_NAME]) # put it to the hand
