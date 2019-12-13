@@ -53,32 +53,36 @@ func add_attack(value: int):
 # some pv & pv_max setters
 func set_pv(new_value: int):
 	pv = new_value
-	emit_signal("pv_changed")
-	
-func add_pv(value: int):
-	pv += value
-	if pv > pv_max:
-		pv = pv_max
 	check_pv()
 	emit_signal("pv_changed")
 	
-func set_pv_max(new_value: int):
+func add_pv(value: int):
+	set_pv(pv + value)
+	
+	
+	
+func set_pv_max(new_value: int, fill=true):
 	pv_max = new_value
+	if fill:
+		fill_pv()
 	emit_signal("pv_max_changed")
 	
 func add_pv_max(value: int, fill=true):
-	pv_max += value
-	if fill:
-		fill_pv()
-		emit_signal("pv_changed")
-	emit_signal("pv_max_changed")
+	set_pv_max(pv_max + value, fill)
 	
-func fill_pv():
-	pv = pv_max
+func fill_pv(): # simply fill the pv to pv_max
+	set_pv(pv_max)
 	
+func check_pv(): # a function that checks if pv is under 0
+	if pv<=0:
+		die() # dont do anything for now
+	if pv > pv_max:
+		pv = pv_max
+
+
+
 
 func play_card(id):
-#func play_card():
 	"""
 	Called when this card is played
 	Do some routine
@@ -89,6 +93,7 @@ func play_card(id):
 	on_board = true
 	enter_battlefield_effect()
 	emit_signal("played")
+	
 	
 func update_labels():
 	""" 
@@ -109,14 +114,11 @@ func update_labels():
 
 
 
-# some die functions
-func check_pv(): # a function that checks if pv is under 0
-	if pv<=0:
-		die() # dont do anything for now
-	if pv > pv_max:
-		pv = pv_max
-		
 func die():
+	"""
+	Called when this creature die.
+	The only way to queue_free()
+	"""
 	die_effect()
 	emit_signal("quit_battlefield")
 	player.creature_died(create_drop_dico())
@@ -161,21 +163,24 @@ func create_drop_dico():
 		#return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 
-func can_drop_data(_pos, data):
+func can_drop_data(_pos, card_dico):
 	""" --> bool
 	When a card is dragged on top of a creature this function is called.
 	Return true if creature can be dropped for engage a fight, false if it can't, 
 	depending on the turn and if the card as already attacked
 	"""
-	return (not is_self_side) and data["is_self_side"] and data["drag_type"]==global.ATTACK and data["can_attack"] and player.your_turn 
+	return (not is_self_side) and card_dico["is_self_side"] and card_dico["drag_type"]==global.ATTACK and card_dico["can_attack"] and player.your_turn 
 	
-func drop_data(_pos, data):
-	player.fight_requested([create_drop_dico(), data])
+func drop_data(_pos, other_creature_dico):
+	"""
+	Called when another creature is dragged on this creature
+	"""
+	player.fight_requested([create_drop_dico(), other_creature_dico]) # request a fight between this creature and the one who was dragged
 	
 	
 	
 	
-# signals implementation
+# signal implementation
 func _on_self_tour_begin():
 	"""
 	Called when the tour begin
@@ -189,7 +194,10 @@ func _on_self_tour_begin():
 	
 # fight functions
 func _on_creature_attack_something(data):
-	#if data["node_name"] == name and data["is_self_side"] == is_self_side: # if the creature who attacks is me
+	"""
+	Called by the player when any creature attacks anything
+	If the creature is self, do some can_attack set
+	"""
 	if data["uniq_id"] == uniq_id:
 		attack_effect()
 		if "Guinsoo" in keywords and guinsoo_available:
@@ -203,11 +211,13 @@ func _on_creature_fight(data):
 func _on_Creature_pressed():
 	# CHANGE THIS LATER
 	if on_board:
-		get_node("../../../../../").creature_pressed(uniq_id)
+		get_node("../../../../../").creature_pressed(uniq_id) # tell to the BattleScreen that this creature is pressed
 
 
 
-# reimplementation functions for inheritance :
+"""
+These are the functions which inherited creature will implement
+"""
 
 func tour_begin_effect():
 	pass
