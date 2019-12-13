@@ -1,0 +1,19 @@
+RANKULSTONE - PATCH NOTE 0.0.3
+
+Release date: ../../....
+
+New features:
+- Show some black cards in opponent's hand
+- Added the first cards&textures
+- Added players icon space (not working yet)
+- Added a spell system, and a focus spell system, with a side popup
+- Added keyworks creature system, with 2 keywords working : Alpha and Guinsoo
+
+New cards:
+- Soraka
+- Electrocution
+- Sbire mage
+- Sbire canon
+- Super sbire
+- Soin
+- Flash kick
