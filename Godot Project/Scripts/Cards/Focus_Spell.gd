@@ -15,4 +15,3 @@ func play_card(id):
 	
 func apply_effect_to_creature(creature_id):
 	pass
-	#player.change_creature_hp([creature_id,-3])

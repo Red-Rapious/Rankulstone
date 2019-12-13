@@ -376,26 +376,27 @@ func end_game(win: bool):
 	
 	
 	
-func self_card_attack_opponent(data):
+func self_card_attack_opponent(creature_dico):
 	"""
 	Called by BattleScreen when an attack against the opponent has been requested
 	"""
-	emit_signal("self_creature_attack_opponent", data)
-	rpc("add_self_pv", -data["attack_value"])
+	emit_signal("self_creature_attack_opponent", creature_dico)
+	rpc("add_self_pv", -creature_dico["attack_value"]) # say to the opponent to loose pv
 	
 
-func fight_requested(data):
+func fight_requested(double_creature_dico):
 	"""
 	Called by a creature when a fight has been requested by d&d
+	double_creature_dico (list[dico]) contains the two creatures's dicos
 	"""
-	emit_signal("self_creature_fight", data)
+	emit_signal("self_creature_fight", double_creature_dico)
 	
 	
 	
 	
 func ask_new_uniq_id(self_side: bool):
 	"""
-	Create a new uniq id for a card, and said it to the opponent
+	Create a new uniq id for a card, and add it to the uniq_ids_list
 	"""
 	uniq_ids_counter += 1
 	uniq_ids_list.append(self_side)
