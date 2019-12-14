@@ -82,12 +82,16 @@ func init():
 	
 	connect("ask_creature_kill", self, "_on_ask_creature_kill")
 
-	for i in range(7): # temporarly create a full of "Card" cards library
+	for i in range(3): # temporarly create a cards library, before deck implementation
 		library.append("Flash_kick")
 		library.append("Sbire_canon")
 		library.append("Sbire_mage")
+		library.append("Super_sbire")
 		library.append("Vol")
 		library.append("Sylas")
+		library.append("Soin")
+		library.append("Soraka")
+		library.append("Electrocution")
 
 	draw_hand()
 	set_self_pv(self_pv)
