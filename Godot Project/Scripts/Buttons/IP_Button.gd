@@ -1,15 +1,18 @@
-extends Button
+extends CanvasLayer
 
-var show_ip =  false
+var doShowIp = false
 
 func _on_IP_Button_pressed():
-	switch_text()
-	
-func switch_text():
-	if show_ip:
-		self.text = "Afficher mon adresse IP"
-		show_ip = false
+	if (doShowIp):
+		$IP_Button.text = "test"
 	else:
-		#self.text = IP.get_local_addresses()[1] + "  (cliquer pour cacher)"
-		self.text = "www.whatismyip.com"
-		show_ip = true
+		$HTTPRequest.request("https://api.myip.com")
+	
+	doShowIp = !doShowIp
+
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	
+	if (response_code == 200):
+		$IP_Button.text = JSON.parse(body.get_string_from_utf8()).result["ip"]
+	else:
+		$IP_Button.text = "Could Resolve Ip"

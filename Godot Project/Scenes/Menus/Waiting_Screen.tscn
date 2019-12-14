@@ -40,22 +40,27 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Quit_Button" type="Button" parent="All/Buttons"]
-margin_left = 282.0
-margin_right = 340.0
+margin_left = 596.0
+margin_right = 654.0
 margin_bottom = 20.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 text = "Quitter"
 script = ExtResource( 3 )
 
-[node name="IP_Button" type="Button" parent="All/Buttons"]
-margin_left = 856.0
-margin_right = 1021.0
-margin_bottom = 20.0
+[node name="CanvasLayer" type="CanvasLayer" parent="All/Buttons"]
+script = ExtResource( 4 )
+
+[node name="IP_Button" type="Button" parent="All/Buttons/CanvasLayer"]
+margin_left = 871.0
+margin_top = 361.0
+margin_right = 1036.0
+margin_bottom = 381.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 text = "Afficher mon adresse IP"
-script = ExtResource( 4 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="All/Buttons/CanvasLayer"]
 
 [node name="Instructions" type="Label" parent="All"]
 margin_top = 519.0
@@ -68,4 +73,5 @@ Tu peux afficher ton IP en cliquant sur le bouton \"Afficher mon IP\", j'espère
 align = 1
 valign = 1
 [connection signal="pressed" from="All/Buttons/Quit_Button" to="All/Buttons/Quit_Button" method="_on_Quit_Button_pressed"]
-[connection signal="pressed" from="All/Buttons/IP_Button" to="All/Buttons/IP_Button" method="_on_IP_Button_pressed"]
+[connection signal="pressed" from="All/Buttons/CanvasLayer/IP_Button" to="All/Buttons/CanvasLayer" method="_on_IP_Button_pressed"]
+[connection signal="request_completed" from="All/Buttons/CanvasLayer/HTTPRequest" to="All/Buttons/CanvasLayer" method="_on_HTTPRequest_request_completed"]
