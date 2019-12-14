@@ -10,6 +10,7 @@ export var attack = 1
 export var keywords = [] # Alpha, Guinsoo...
 var pv_max = pv
 
+var has_enter_battlefield_focus = false
 
 # keywords
 var guinsoo_available = true

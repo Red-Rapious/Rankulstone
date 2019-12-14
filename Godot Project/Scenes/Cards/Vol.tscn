@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Focus_Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Vol.gd" type="Script" id=2]
+
+[node name="Vol" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Vol"
+MANA_COST = 3

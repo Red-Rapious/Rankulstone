@@ -13,6 +13,7 @@ func _ready():
 	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("ask_side_popup", self, "_on_ask_side_popup")
 	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
+	player.connect("opponent_ask_creature_kill", self, "_on_opponent_ask_creature_kill")
 	#OS.window_fullscreen = true
 	player.init()
 	_on_self_hand_changed() # update hand
@@ -81,9 +82,13 @@ func play_card_from_hand(node_name: String):
 	var card=get_node("All/Center/Self_Hand/"+node_name)
 	
 	if card.type == card.CREATURE:
-		var card_uniq_id = player.ask_new_uniq_id(true, node_name)
-		add_card_to_board(true, card.node_name, card_uniq_id)
-		player.creature_played_from_hand(card.node_name, card.MANA_COST)
+		if not card.has_enter_battlefield_focus:
+			var card_uniq_id = player.ask_new_uniq_id(true, node_name)
+			add_card_to_board(true, card.node_name, card_uniq_id)
+			player.creature_played_from_hand(card.node_name, card.MANA_COST)
+		else:
+			waiting_spell = card
+			player.ask_side_popup("Sélectionne\nune créture")
 		
 	elif card.type == card.SPELL:
 		card.play_card(-1)
@@ -185,11 +190,20 @@ func creature_pressed(creature_id):
 	if creature_focus_mode:
 		apply_effect_to_creature(creature_id)
 		
+		
 func apply_effect_to_creature(creature_id):
 	if waiting_spell != null:
-		player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
 		waiting_spell.apply_effect_to_creature(creature_id)
+		if waiting_spell.type == waiting_spell.CREATURE:
+			var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
+			add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
+			player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+		else:
+			player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
 		
 		
 func _on_ask_creature_kill(creature_id):
+	get_creature_by_id(creature_id).die()
+	
+func _on_opponent_ask_creature_kill(creature_id):
 	get_creature_by_id(creature_id).die()

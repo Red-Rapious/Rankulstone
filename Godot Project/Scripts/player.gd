@@ -58,6 +58,7 @@ signal opponent_creature_hp_changed
 
 signal ask_side_popup
 signal ask_creature_kill
+signal opponent_ask_creature_kill
 
 
 func init():
@@ -85,9 +86,8 @@ func init():
 		library.append("Flash_kick")
 		library.append("Sbire_canon")
 		library.append("Sbire_mage")
-		library.append("Super_sbire")
-		library.append("Soin")
-		library.append("Soraka")
+		library.append("Vol")
+		library.append("Sylas")
 
 	draw_hand()
 	set_self_pv(self_pv)
@@ -195,8 +195,12 @@ func draw_card(signalised=true):
 			emit_signal("self_hand_changed")
 # end
 
-func add_card_to_hand(card_name):
+remote func add_card_to_hand(card_name):
 	hand.append(card_name)
+	emit_signal("self_hand_changed")
+	
+func add_card_to_opponent_hand(card_name):
+	rpc("add_card_to_hand", card_name)
 
 func delete_hand_card(card_name):
 	hand.erase(card_name)
@@ -259,8 +263,7 @@ remote func opponent_creature_hp_changed(data):
 	emit_signal("opponent_creature_hp_changed", data)
 	
 remote func opponent_ask_creature_kill(creature_id):
-	pass
-	#emit_signal("ask_creature_kill", creature_id)
+	emit_signal("opponent_ask_creature_kill", creature_id)
 
 """ End """
 
@@ -432,3 +435,4 @@ func change_creature_hp(creature_id, value):
 	
 func kill_creature(creature_id):
 	emit_signal("ask_creature_kill", creature_id)
+	
