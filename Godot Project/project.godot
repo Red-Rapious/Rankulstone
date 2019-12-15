@@ -25,6 +25,7 @@ config/auto_accept_quit=false
 network="*res://Scripts/network.gd"
 global="*res://Scripts/global.gd"
 player="*res://Scripts/player.gd"
+decks="*res://Scripts/decks.gd"
 
 [debug]
 
