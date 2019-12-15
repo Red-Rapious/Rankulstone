@@ -64,7 +64,7 @@ signal opponent_ask_creature_kill
 func init():
 	"""
 	Called when a 1v1 game start.
-	Connect signals, draw a hand, and temporarly create a 30 "Card" library
+	Connect signals, draw a hand, and temporarly create library
 	"""
 	connect("self_hand_changed", self, "_on_self_hand_changed")
 	connect("self_library_changed", self, "_on_self_library_changed")
@@ -99,7 +99,9 @@ func init():
 	emit_signal("opponent_mana_max_changed")
 	emit_signal("self_mana_changed")
 	emit_signal("opponent_mana_changed")
+	
 	emit_signal("game_started")
+	OS.request_attention()
 
 
 """
@@ -122,9 +124,9 @@ func _on_self_creature_played(new_card_name: String):
 	self_board.append(new_card_name)
 	rpc("opponent_creature_played", new_card_name)
 	
-func _on_self_creature_died(data):
+func _on_self_creature_died(creature_dico):
 	#self_board.append(card_name)
-	rpc("opponent_creature_died", data)
+	rpc("opponent_creature_died", creature_dico)
 	
 	
 func _on_self_mana_changed():
@@ -160,8 +162,7 @@ remote func add_self_pv(value: int):
 	Add a certain amount of pv to the player.
 	If the value given is negative, it will remove some pv
 	"""
-	self_pv += value
-	emit_signal("self_pv_changed")
+	set_self_pv(self_pv + value)
 
 func pv_check():
 	"""
@@ -245,12 +246,12 @@ remote func opponent_creature_played(new_card_name: String):
 	opponent_board.append(new_card_name)
 	emit_signal("opponent_creature_played", new_card_name)
 	
-remote func opponent_creature_died(data):
+remote func opponent_creature_died(creature_dico):
 	"""
-	Called by the player who change board, on the opponent side, like when plays a card
+	Called by the player who loose a creature, on the opponent side
 	"""
 	#opponent_board.append(card_name)
-	emit_signal("opponent_creature_died", data)
+	emit_signal("opponent_creature_died", creature_dico)
 
 remote func opponent_mana_changed(new_value: int):
 	opponent_mana = new_value
@@ -346,22 +347,31 @@ func _on_first_player_tour():
 # some mana & mana max setters
 func set_self_mana(new_value: int):
 	self_mana = new_value
-	if self_mana>self_mana_max:
-		self_mana = self_mana_max
+	
+	check_mana()
 	emit_signal("self_mana_changed")
-
-func set_self_mana_max(new_value: int):
-	self_mana_max = new_value
-	if self_mana_max>10:
-		self_mana_max = 10
-	full_mana_bar()
-	emit_signal("self_mana_max_changed")
 
 func add_self_mana(value: int):
 	set_self_mana(self_mana + value)
-
+	
 func full_mana_bar():
 	set_self_mana(self_mana_max)
+	
+
+func set_self_mana_max(new_value: int):
+	self_mana_max = new_value
+	check_mana()
+	
+	full_mana_bar()
+	emit_signal("self_mana_max_changed")
+	
+func check_mana():
+	if self_mana_max>10:
+		self_mana_max = 10
+		
+	if self_mana>self_mana_max:
+		self_mana = self_mana_max
+		emit_signal("self_mana_changed")
 # end 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=9]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
@@ -151,6 +152,16 @@ margin_left = 1119.58
 margin_top = 391.356
 margin_right = 1239.58
 margin_bottom = 641.356
+
+[node name="Your_turn_Popup" parent="." instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
 [connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
 [connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]
