@@ -1,6 +1,6 @@
 RANKULSTONE - PATCH NOTE 0.0.3
 
-Release date: ../../....
+Release date: 12/15/2019
 
 New features:
 - Show some black cards in opponent's hand
