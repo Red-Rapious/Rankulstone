@@ -82,7 +82,7 @@ func init():
 	
 	connect("ask_creature_kill", self, "_on_ask_creature_kill")
 
-	for i in range(3): # temporarly create a cards library, before deck implementation
+	"""for i in range(3): # temporarly create a cards library, before deck implementation
 		library.append("Flash_kick")
 		library.append("Sbire_canon")
 		library.append("Sbire_mage")
@@ -91,7 +91,10 @@ func init():
 		library.append("Sylas")
 		library.append("Soin")
 		library.append("Soraka")
-		library.append("Electrocution")
+		library.append("Electrocution")"""
+		
+	library = decks.load_deck(decks.actual_deck)["library"]
+	shuffle_library()
 
 	draw_hand()
 	set_self_pv(self_pv)
@@ -192,12 +195,18 @@ func draw_card(signalised=true):
 	"""
 
 	if len(library) != 0: # avoid the case of an empty library
+		randomize()
 		var card_picked = randi()%(len(library))
 		add_card_to_hand(library[card_picked])
 		library.remove(card_picked)
 		if signalised:
 			emit_signal("self_library_changed")
 			emit_signal("self_hand_changed")
+			
+			
+func shuffle_library():
+	randomize()
+	library.shuffle()
 # end
 
 remote func add_card_to_hand(card_name):

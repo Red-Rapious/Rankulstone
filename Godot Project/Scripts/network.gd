@@ -93,6 +93,7 @@ remote func send_version(version):
 	"""
 	if version == global.VERSION: # check if the 2 players version are the sames
 		#print("No version conflict, game accepted.")
+		randomize()
 		if randi()%2 == 0:
 			start_first(true)
 			rpc("start_first",false)
