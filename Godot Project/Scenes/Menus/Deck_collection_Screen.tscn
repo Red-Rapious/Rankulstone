@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Menus/Deck_crollection_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=3]
+[ext_resource path="res://Scenes/Menus/GUI/Deck_button.tscn" type="PackedScene" id=3]
 
 [node name="Deck_collection_Screen" type="Control"]
 anchor_right = 1.0
@@ -60,35 +60,12 @@ size_flags_vertical = 1
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 margin_top = 134.0
 margin_right = 1260.0
-margin_bottom = 690.0
+margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/vseparation = 30
-custom_constants/hseparation = 30
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
 columns = 4
 
-[node name="Deck" type="TextureButton" parent="VBoxContainer/GridContainer"]
-margin_right = 140.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 140, 210 )
-texture_normal = ExtResource( 3 )
-expand = true
-stretch_mode = 5
-
-[node name="Deck2" type="TextureButton" parent="VBoxContainer/GridContainer"]
-margin_left = 170.0
-margin_right = 310.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 140, 210 )
-texture_normal = ExtResource( 3 )
-expand = true
-stretch_mode = 5
-
-[node name="Deck3" type="TextureButton" parent="VBoxContainer/GridContainer"]
-margin_left = 340.0
-margin_right = 480.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 140, 210 )
-texture_normal = ExtResource( 3 )
-expand = true
-stretch_mode = 5
+[node name="Deck" parent="VBoxContainer/GridContainer" instance=ExtResource( 3 )]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Deck" to="VBoxContainer/GridContainer/Deck" method="_on_Deck_pressed"]
