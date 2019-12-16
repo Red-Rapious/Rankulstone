@@ -59,3 +59,4 @@ size_flags_vertical = 7
 align = 1
 valign = 1
 autowrap = true
+[connection signal="pressed" from="." to="." method="_on_Card_pressed"]

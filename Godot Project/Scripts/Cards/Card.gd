@@ -8,6 +8,8 @@ export var NAME = "Card"
 var node_name
 export var MANA_COST = 1
 
+export var on_collection = false
+
 #export var IMAGE = ""
 #export var RARITY = 0
 #export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
@@ -57,10 +59,11 @@ func create_drop_dico():
 	return {"uniq_id": uniq_id, "drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false, "mana_cost":MANA_COST}
 
 func get_drag_data(_pos): # called when dragged
-	set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
-	return create_drop_dico()
-	
-	
-	
-	
-	
+	if not on_collection:
+		set_drag_preview(create_play_drag_clone()) # create and pass the drag preview created with specific function
+		return create_drop_dico()
+		
+
+func _on_Card_pressed():
+	if on_collection:
+		get_node("../../../../../").grid_card_pressed(node_name, NAME)
