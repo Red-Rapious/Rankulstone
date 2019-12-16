@@ -102,10 +102,17 @@ rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Self_Hand" type="HBoxContainer" parent="All/Center"]
+[node name="Self_Hand_ScrollContainer" type="ScrollContainer" parent="All/Center"]
 margin_top = 469.0
 margin_right = 890.0
 margin_bottom = 700.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.25
+
+[node name="Self_Hand" type="HBoxContainer" parent="All/Center/Self_Hand_ScrollContainer"]
+margin_right = 890.0
+margin_bottom = 231.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
