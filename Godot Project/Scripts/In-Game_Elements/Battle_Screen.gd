@@ -132,11 +132,9 @@ func _on_creature_hp_changed(data):
 
 	var creature
 	if player.uniq_ids_list[data[0]][player.SELF_SIDE]:
-		#creature = get_node("All/Center/Board/Self_Board/"+data[0]["node_name"])
 		creature = get_node("All/Center/Board/Self_Board/"+str(data[0]))
 	else:
 		creature = get_node("All/Center/Board/Opponent_Board/"+str(data[0]))
-		#creature = get_node("All/Center/Board/Opponent_Board/"+data[0]["node_name"])
 		
 	if creature != null:
 		creature.add_pv(data[1])
