@@ -16,6 +16,9 @@ func _on_network_infos_get():
 func _on_opponent_mana_changed():
 	$Mana_bar.text = "Mana : "+str(player.opponent_mana)+"/"+str(player.opponent_mana_max)
 	
+	$Mana_bar/ProgressBar.max_value = player.opponent_mana_max
+	$Mana_bar/ProgressBar.value = player.opponent_mana
+	
 
 func can_drop_data(_pos, data):
 	""" --> bool

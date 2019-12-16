@@ -8,3 +8,10 @@ size_flags_vertical = 6
 text = "Mana : 0"
 align = 1
 valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 10.0
+percent_visible = false

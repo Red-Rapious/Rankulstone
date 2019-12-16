@@ -104,7 +104,7 @@ func init():
 	emit_signal("opponent_mana_changed")
 	
 	emit_signal("game_started")
-	OS.request_attention()
+	#OS.request_attention()
 
 
 """

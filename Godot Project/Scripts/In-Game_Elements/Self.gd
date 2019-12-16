@@ -10,3 +10,6 @@ func update_pseudo():
 	
 func _on_self_mana_changed():
 	$Mana_bar.text = "Mana : "+str(player.self_mana)+"/"+str(player.self_mana_max)
+	
+	$Mana_bar/ProgressBar.max_value = player.self_mana_max
+	$Mana_bar/ProgressBar.value = player.self_mana
