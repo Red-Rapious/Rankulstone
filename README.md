@@ -1,1 +1,2 @@
-Rankulstone
+RANKULSTONE - A revolutionnary card game
+
