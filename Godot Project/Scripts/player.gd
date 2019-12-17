@@ -93,7 +93,8 @@ func init():
 		library.append("Soraka")
 		library.append("Electrocution")"""
 		
-	library = decks.load_deck(decks.actual_deck)["library"]
+	
+	load_library()
 	shuffle_library()
 
 	draw_hand()
@@ -106,6 +107,9 @@ func init():
 	emit_signal("game_started")
 	#OS.request_attention()
 
+func load_library():
+	for card in decks.load_deck(decks.actual_deck)["cards"]:
+		library.append(card["node_name"])
 
 """
 Some self signals implementation

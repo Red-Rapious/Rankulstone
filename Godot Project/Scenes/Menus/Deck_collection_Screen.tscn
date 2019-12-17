@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Menus/Deck_crollection_Screen.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Menus/Deck_collection_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Menus/GUI/Deck_button.tscn" type="PackedScene" id=3]
 
