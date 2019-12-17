@@ -32,13 +32,22 @@ func grid_card_pressed(node_name, card_name):
 func update_cards_labels():
 	clean_cards_labels()
 	
+	var card_total = 0
+	
 	for i in cards_in_deck:
-		var scene = Label.new()
-		scene.text = str(i["number"])+ "x "+ i["card_name"]
-		$All/Modifications/In_deck/Cards.add_child(scene)
+		var scene = load("res://Scenes/Buttons/In_deck_card_Button.tscn")
+		var scene_instance = scene.instance()
+		#scene.text = str(i["number"])+ "x "+ i["card_name"]
+		scene_instance.init(i["card_name"], i["number"])
+		$All/Modifications/In_deck/Cards_ScrollContainer/Cards.add_child(scene_instance)
+		
+		
+		card_total += i["number"]
+	
+	$All/Modifications/In_deck/Down_Label.text = "Total : "+str(card_total)+"/30"
 
 func clean_cards_labels():
-	for child in $All/Modifications/In_deck/Cards.get_children():
+	for child in $All/Modifications/In_deck/Cards_ScrollContainer/Cards.get_children():
 		child.queue_free()
 		
 		
@@ -66,3 +75,12 @@ func _on_Save_pressed():
 
 func _on_Quit_pressed():
 	get_tree().change_scene("Scenes/Menus/Title_Screen.tscn")
+	
+func in_deck_card_button_pressed(card_name):
+	for i in cards_in_deck:
+		if i["card_name"] == card_name:
+			i["number"] -= 1
+			if i["number"] <= 0:
+				cards_in_deck.erase(i)
+			
+	update_cards_labels()

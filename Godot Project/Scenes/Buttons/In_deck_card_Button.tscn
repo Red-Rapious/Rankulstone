@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Buttons/In_deck_card_Button.gd" type="Script" id=1]
+
+[node name="In_deck_card_Button" type="Button"]
+margin_right = 288.0
+margin_bottom = 20.0
+text = "3x Card"
+align = 0
+script = ExtResource( 1 )
+[connection signal="pressed" from="." to="." method="_on_In_deck_card_Button_pressed"]
