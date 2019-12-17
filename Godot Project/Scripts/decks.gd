@@ -8,6 +8,7 @@ func _ready():
 	load_decks_index()
 
 func save_deck(deck_name: String, image: int, cards):
+	
 	var file = File.new()
 	file.open_encrypted_with_pass("res://Saved_files/Decks/"+deck_name+".deck", File.WRITE, PASS)
 	
@@ -45,7 +46,8 @@ func save_decks_index():
 func load_decks_index():
 	var file = File.new()
 	if not file.file_exists("res://Saved_files/Decks/decks_index.deck"):
-        return 
+		save_decks_index()
+		return 
 	
 	file.open_encrypted_with_pass("res://Saved_files/Decks/decks_index.deck", File.READ, PASS)
 	
@@ -53,7 +55,8 @@ func load_decks_index():
 	
 	file.close()
 	
-	#save_deck(saved_decks[0])
+	
+	
 	
 func load_deck(deck_name):
 	var file = File.new()
@@ -75,3 +78,4 @@ func load_deck(deck_name):
 	
 func set_actual_deck(deck_name):
 	actual_deck = deck_name
+	
