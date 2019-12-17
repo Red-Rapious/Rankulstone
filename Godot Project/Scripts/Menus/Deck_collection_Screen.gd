@@ -15,6 +15,7 @@ func update_deck_collection():
 		var scene = load("res://Scenes/Menus/GUI/Deck_button.tscn")
 		var scene_instance = scene.instance()
 		scene_instance.deck_name = deck
+		scene_instance.connect("deck_pressed", self, "set_selected_deck")
 		$VBoxContainer/GridContainer.add_child(scene_instance)
 		
 	var scene = load("res://Scenes/Buttons/New_deck_Button.tscn")
@@ -58,3 +59,8 @@ func set_selected_deck(new_deck):
 				deck.set_border(true)
 			else:
 				deck.set_border(false)
+
+
+func _on_Delete_all_Button_pressed():
+	decks.delete_all_decks()
+	update_deck_collection()

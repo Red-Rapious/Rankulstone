@@ -7,6 +7,8 @@
 margin_right = 140.0
 margin_bottom = 210.0
 rect_min_size = Vector2( 140, 210 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
@@ -14,8 +16,10 @@ script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 10.0
-margin_bottom = 14.0
+margin_left = 0.735077
+margin_top = 21.3176
+margin_right = 0.735077
+margin_bottom = 35.3176
 text = "Error"
 align = 1
 valign = 1

@@ -3,12 +3,14 @@ extends TextureButton
 export var deck_name = "deck1"
 var border = false
 
+signal deck_pressed
+
 func _ready():
 	connect("pressed", self, "_on_Deck_pressed")
 	update_label()
 
 func _on_Deck_pressed():
-	get_node("../../../").set_selected_deck(deck_name)
+	emit_signal("deck_pressed", deck_name)
 	
 func update_label():
 	$Label.text = deck_name.capitalize()

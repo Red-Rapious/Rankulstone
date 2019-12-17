@@ -58,7 +58,7 @@ func load_decks_index():
 	
 	
 	
-func load_deck(deck_name):
+func load_deck(deck_name: String):
 	var file = File.new()
 	if not file.file_exists("res://Saved_files/Decks/"+deck_name+".deck"):
         save_deck(deck_name, 0, []) # create an empty deck 
@@ -77,11 +77,18 @@ func load_deck(deck_name):
 	return {"name": header["name"], "image": header["image"], "cards": library}
 	
 	
-func set_actual_deck(deck_name):
+func set_actual_deck(deck_name: String):
 	actual_deck = deck_name
 	
 	
-func delete_deck(deck_name):
+func delete_deck(deck_name: String):
 	if deck_name in saved_decks:
 		saved_decks.erase(deck_name)
 		save_decks_index()
+	var dir = Directory.new()
+	dir.remove("res://Saved_files/Decks/"+deck_name+".deck")
+		
+func delete_all_decks():
+	for deck in saved_decks:
+		delete_deck(deck)
+	save_decks_index()
