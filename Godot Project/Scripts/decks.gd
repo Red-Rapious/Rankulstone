@@ -76,6 +76,12 @@ func load_deck(deck_name):
 			
 	return {"name": header["name"], "image": header["image"], "cards": library}
 	
+	
 func set_actual_deck(deck_name):
 	actual_deck = deck_name
 	
+	
+func delete_deck(deck_name):
+	if deck_name in saved_decks:
+		saved_decks.erase(deck_name)
+		save_decks_index()

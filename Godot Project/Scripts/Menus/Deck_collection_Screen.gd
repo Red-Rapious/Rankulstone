@@ -44,14 +44,16 @@ func _on_Open_deck_Button_pressed():
 
 
 func _on_Delete_deck_Button_pressed():
-	pass # Replace with function body.
+	if selected_deck != null:
+		decks.delete_deck(selected_deck)
+	update_deck_collection()
 	
 	
 func set_selected_deck(new_deck):
 	selected_deck = new_deck
 	
 	for deck in $VBoxContainer/GridContainer.get_children():
-		if deck.name != "New_deck_Button":
+		if deck.get_filename() != "res://Scenes/Buttons/New_deck_Button.tscn":
 			if deck.deck_name == selected_deck:
 				deck.set_border(true)
 			else:
