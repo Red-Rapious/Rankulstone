@@ -12,4 +12,4 @@ func update_text():
 	text = str(number)+ "x "+ card_name
 
 func _on_In_deck_card_Button_pressed():
-	get_node("../../../../../").in_deck_card_button_pressed(card_name)
+	get_node("../../../../../../").in_deck_card_button_pressed(card_name)

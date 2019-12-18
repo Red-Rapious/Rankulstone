@@ -5,6 +5,8 @@ var selected_deck = null
 func _ready():
 	update_deck_collection()
 	set_selected_deck(decks.actual_deck)
+	if len(decks.saved_decks) == 1:
+		set_selected_deck(decks.saved_decks[0])
 
 func update_deck_collection():
 	clean_deck_collection()
