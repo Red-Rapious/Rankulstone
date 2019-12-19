@@ -14,16 +14,16 @@ func _ready():
 		_on_self_end_of_turn()
 	
 func _on_self_library_changed():
-	$Self_Library.text = "Cartes restantes : "+str(len(player.library)) +"\n"+str(player.self_pv)
+	$Self_Library/Label.text = str(len(player.library))
 	
 func _on_opponent_library_changed():
-	$Opponent_Library.text = "Cartes restantes : "+str(player.opponent_library_size) +"\nPV : "+str(player.opponent_pv)
+	$Opponent_Library/Label.text = str(player.opponent_library_size)
 	
 func _on_self_pv_changed():
-	$Self_Library.text = "Cartes restantes : "+str(len(player.library)) +"\n"+str(player.self_pv)
+	$Self_PV.text = "PV : "+str(player.self_pv)
 	
 func _on_opponent_pv_changed():
-	$Opponent_Library.text = "Cartes restantes : "+str(player.opponent_library_size) +"\nPV : "+str(player.opponent_pv)
+	$Opponent_PV.text = "PV : "+str(player.opponent_pv)
 
 func _on_Right_Button_pressed():
 	if player.your_turn:

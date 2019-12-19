@@ -81,17 +81,6 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 	
 	connect("ask_creature_kill", self, "_on_ask_creature_kill")
-
-	"""for i in range(3): # temporarly create a cards library, before deck implementation
-		library.append("Flash_kick")
-		library.append("Sbire_canon")
-		library.append("Sbire_mage")
-		library.append("Super_sbire")
-		library.append("Vol")
-		library.append("Sylas")
-		library.append("Soin")
-		library.append("Soraka")
-		library.append("Electrocution")"""
 		
 	
 	load_library()
@@ -109,7 +98,8 @@ func init():
 
 func load_library():
 	for card in decks.load_deck(decks.actual_deck)["cards"]:
-		library.append(card["node_name"])
+		for i in range(card["number"]):
+			library.append(card["node_name"])
 
 """
 Some self signals implementation

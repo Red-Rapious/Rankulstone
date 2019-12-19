@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=8]
+[ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=10]
 
 [node name="Battle_Screen" type="Control"]
 anchor_right = 1.0
@@ -132,35 +133,87 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 script = ExtResource( 7 )
 
-[node name="Opponent_Library" type="Label" parent="All/Right"]
+[node name="Opponent_PV" type="Label" parent="All/Right"]
+margin_top = 27.0
 margin_right = 150.0
-margin_bottom = 31.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
 text = "Cartes restantes : 30
 PV : 30"
 align = 1
 
-[node name="Right_Button" type="Button" parent="All/Right"]
-margin_top = 340.0
+[node name="Opponent_Library" type="TextureRect" parent="All/Right"]
+margin_top = 89.0
 margin_right = 150.0
-margin_bottom = 360.0
+margin_bottom = 260.0
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="All/Right/Opponent_Library"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+text = "Error"
+align = 1
+valign = 1
+
+[node name="Right_Button" type="Button" parent="All/Right"]
+margin_top = 339.0
+margin_right = 150.0
+margin_bottom = 359.0
 size_flags_vertical = 6
 text = "Fin de tour"
 
-[node name="Self_Library" type="Label" parent="All/Right"]
-margin_top = 669.0
+[node name="Self_Library" type="TextureRect" parent="All/Right"]
+editor/display_folded = true
+margin_top = 439.0
 margin_right = 150.0
-margin_bottom = 700.0
+margin_bottom = 610.0
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="All/Right/Self_Library"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+text = "Error"
+align = 1
+valign = 1
+
+[node name="Self_PV" type="Label" parent="All/Right"]
+margin_top = 641.0
+margin_right = 150.0
+margin_bottom = 672.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
 text = "Cartes restantes : 30
 PV : 30"
 align = 1
 
-[node name="Side_Popup" parent="." instance=ExtResource( 8 )]
+[node name="Side_Popup" parent="." instance=ExtResource( 9 )]
 margin_left = 1119.58
 margin_top = 391.356
 margin_right = 1239.58
 margin_bottom = 641.356
 
-[node name="Your_turn_Popup" parent="." instance=ExtResource( 9 )]
+[node name="Your_turn_Popup" parent="." instance=ExtResource( 10 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
