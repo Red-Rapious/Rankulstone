@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/Menus/Waiting_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Buttons/Quit_Button.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Buttons/IP_Button.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menus/Waiting_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Buttons/Quit_Button.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Buttons/IP_Button.gd" type="Script" id=5]
 
 [node name="Waiting_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -18,14 +20,14 @@ margin_top = 15.0
 margin_right = -15.0
 margin_bottom = -15.0
 
-[node name="Top" parent="All" instance=ExtResource( 2 )]
+[node name="Top" parent="All" instance=ExtResource( 3 )]
 margin_right = 1250.0
 margin_bottom = 169.0
 
 [node name="Label" type="Label" parent="All"]
-margin_top = 250.0
+margin_top = 247.0
 margin_right = 1250.0
-margin_bottom = 264.0
+margin_bottom = 267.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "En attente d'un joueur..."
@@ -47,7 +49,7 @@ margin_bottom = 94.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Quitter"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="IP_Buttons" type="HBoxContainer" parent="All/Buttons"]
 margin_left = 627.0
@@ -57,7 +59,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="IP_Button" type="Button" parent="All/Buttons/IP_Buttons"]
 margin_left = 162.0

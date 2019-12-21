@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Menus/Join_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menus/Join_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=3]
 
 [node name="Join_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -16,13 +18,13 @@ margin_top = 15.0
 margin_right = -15.0
 margin_bottom = -15.0
 
-[node name="Top" parent="All" instance=ExtResource( 2 )]
-margin_right = 1250.0
+[node name="Top" parent="All" instance=ExtResource( 3 )]
+margin_right = 1404.0
 margin_bottom = 169.0
 
 [node name="Join_Label" type="Label" parent="All"]
 margin_top = 173.0
-margin_right = 1250.0
+margin_right = 1404.0
 margin_bottom = 342.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -32,24 +34,24 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="All"]
 margin_top = 346.0
-margin_right = 1250.0
+margin_right = 1404.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="IP_Label" type="Label" parent="All/HBoxContainer"]
-margin_top = 77.0
-margin_right = 496.0
-margin_bottom = 91.0
+margin_top = 69.0
+margin_right = 558.0
+margin_bottom = 100.0
 size_flags_horizontal = 3
 text = "Adresse IP de l'autre joueur :"
 align = 2
 valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="All/HBoxContainer"]
-margin_left = 500.0
+margin_left = 562.0
 margin_top = 72.0
-margin_right = 748.0
+margin_right = 841.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -57,17 +59,17 @@ size_flags_stretch_ratio = 0.5
 text = "192.168.0.31"
 
 [node name="Join_Button" type="Button" parent="All/HBoxContainer"]
-margin_left = 752.0
-margin_top = 74.0
-margin_right = 825.0
-margin_bottom = 94.0
+margin_left = 845.0
+margin_top = 71.0
+margin_right = 933.0
+margin_bottom = 97.0
 size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "Rejoindre"
 
 [node name="Instructions" type="Label" parent="All"]
 margin_top = 519.0
-margin_right = 1250.0
+margin_right = 1404.0
 margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 7

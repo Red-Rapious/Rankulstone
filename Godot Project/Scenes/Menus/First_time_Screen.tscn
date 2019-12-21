@@ -1,18 +1,20 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scripts/Menus/First_time_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Icons/Default.jpg" type="Texture" id=2]
-[ext_resource path="res://Assets/Icons/Bard.jpg" type="Texture" id=3]
-[ext_resource path="res://Assets/Icons/Chibi.jpg" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons/Garen.jpg" type="Texture" id=5]
-[ext_resource path="res://Assets/Icons/RedRapious.jpg" type="Texture" id=6]
-[ext_resource path="res://Assets/Icons/Toutou421.jpg" type="Texture" id=7]
-[ext_resource path="res://Assets/Icons/Vipère.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menus/First_time_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Icons/Default.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/Bard.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/Chibi.jpg" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/Garen.jpg" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/RedRapious.jpg" type="Texture" id=7]
+[ext_resource path="res://Assets/Icons/Toutou421.jpg" type="Texture" id=8]
+[ext_resource path="res://Assets/Icons/Vipère.jpg" type="Texture" id=9]
 
 [node name="First_time_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -26,7 +28,7 @@ margin_bottom = 177.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Bienvenue sur Rankulstone !
-Avant de commencer, chosis un pseudo :"
+Avant de commencer, choisis un pseudo :"
 align = 1
 valign = 1
 
@@ -63,8 +65,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Icons_ScrollContainer"]
-margin_left = 15.0
-margin_right = 1265.0
+margin_right = 1280.0
 margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -72,18 +73,7 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_right = 152.0
-margin_bottom = 266.0
-rect_min_size = Vector2( 120, 180 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 2 )
-expand = true
-stretch_mode = 5
-
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 182.0
-margin_right = 334.0
+margin_right = 157.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
@@ -92,9 +82,9 @@ texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 364.0
-margin_right = 516.0
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 187.0
+margin_right = 344.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
@@ -103,9 +93,9 @@ texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 546.0
-margin_right = 698.0
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 374.0
+margin_right = 531.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
@@ -114,9 +104,9 @@ texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton5" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 728.0
-margin_right = 880.0
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 561.0
+margin_right = 718.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
@@ -125,9 +115,9 @@ texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton6" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 910.0
-margin_right = 1062.0
+[node name="TextureButton5" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 748.0
+margin_right = 905.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
@@ -136,14 +126,25 @@ texture_normal = ExtResource( 7 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton7" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
-margin_left = 1092.0
-margin_right = 1250.0
+[node name="TextureButton6" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 935.0
+margin_right = 1092.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 120, 180 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureButton7" type="TextureButton" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer"]
+margin_left = 1122.0
+margin_right = 1280.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 120, 180 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 [connection signal="text_entered" from="VBoxContainer/Pseudo_field" to="." method="_on_Pseudo_field_text_entered"]

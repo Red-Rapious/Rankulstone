@@ -8,7 +8,7 @@ func _ready():
 
 func _on_IP_Button_pressed():
 	if (doShowIp):
-		$IP_Button.text = "test"
+		$IP_Button.text = "Afficher mon adresse IP"
 	else:
 		$IP_Button.text = ip
 	

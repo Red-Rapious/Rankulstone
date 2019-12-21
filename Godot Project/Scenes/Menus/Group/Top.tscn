@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Buttons/Back_Button.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Buttons/Options_Button.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Themes/Top_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Buttons/Back_Button.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Buttons/Options_Button.gd" type="Script" id=3]
 
 [node name="Top" type="HBoxContainer"]
 margin_right = 1280.0
@@ -9,6 +10,7 @@ margin_bottom = 131.0
 rect_min_size = Vector2( 1200, 130 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 1 )
 
 [node name="Back_Button" type="Button" parent="."]
 margin_top = 55.0
@@ -16,7 +18,7 @@ margin_right = 71.0
 margin_bottom = 75.0
 size_flags_vertical = 4
 text = "<- Retour"
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Rankulstone_Logo" type="Label" parent="."]
 margin_left = 75.0
@@ -24,7 +26,7 @@ margin_right = 1213.0
 margin_bottom = 131.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "RANKULSTONE"
+text = "Rankulstone"
 align = 1
 valign = 1
 
@@ -35,6 +37,6 @@ margin_right = 1280.0
 margin_bottom = 75.0
 size_flags_vertical = 4
 text = "Options"
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 [connection signal="pressed" from="Back_Button" to="Back_Button" method="_on_Back_Button_pressed"]
 [connection signal="pressed" from="Options_Button" to="Options_Button" method="_on_Options_Button_pressed"]

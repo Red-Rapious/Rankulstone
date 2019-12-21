@@ -4,7 +4,6 @@
 [ext_resource path="res://Assets/Icons/Default.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
 
-
 [node name="Self" type="VBoxContainer"]
 margin_top = 352.0
 margin_right = 217.0
@@ -18,7 +17,7 @@ margin_right = 217.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Pseudo2"
+text = "--Error--"
 align = 1
 valign = 1
 

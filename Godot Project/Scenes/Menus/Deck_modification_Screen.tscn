@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Menus/Deck_modification_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Buttons/In_deck_card_Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menus/Deck_modification_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Buttons/In_deck_card_Button.tscn" type="PackedScene" id=3]
 
 [node name="Deck_modification_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -15,7 +17,6 @@ margin_left = 20.0
 margin_right = -20.0
 
 [node name="Header" type="HBoxContainer" parent="All"]
-editor/display_folded = true
 margin_right = 1240.0
 margin_bottom = 79.0
 size_flags_horizontal = 3
@@ -27,7 +28,7 @@ margin_right = 1240.0
 margin_bottom = 79.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Modification en cours : Erreur"
+text = "Modification en cours : --Error--"
 align = 1
 valign = 1
 
@@ -87,7 +88,7 @@ margin_bottom = 439.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="In_deck_card_Button" parent="All/Modifications/In_deck/Cards_ScrollContainer/Cards" instance=ExtResource( 2 )]
+[node name="In_deck_card_Button" parent="All/Modifications/In_deck/Cards_ScrollContainer/Cards" instance=ExtResource( 3 )]
 margin_right = 276.0
 
 [node name="Down_Label" type="Label" parent="All/Modifications/In_deck"]
@@ -95,7 +96,7 @@ margin_top = 487.0
 margin_right = 276.0
 margin_bottom = 527.0
 rect_min_size = Vector2( 0, 40 )
-text = "Total : Error/30"
+text = "Total : --Error--/30"
 align = 1
 valign = 1
 
