@@ -17,9 +17,11 @@ var card_index = [
 
 const VERSION = "0.0.4"
 var information_loaded = false # if it has been set by the First time screen
-var favorite_icon = 0
+
 var win = false
 
+var self_icon = 0
+var opponent_icon = 0
 var self_pseudo = "No pseudo detected"
 var opponent_pseudo = "No pseudo detected"
 

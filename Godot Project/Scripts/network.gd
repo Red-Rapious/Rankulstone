@@ -112,8 +112,9 @@ remote func send_version(version):
 		get_tree().change_scene("Scenes/Menus/Lobby_Screen.tscn") # go back to the lobby
 		
 remote func send_self_infos():
-	rpc("get_opponent_infos", global.self_pseudo)
+	rpc("get_opponent_infos", [global.self_pseudo, global.self_icon])
 	
-remote func get_opponent_infos(pseudo):
-	global.opponent_pseudo = pseudo
+remote func get_opponent_infos(infos):
+	global.opponent_pseudo = infos[0]
+	global.opponent_icon = infos[1]
 	emit_signal("network_infos_get")

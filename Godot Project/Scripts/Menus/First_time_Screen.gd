@@ -43,6 +43,7 @@ func read_infos():
 	var dict = parse_json(file.get_line())
 	if dict != null:
 		global.self_pseudo = dict["pseudo"]
+		global.self_icon = dict["icon"]
 		global.information_loaded = true
 	file.close()
 
@@ -65,3 +66,6 @@ func _on_Pseudo_field_text_entered(new_text):
 func _on_Button_pressed():
 	if entered_pseudo != null and choosed_icon != null:
 		save_infos()
+		
+func icon_pressed(icon_num):
+	choosed_icon = icon_num

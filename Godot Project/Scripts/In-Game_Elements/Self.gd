@@ -4,6 +4,7 @@ func _ready():
 	player.connect("self_mana_changed", self, "_on_self_mana_changed")
 	player.connect("self_mana_max_changed", self, "_on_self_mana_changed")
 	update_pseudo()
+	update_icons()
 	
 func update_pseudo():
 	$Pseudo.text = global.self_pseudo
@@ -13,3 +14,6 @@ func _on_self_mana_changed():
 	
 	$Mana_bar/ProgressBar.max_value = player.self_mana_max
 	$Mana_bar/ProgressBar.value = player.self_mana
+
+func update_icons():
+	$TextureRect.texture = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")

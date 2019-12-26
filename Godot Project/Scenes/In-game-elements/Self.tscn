@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Self.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Icons/Default.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/0.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
 
 [node name="Self" type="VBoxContainer"]

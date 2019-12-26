@@ -13,3 +13,4 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 script = ExtResource( 2 )
+[connection signal="pressed" from="." to="." method="_on_Icon_Button_pressed"]
