@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RedRapious.jpg-192c14132324790e6d4a308d0130c3ec.stex"
+path="res://.import/6.jpg-5e9d73f123d82b971875d22794c5eb90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/RedRapious.jpg"
-dest_files=[ "res://.import/RedRapious.jpg-192c14132324790e6d4a308d0130c3ec.stex" ]
+source_file="res://Assets/Icons/6.jpg"
+dest_files=[ "res://.import/6.jpg-5e9d73f123d82b971875d22794c5eb90.stex" ]
 
 [params]
 

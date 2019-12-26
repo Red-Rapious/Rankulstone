@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bard.jpg-f8fbce460cc9d3badddce50d7c0a44e5.stex"
+path="res://.import/0.jpg-8ad48a63ecc39fceefd797ac94251b83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Bard.jpg"
-dest_files=[ "res://.import/Bard.jpg-f8fbce460cc9d3badddce50d7c0a44e5.stex" ]
+source_file="res://Assets/Icons/0.jpg"
+dest_files=[ "res://.import/0.jpg-8ad48a63ecc39fceefd797ac94251b83.stex" ]
 
 [params]
 

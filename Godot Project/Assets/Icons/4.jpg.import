@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Vipère.jpg-f4554c63ec3aa8b48db3e0114def5a60.stex"
+path="res://.import/4.jpg-bdb65325c54677b57cbe091de681fcdd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Vipère.jpg"
-dest_files=[ "res://.import/Vipère.jpg-f4554c63ec3aa8b48db3e0114def5a60.stex" ]
+source_file="res://Assets/Icons/4.jpg"
+dest_files=[ "res://.import/4.jpg-bdb65325c54677b57cbe091de681fcdd.stex" ]
 
 [params]
 
