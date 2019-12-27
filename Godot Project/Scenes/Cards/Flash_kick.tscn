@@ -9,4 +9,17 @@ NAME = "Flash Kick"
 MANA_COST = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
 text = "Flash Kick"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "2"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 64.0
+margin_bottom = 106.0
+text = "Renvoie la créature ciblée dans la main de son propriétaire"
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 110.0
