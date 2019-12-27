@@ -62,10 +62,24 @@ func load_icons_buttons():
 	
 func _on_Pseudo_field_text_entered(new_text):
 	entered_pseudo = new_text
+	check_if_button_clickable()
+	
+
+func check_if_button_clickable():
+	if entered_pseudo != null and choosed_icon != null:
+		$VBoxContainer/Button.disabled = false
 
 func _on_Button_pressed():
-	if entered_pseudo != null and choosed_icon != null:
-		save_infos()
+	save_infos()
 		
 func icon_pressed(icon_num):
 	choosed_icon = icon_num
+	update_icon_borders()
+	check_if_button_clickable()
+	
+func update_icon_borders():
+	for child in $VBoxContainer/Icons_ScrollContainer/HBoxContainer.get_children():
+		if child.icon_number == choosed_icon:
+			child.set_select(true)
+		else:
+			child.set_select(false)

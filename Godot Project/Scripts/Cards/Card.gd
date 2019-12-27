@@ -29,9 +29,6 @@ func update_labels():
 	"""
 	$VBoxContainer/Top/Name.text = NAME
 	$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
-	#$VBoxContainer/Action_Text.text = ""
-	#$VBoxContainer/Under_text.text = UNDER_TEXT
-	#$VBoxContainer/Under_text.text = ""
 
 func play_card(id):
 	"""

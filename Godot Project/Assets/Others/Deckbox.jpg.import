@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/red.jpg-080c13b78e6a258c307adeac650beddc.stex"
+path="res://.import/Deckbox.jpg-929551825e10f873cd5927859b21ece0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/red.jpg"
-dest_files=[ "res://.import/red.jpg-080c13b78e6a258c307adeac650beddc.stex" ]
+source_file="res://Assets/Others/Deckbox.jpg"
+dest_files=[ "res://.import/Deckbox.jpg-929551825e10f873cd5927859b21ece0.stex" ]
 
 [params]
 

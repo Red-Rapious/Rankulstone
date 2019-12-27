@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=1]
 [ext_resource path="res://Scripts/Buttons/New_deck_Button.gd" type="Script" id=2]
-[ext_resource path="res://Assets/plus.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Others/plus.png" type="Texture" id=3]
+
 
 [node name="New_deck_Button" type="TextureButton"]
 editor/display_folded = true

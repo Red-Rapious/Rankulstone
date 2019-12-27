@@ -9,3 +9,10 @@ NAME = "Spell"
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Spell"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 114.0
+text = ""
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+text = ""

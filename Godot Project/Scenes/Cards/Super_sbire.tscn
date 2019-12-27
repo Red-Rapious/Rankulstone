@@ -11,6 +11,9 @@ NAME = "Super Sbire"
 MANA_COST = 2
 pv = 3
 
+[node name="Top" parent="VBoxContainer" index="0"]
+editor/display_folded = true
+
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 margin_right = 99.0
 text = "Super Sbire"
@@ -20,15 +23,11 @@ margin_left = 103.0
 text = "2"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_bottom = 81.0
+size_flags_vertical = 4
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 85.0
-margin_bottom = 150.0
-
-[node name="Bottom" parent="VBoxContainer" index="3"]
-margin_top = 154.0
-margin_bottom = 170.0
+size_flags_vertical = 7
+text = ""
 
 [node name="PV" parent="VBoxContainer/Bottom" index="1"]
 text = "3"

@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Themes/Card_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=2]
 [ext_resource path="res://Scripts/Cards/Card.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Fonts/Black Window Italic.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 13
+font_data = ExtResource( 5 )
 
 [node name="Card" type="TextureButton" groups=[
 "Card",
@@ -33,7 +38,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Top" type="HBoxContainer" parent="VBoxContainer"]
-editor/display_folded = true
 margin_right = 110.0
 margin_bottom = 16.0
 size_flags_vertical = 2
@@ -53,22 +57,25 @@ margin_bottom = 16.0
 text = "1"
 
 [node name="Action_Text" type="Label" parent="VBoxContainer"]
-margin_top = 41.0
+margin_top = 94.0
 margin_right = 110.0
-margin_bottom = 128.0
+margin_bottom = 136.0
+size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum mollis dui, vitae tempus orci interdum sed."
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
 align = 1
 valign = 1
 autowrap = true
 
 [node name="Under_text" type="Label" parent="VBoxContainer"]
-margin_top = 132.0
+margin_top = 156.0
 margin_right = 110.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
-size_flags_vertical = 7
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 2 )
+text = "La mere de toutes les cartes"
 align = 1
-valign = 1
+valign = 2
 autowrap = true
 [connection signal="pressed" from="." to="." method="_on_Card_pressed"]

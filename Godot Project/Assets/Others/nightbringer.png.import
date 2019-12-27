@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Deckbox.jpg-db6d22ecb680b01841589decb1a60959.stex"
+path="res://.import/nightbringer.png-4c24a8eb356d71d4a86b8783541b853d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Deckbox.jpg"
-dest_files=[ "res://.import/Deckbox.jpg-db6d22ecb680b01841589decb1a60959.stex" ]
+source_file="res://Assets/Others/nightbringer.png"
+dest_files=[ "res://.import/nightbringer.png-4c24a8eb356d71d4a86b8783541b853d.stex" ]
 
 [params]
 

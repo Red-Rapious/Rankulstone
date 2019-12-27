@@ -107,9 +107,6 @@ func update_labels():
 	else:
 		$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
 		
-	$VBoxContainer/Action_Text.text = ""
-	#$VBoxContainer/Under_text.text = UNDER_TEXT
-	$VBoxContainer/Under_text.text = ""
 	$VBoxContainer/Bottom/PV.text = str(pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack)
 

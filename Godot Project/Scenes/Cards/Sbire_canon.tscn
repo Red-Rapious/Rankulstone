@@ -13,4 +13,18 @@ pv = 2
 attack = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
 text = "Sbire Canon"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "2"
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+text = ""
+
+[node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+text = "2"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+text = "2"
