@@ -90,6 +90,7 @@ size_flags_vertical = 3
 
 [node name="In_deck_card_Button" parent="All/Modifications/In_deck/Cards_ScrollContainer/Cards" instance=ExtResource( 3 )]
 margin_right = 276.0
+margin_bottom = 26.0
 
 [node name="Down_Label" type="Label" parent="All/Modifications/In_deck"]
 margin_top = 487.0
@@ -109,19 +110,19 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
 [node name="Save" type="Button" parent="All/Foot"]
-margin_left = 237.0
-margin_top = 43.0
-margin_right = 381.0
-margin_bottom = 63.0
+margin_left = 217.0
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 66.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Sauvergarder le deck"
 
 [node name="Quit" type="Button" parent="All/Foot"]
-margin_left = 902.0
-margin_top = 43.0
-margin_right = 960.0
-margin_bottom = 63.0
+margin_left = 894.0
+margin_top = 40.0
+margin_right = 967.0
+margin_bottom = 66.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Quitter"

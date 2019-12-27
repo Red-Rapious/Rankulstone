@@ -6,3 +6,14 @@
 [node name="Focus_Spell" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Focus Spell"
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+text = "Focus Spell"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 79.0
+margin_bottom = 90.0
+text = ""
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 94.0

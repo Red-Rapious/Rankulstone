@@ -1,4 +1,5 @@
 extends "res://Scripts/Cards/Card.gd"
+tool
 
 func _ready():
 	node_name = "Focus_Spell"
