@@ -22,10 +22,11 @@ config/auto_accept_quit=false
 
 [autoload]
 
-network="*res://Scripts/network.gd"
-global="*res://Scripts/global.gd"
-player="*res://Scripts/player.gd"
-decks="*res://Scripts/decks.gd"
+player="*res://Scripts/Autoloads/player.gd"
+options="*res://Scripts/Autoloads/options.gd"
+network="*res://Scripts/Autoloads/network.gd"
+global="*res://Scripts/Autoloads/global.gd"
+decks="*res://Scripts/Autoloads/decks.gd"
 
 [debug]
 

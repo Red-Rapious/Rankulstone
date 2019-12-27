@@ -12,20 +12,20 @@
 [ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=11]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 7 )
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="Theme" id=3]
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
-Button/fonts/font = SubResource( 3 )
+Button/fonts/font = SubResource( 1 )
 Button/styles/disabled = null
 Button/styles/focus = null
 Button/styles/hover = null
@@ -163,7 +163,7 @@ margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-theme = SubResource( 1 )
+theme = SubResource( 3 )
 script = ExtResource( 8 )
 
 [node name="Opponent_PV" type="Label" parent="All/Right"]
@@ -199,9 +199,9 @@ align = 1
 valign = 1
 
 [node name="Right_Button" type="Button" parent="All/Right"]
-margin_top = 335.0
+margin_top = 336.0
 margin_right = 150.0
-margin_bottom = 363.0
+margin_bottom = 362.0
 size_flags_vertical = 6
 text = "Fin de tour"
 
@@ -253,7 +253,6 @@ margin_left = -100.0
 margin_top = -35.0
 margin_right = 100.0
 margin_bottom = 35.0
-[connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
 [connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]
 [connection signal="popup_hide" from="Side_Popup" to="." method="_on_Side_Popup_popup_hide"]

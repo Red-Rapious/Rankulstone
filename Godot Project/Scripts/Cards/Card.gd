@@ -36,7 +36,6 @@ func play_card(id):
 	Do some routine
 	"""
 	self.uniq_id = id
-	#self.on_board = true
 	self.emit_signal("played")
 	
 func create_play_drag_clone():
