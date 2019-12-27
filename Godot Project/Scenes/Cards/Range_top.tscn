@@ -3,9 +3,10 @@
 [ext_resource path="res://Scenes/Cards/Focus_Spell.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Cards/Range_top.gd" type="Script" id=2]
 
-[node name="Range_top" instance=ExtResource( 1 )]
+[node name="Range_top" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Range top"
+MANA_COST = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 margin_right = 99.0
