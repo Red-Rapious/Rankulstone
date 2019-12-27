@@ -18,4 +18,4 @@ func apply_effect_to_creature(creature_id):
 	pass
 
 func is_target_ok(target_id):
-	return false
+	return true

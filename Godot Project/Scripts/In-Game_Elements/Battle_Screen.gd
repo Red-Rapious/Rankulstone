@@ -172,8 +172,9 @@ func _on_creature_focus_timer_timeout():
 	"""
 	Called when the timer timeout. Only set the bool to false, and delete the node to avoid conflicts
 	"""
-	creature_focus_mode = false
-	get_node("Timer").queue_free()
+	if not $Side_Popup.visible:
+		creature_focus_mode = false
+		get_node("Timer").queue_free()
 
 
 func get_creature_by_id(creature_id):
@@ -188,6 +189,7 @@ func creature_pressed(creature_id):
 	"""
 	Called by a creature when it's pressed
 	"""
+	
 	if creature_focus_mode:
 		apply_effect_to_creature(creature_id)
 		

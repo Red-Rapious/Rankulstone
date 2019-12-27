@@ -19,12 +19,12 @@ margin_right = -15.0
 margin_bottom = -15.0
 
 [node name="Top" parent="All" instance=ExtResource( 3 )]
-margin_right = 1404.0
+margin_right = 1250.0
 margin_bottom = 169.0
 
 [node name="Join_Label" type="Label" parent="All"]
 margin_top = 173.0
-margin_right = 1404.0
+margin_right = 1250.0
 margin_bottom = 342.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -34,34 +34,34 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="All"]
 margin_top = 346.0
-margin_right = 1404.0
+margin_right = 1250.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="IP_Label" type="Label" parent="All/HBoxContainer"]
-margin_top = 69.0
-margin_right = 558.0
-margin_bottom = 100.0
+margin_top = 74.0
+margin_right = 496.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 text = "Adresse IP de l'autre joueur :"
 align = 2
 valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="All/HBoxContainer"]
-margin_left = 562.0
-margin_top = 72.0
-margin_right = 841.0
-margin_bottom = 96.0
+margin_left = 500.0
+margin_top = 70.0
+margin_right = 748.0
+margin_bottom = 99.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.5
-text = "192.168.0.31"
+text = "192.168.0.30"
 
 [node name="Join_Button" type="Button" parent="All/HBoxContainer"]
-margin_left = 845.0
+margin_left = 752.0
 margin_top = 71.0
-margin_right = 933.0
+margin_right = 840.0
 margin_bottom = 97.0
 size_flags_horizontal = 2
 size_flags_vertical = 6
@@ -69,7 +69,7 @@ text = "Rejoindre"
 
 [node name="Instructions" type="Label" parent="All"]
 margin_top = 519.0
-margin_right = 1404.0
+margin_right = 1250.0
 margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 7

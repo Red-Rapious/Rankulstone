@@ -5,7 +5,7 @@
 
 [node name="Range_top" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-NAME = "Card"
+NAME = "Range top"
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 margin_right = 99.0

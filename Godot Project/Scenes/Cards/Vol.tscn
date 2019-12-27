@@ -17,10 +17,10 @@ margin_left = 103.0
 text = "3"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 64.0
-margin_bottom = 106.0
+margin_top = 94.0
+margin_bottom = 136.0
 text = "Mettez une carte du champ de bataille dans votre main"
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 110.0
+margin_top = 156.0
 text = "I hear Cheh in my oreillette"
