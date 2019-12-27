@@ -16,4 +16,4 @@ func _on_self_mana_changed():
 	$Mana_bar/ProgressBar.value = player.self_mana
 
 func update_icons():
-	$TextureRect.texture = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")
+	$TextureRect.texture = load("res://Assets/Icons/"+str(global.self_icon)+".jpg")
