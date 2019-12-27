@@ -194,13 +194,20 @@ func creature_pressed(creature_id):
 		
 func apply_effect_to_creature(creature_id):
 	if waiting_spell != null:
-		waiting_spell.apply_effect_to_creature(creature_id)
-		if waiting_spell.type == waiting_spell.CREATURE:
-			var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
-			add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
-			player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
-		else:
-			player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+		
+		if waiting_spell.is_target_ok(creature_id):
+			waiting_spell.apply_effect_to_creature(creature_id)
+		
+		
+			if waiting_spell.type == waiting_spell.CREATURE:
+				var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
+				add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
+				player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+			else:
+				player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+		
+		else: # if target isn't good
+			player.ask_side_popup("Choisissez une créature") # relaunch
 		
 		
 func _on_ask_creature_kill(creature_id):

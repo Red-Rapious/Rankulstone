@@ -19,10 +19,9 @@ margin_left = 103.0
 text = "2"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 71.0
-margin_bottom = 98.0
+margin_top = 101.0
+margin_bottom = 128.0
 text = "Inflige 3 blessures à la créature ciblée"
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 102.0
-text = ""
+margin_top = 156.0
