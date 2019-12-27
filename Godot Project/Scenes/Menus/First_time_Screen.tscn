@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Menus/First_time_Screen.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Buttons/Icon_Button.tscn" type="PackedScene" id=3]
 
 [node name="First_time_Screen" type="Control"]
 anchor_right = 1.0
@@ -65,29 +64,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
-
-[node name="Icon_Button" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_right = 188.0
-
-[node name="Icon_Button2" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 218.0
-margin_right = 406.0
-
-[node name="Icon_Button3" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 436.0
-margin_right = 624.0
-
-[node name="Icon_Button4" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 654.0
-margin_right = 842.0
-
-[node name="Icon_Button5" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 872.0
-margin_right = 1060.0
-
-[node name="Icon_Button6" parent="VBoxContainer/Icons_ScrollContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1090.0
-margin_right = 1280.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_left = 495.0

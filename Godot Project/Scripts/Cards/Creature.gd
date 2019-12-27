@@ -103,7 +103,9 @@ func update_labels():
 	$VBoxContainer/Top/Name.text = NAME
 	
 	if on_board: # if on board, dont show mana cost
-		$VBoxContainer/Top/Mana_cost.text = ""
+		$VBoxContainer/Top/Mana_cost.visible = false
+		$VBoxContainer/Action_Text.visible = false
+		$VBoxContainer/Under_text.visible = false
 	else:
 		$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
 		

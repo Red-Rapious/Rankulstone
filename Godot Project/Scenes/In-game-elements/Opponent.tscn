@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/In-Game_Elements/Opponent.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Icons/0.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/Themes/Opponent_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/In-Game_Elements/Opponent.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Icons/0.jpg" type="Texture" id=4]
 
 [node name="Opponent" type="VBoxContainer"]
 margin_right = 217.0
 margin_bottom = 348.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
-[node name="Mana_bar" parent="." instance=ExtResource( 2 )]
-margin_top = 17.0
+[node name="Mana_bar" parent="." instance=ExtResource( 3 )]
+margin_top = 12.0
 margin_right = 217.0
-margin_bottom = 31.0
+margin_bottom = 36.0
 text = "Mana : 0/0"
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -24,7 +26,7 @@ margin_bottom = 294.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
