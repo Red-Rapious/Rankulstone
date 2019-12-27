@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	#load_infos()
+	options.load_options()
 	$All/Down_text/Version.text = "Version " + global.VERSION
 	pass
 

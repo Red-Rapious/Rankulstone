@@ -14,7 +14,10 @@ func _ready():
 	player.connect("ask_side_popup", self, "_on_ask_side_popup")
 	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
 	player.connect("opponent_ask_creature_kill", self, "_on_opponent_ask_creature_kill")
-	#OS.window_fullscreen = true
+	
+	if options.options_dico["toggle_fullscreen"]:
+		OS.window_fullscreen = true
+	
 	player.init()
 	_on_self_hand_changed() # update hand
 	
