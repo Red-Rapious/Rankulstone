@@ -7,13 +7,9 @@ var type = NONE
 export var NAME = "Card"
 var node_name
 export var MANA_COST = 1
+export var tribe = ["Neutre"]
 
 export var on_collection = false
-
-#export var IMAGE = ""
-#export var RARITY = 0
-#export var UNDER_TEXT = "\"Une carte vraiment qualitative\" - Un mec random"
-#export var text_color = Color(255,255,255)
 
 var uniq_id = -1
 

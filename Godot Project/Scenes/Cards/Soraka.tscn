@@ -9,6 +9,7 @@ texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Soraka"
 MANA_COST = 2
+tribe = [ "Julien" ]
 pv = 2
 attack = 2
 
@@ -21,12 +22,17 @@ margin_left = 103.0
 text = "3"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 46.0
-margin_bottom = 103.0
+margin_top = 58.0
+margin_bottom = 115.0
 text = "Quand Soraka arrive sur le champ de bataille, vos créatures se soignent de 3 PV"
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 107.0
+margin_top = 119.0
+margin_bottom = 150.0
+
+[node name="Bottom" parent="VBoxContainer" index="3"]
+margin_top = 154.0
+margin_bottom = 170.0
 
 [node name="Attack" parent="VBoxContainer/Bottom" index="0"]
 text = "2"

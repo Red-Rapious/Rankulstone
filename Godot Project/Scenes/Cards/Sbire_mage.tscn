@@ -8,9 +8,20 @@
 texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Sbire Mage"
+keywords = [ "Sbire" ]
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Sbire Mage"
 
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 94.0
+margin_bottom = 106.0
+
 [node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 136.0
+margin_bottom = 150.0
 text = "La carte victime"
+
+[node name="Bottom" parent="VBoxContainer" index="3"]
+margin_top = 154.0
+margin_bottom = 170.0

@@ -9,6 +9,7 @@ texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Sbire Canon"
 MANA_COST = 2
+tribe = [ "Sbire" ]
 pv = 2
 attack = 2
 
@@ -20,8 +21,18 @@ text = "Sbire Canon"
 margin_left = 103.0
 text = "2"
 
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 94.0
+margin_bottom = 106.0
+
 [node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 136.0
+margin_bottom = 150.0
 text = ""
+
+[node name="Bottom" parent="VBoxContainer" index="3"]
+margin_top = 154.0
+margin_bottom = 170.0
 
 [node name="Attack" parent="VBoxContainer/Bottom" index="0"]
 text = "2"
