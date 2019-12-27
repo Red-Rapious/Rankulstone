@@ -9,7 +9,7 @@ func _ready():
 	# open infos.save to check if the player have already enter his informations
 	read_infos()
 	
-	if global.information_loaded: # if the player is already saved
+	if global.information_loaded and not global.change_informations: # if the player is already saved
 		get_tree().change_scene("Scenes/Menus/Title_Screen.tscn") # go to the title screen
 		
 	load_icons_buttons()

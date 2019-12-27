@@ -17,6 +17,7 @@ var card_index = [
 
 const VERSION = "0.0.4"
 var information_loaded = false # if it has been set by the First time screen
+var change_informations = false
 
 var win = false
 

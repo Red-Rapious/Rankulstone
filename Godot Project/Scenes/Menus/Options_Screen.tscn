@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Menus/Options_Screen.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/Buttons/Icon_Button.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 4 )
 
 [node name="Options_Screen" type="Control"]
 anchor_right = 1.0
@@ -10,42 +16,99 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 
-[node name="Top" parent="VBoxContainer" instance=ExtResource( 3 )]
+[node name="Top" parent="All" instance=ExtResource( 3 )]
+margin_right = 1250.0
 margin_bottom = 130.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="Center" type="HBoxContainer" parent="All"]
 margin_top = 134.0
-margin_right = 1280.0
-margin_bottom = 599.0
+margin_right = 1250.0
+margin_bottom = 575.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 1280.0
-margin_bottom = 465.0
+[node name="Options_List" type="ScrollContainer" parent="All/Center"]
+editor/display_folded = true
+margin_right = 830.0
+margin_bottom = 441.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 1280.0
-margin_bottom = 465.0
+[node name="VBoxContainer" type="VBoxContainer" parent="All/Center/Options_List"]
+margin_right = 830.0
+margin_bottom = 441.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CheckBox" type="CheckBox" parent="All/Center/Options_List/VBoxContainer"]
+margin_right = 830.0
+margin_bottom = 441.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Mettre en plein écran quand la partie se lance"
 flat = true
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 583.0
-margin_top = 648.0
-margin_right = 697.0
-margin_bottom = 674.0
+[node name="Player_infos" type="VBoxContainer" parent="All/Center"]
+margin_left = 834.0
+margin_right = 1250.0
+margin_bottom = 441.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Title" type="Label" parent="All/Center/Player_infos"]
+margin_left = 115.0
+margin_right = 301.0
+margin_bottom = 31.0
+size_flags_horizontal = 6
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 1 )
+text = "Profil du joueur"
+align = 1
+
+[node name="Icon_Button" parent="All/Center/Player_infos" instance=ExtResource( 5 )]
+margin_top = 57.0
+margin_right = 416.0
+margin_bottom = 325.0
+size_flags_stretch_ratio = 5.0
+disabled = true
+
+[node name="Pseudo" type="Label" parent="All/Center/Player_infos"]
+margin_top = 345.0
+margin_right = 416.0
+margin_bottom = 365.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Pseudo : --Error--"
+align = 1
+valign = 1
+
+[node name="Update_profil_Button" type="Button" parent="All/Center/Player_infos"]
+margin_left = 129.0
+margin_top = 415.0
+margin_right = 286.0
+margin_bottom = 441.0
+size_flags_horizontal = 6
+size_flags_vertical = 10
+text = "Modifier mon profil"
+
+[node name="Button" type="Button" parent="All"]
+margin_left = 568.0
+margin_top = 621.0
+margin_right = 682.0
+margin_bottom = 647.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Sauvegarder"
-[connection signal="toggled" from="VBoxContainer/ScrollContainer/VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="All/Center/Options_List/VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="All/Center/Player_infos/Update_profil_Button" to="." method="_on_Update_profil_Button_pressed"]
+[connection signal="pressed" from="All/Button" to="." method="_on_Button_pressed"]

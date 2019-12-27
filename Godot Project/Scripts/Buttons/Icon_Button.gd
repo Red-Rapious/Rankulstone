@@ -4,7 +4,7 @@ export var icon_number = 0
 var is_selected = false
 
 func _ready():
-	texture_normal = load("res://Assets/Icons/"+str(icon_number)+".jpg")
+	set_texture()
 	update_border()
 
 func _on_Icon_Button_pressed():
@@ -19,3 +19,6 @@ func update_border():
 		$TextureRect.visible = true
 	else:
 		$TextureRect.visible = false
+		
+func set_texture():
+	texture_normal = load("res://Assets/Icons/"+str(icon_number)+".jpg")
