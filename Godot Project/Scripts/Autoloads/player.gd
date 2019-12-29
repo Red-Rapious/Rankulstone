@@ -11,7 +11,8 @@ var opponent_mana = opponent_mana_max
 
 var your_turn = false
 
-var self_pv = 30
+const BASE_PV = 30
+var self_pv = BASE_PV
 var opponent_pv
 
 var opponent_hand_size = 7
@@ -61,11 +62,7 @@ signal ask_creature_kill
 signal opponent_ask_creature_kill
 
 
-func init():
-	"""
-	Called when a 1v1 game start.
-	Connect signals, draw a hand, and temporarly create library
-	"""
+func _ready():
 	connect("self_hand_changed", self, "_on_self_hand_changed")
 	connect("self_library_changed", self, "_on_self_library_changed")
 	connect("self_pv_changed", self, "_on_self_pv_changed")
@@ -81,13 +78,23 @@ func init():
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 	
 	connect("ask_creature_kill", self, "_on_ask_creature_kill")
-		
+
+
+func init():
+	"""
+	Called when a 1v1 game start.
+	Connect signals, draw a hand, and temporarly create library
+	"""
+	
 	
 	load_library()
 	shuffle_library()
-
+	
+	clean_hand()
 	draw_hand()
-	set_self_pv(self_pv)
+	
+	set_self_pv(BASE_PV)
+	
 	emit_signal("self_mana_max_changed")
 	emit_signal("opponent_mana_max_changed")
 	emit_signal("self_mana_changed")
@@ -183,6 +190,8 @@ func draw_hand(size=7):
 	emit_signal("self_hand_changed")
 	emit_signal("self_library_changed")
 	
+func clean_hand():
+	hand = Array()
 
 func draw_card(signalised=true):
 	""" bool -> void

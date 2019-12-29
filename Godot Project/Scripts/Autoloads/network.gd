@@ -4,6 +4,7 @@ const PORT = 5000
 
 signal network_infos_get
 
+
 func create_server():
 	"""
 	Create a server on the PORT port, can be called from anywhere
@@ -43,6 +44,12 @@ func create_client(ip: String):
 
 func delete_network():
 	# simply delete network in order to avoid confilcts
+	
+	if get_tree().get_network_peer() != null and get_tree().is_network_server():
+		get_tree().disconnect("network_peer_connected", self, "_player_connected")
+		get_tree().disconnect("network_peer_disconnected", self, "_player_disconnected")
+	
+	
 	get_tree().set_network_peer(null)
 	
 	
@@ -50,17 +57,17 @@ func delete_network():
 func quit_game():
 	if get_tree().get_network_peer() != null:
 		rpc("opponent_disconnected")
-		delete_network()
+		#delete_network()
 		OS.delay_msec(100)
 	get_tree().quit()
 	
 	
 	
 remote func opponent_disconnected():
-	print("Opponent disconnected")
 	global.opponent_surrend = true
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
 	delete_network()
+	
 	
 func _player_connected(id):
 	#print("Player ", id, " is connected. We can finaly start the game!")
@@ -77,7 +84,6 @@ remote func launch_game():
 	"""
 	
 	get_tree().change_scene("Scenes/Battle_Screen.tscn")
-	#emit_signal("network_game_start")
 	
 remote func start_first(yes: bool):
 	if yes:
