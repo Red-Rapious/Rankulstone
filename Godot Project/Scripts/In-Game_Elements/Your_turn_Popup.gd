@@ -5,7 +5,9 @@ func _ready():
 	
 func _on_self_tour_begin():
 	popup()
-	OS.request_attention()
+	
+	if options.options_dico["request_attention"]:
+		OS.request_attention()
 	create_timer()
 	
 	

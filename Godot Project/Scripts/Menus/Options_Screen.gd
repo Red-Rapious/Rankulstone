@@ -9,9 +9,6 @@ func apply_options():
 
 func _on_Button_pressed():
 	options.save_options()
-
-func _on_CheckBox_toggled(pressed):
-	options.options_dico["toggle_fullscreen"] = pressed
 	
 func update_player_profil():
 	$All/Center/Player_infos/Pseudo.text = "Pseudo : "+global.self_pseudo
@@ -22,3 +19,11 @@ func update_player_profil():
 func _on_Update_profil_Button_pressed():
 	global.change_informations = true
 	get_tree().change_scene("Scenes/Menus/First_time_Screen.tscn")
+
+
+func _on_Attention_toggled(button_pressed):
+	options.options_dico["request_attention"] = button_pressed
+
+
+func _on_Fullscreen_toggled(button_pressed):
+	options.options_dico["toggle_fullscreen"] = button_pressed

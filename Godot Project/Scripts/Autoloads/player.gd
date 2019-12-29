@@ -94,7 +94,9 @@ func init():
 	emit_signal("opponent_mana_changed")
 	
 	emit_signal("game_started")
-	#OS.request_attention()
+	
+	if options.options_dico["request_attention"]:
+		OS.request_attention()
 
 func load_library():
 	for card in decks.load_deck(decks.actual_deck)["cards"]:

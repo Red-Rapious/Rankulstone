@@ -6,7 +6,6 @@ var creature_focus_timer
 
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
-	player.connect("opponent_creature_died", self, "_on_opponent_creature_died")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
 	player.connect("self_creature_fight", self, "_on_self_creature_fight")
 	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
@@ -111,8 +110,6 @@ func _on_opponent_creature_played(card_name):
 	add_card_to_board(false, card_name, card_uniq_id) # "false" to put in the opponent side
 	
 	
-func _on_opponent_creature_died(data):
-	pass
 
 func _on_Opponent_card_attacked(data):
 	"""
@@ -197,7 +194,7 @@ func creature_pressed(creature_id):
 func apply_effect_to_creature(creature_id):
 	if waiting_spell != null:
 		
-		if waiting_spell.is_target_ok(creature_id):
+		if waiting_spell.is_target_ok(creature_id): # if target is good
 			waiting_spell.apply_effect_to_creature(creature_id)
 		
 		
@@ -205,11 +202,14 @@ func apply_effect_to_creature(creature_id):
 				var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
 				add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
 				player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+				
 			else:
+				# if its a focus spell
 				player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
 		
 		else: # if target isn't good
-			player.ask_side_popup("Choisissez une créature") # relaunch
+			pass
+			#player.ask_side_popup("Choisissez une créature") # relaunch
 		
 		
 func _on_ask_creature_kill(creature_id):
