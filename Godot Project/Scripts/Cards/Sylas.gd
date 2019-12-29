@@ -5,6 +5,8 @@ func _ready():
 	has_enter_battlefield_focus = true
 	node_name = "Sylas"
 
+func is_target_ok(target_id):
+	return target_id >= 0 # only focus creatures
 
 func apply_effect_to_creature(creature_id):
 	player.kill_creature(creature_id) # kill the creature

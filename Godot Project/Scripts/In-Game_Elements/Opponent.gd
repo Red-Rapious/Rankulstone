@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 signal card_attacked
+signal pressed
 
 func _ready():
 	player.connect("opponent_mana_changed", self, "_on_opponent_mana_changed")
@@ -22,7 +23,7 @@ func _on_opponent_mana_changed():
 	
 
 func update_icons():
-	$TextureRect.texture = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")
+	$TextureButton.texture_normal = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")
 
 
 
@@ -37,3 +38,6 @@ func can_drop_data(_pos, data):
 	
 func drop_data(_pos, data):
 	emit_signal("card_attacked", data)
+
+func _on_TextureButton_pressed():
+	emit_signal("pressed")

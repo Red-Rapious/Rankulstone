@@ -1,6 +1,9 @@
 extends "res://Scripts/Cards/Card.gd"
 tool
 
+const OPPONENT = -1
+const SELF = -2
+
 func _ready():
 	node_name = "Focus_Spell"
 	type = FOCUS_SPELL

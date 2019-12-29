@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+signal pressed
+
 func _ready():
 	player.connect("self_mana_changed", self, "_on_self_mana_changed")
 	player.connect("self_mana_max_changed", self, "_on_self_mana_changed")
@@ -16,4 +18,7 @@ func _on_self_mana_changed():
 	$Mana_bar/ProgressBar.value = player.self_mana
 
 func update_icons():
-	$TextureRect.texture = load("res://Assets/Icons/"+str(global.self_icon)+".jpg")
+	$TextureButton.texture_normal = load("res://Assets/Icons/"+str(global.self_icon)+".jpg")
+
+func _on_TextureButton_pressed():
+	emit_signal("pressed")

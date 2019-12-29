@@ -7,4 +7,9 @@ func _ready():
 	node_name = NAME
 
 func apply_effect_to_creature(creature_id):
-	player.change_creature_hp(creature_id,-DAMAGE)
+	if creature_id >= 0:
+		player.change_creature_hp(creature_id,-DAMAGE)
+	elif creature_id == OPPONENT:
+		player.rpc("add_self_pv", -DAMAGE)
+	elif creature_id == SELF:
+		player.add_self_pv(-DAMAGE)

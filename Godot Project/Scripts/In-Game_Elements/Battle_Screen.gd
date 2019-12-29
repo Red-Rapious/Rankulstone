@@ -93,7 +93,7 @@ func play_card_from_hand(node_name: String):
 			player.ask_side_popup("Sélectionne\nune créture")
 		
 	elif card.type == card.SPELL:
-		card.play_card(-1)
+		card.play_card(-10)
 		player.spell_played_from_hand(card.node_name , card.MANA_COST)
 		
 	elif card.type == card.FOCUS_SPELL:
@@ -217,3 +217,9 @@ func _on_ask_creature_kill(creature_id):
 	
 func _on_opponent_ask_creature_kill(creature_id):
 	get_creature_by_id(creature_id).die()
+
+func _on_Opponent_pressed():
+	creature_pressed(-1) # -1 id = opponent
+
+func _on_Self_pressed():
+	creature_pressed(-2) # -2 id = self

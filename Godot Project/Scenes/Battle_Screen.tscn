@@ -253,6 +253,8 @@ margin_left = -100.0
 margin_top = -35.0
 margin_right = 100.0
 margin_bottom = 35.0
+[connection signal="pressed" from="All/Left/Opponent" to="." method="_on_Opponent_pressed"]
+[connection signal="pressed" from="All/Left/Self" to="." method="_on_Self_pressed"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]
 [connection signal="pressed" from="All/Right/Right_Button" to="All/Right" method="_on_Right_Button_pressed"]
 [connection signal="popup_hide" from="Side_Popup" to="." method="_on_Side_Popup_popup_hide"]
