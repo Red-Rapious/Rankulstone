@@ -7,7 +7,6 @@ var creature_focus_timer
 func _ready():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
-	player.connect("self_creature_fight", self, "_on_self_creature_fight")
 	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("ask_side_popup", self, "_on_ask_side_popup")
@@ -118,11 +117,8 @@ func _on_Opponent_card_attacked(data):
 	"""
 
 	player.self_card_attack_opponent(data) # inform player
-
-
-
-func _on_self_creature_fight(data): # called when 2 creatures will fight each others
-	pass # nothing for now, maybe animations later
+	
+	
 	
 func _on_creature_hp_changed(data): 
 	""" 
@@ -148,30 +144,34 @@ func _on_ask_side_popup(text):
 	$Side_Popup.popup()
 
 func _on_Side_Popup_popup_hide():
-	create_creature_focus_timer()
+	#create_creature_focus_timer()
+	yield(get_tree().create_timer(1.0), "timeout") # see creature focus timer
+	if not $Side_Popup.visible:
+		creature_focus_mode = false
 
 
+"""
 func create_creature_focus_timer():
-	"""
-	To resolve a silly bug, the creature focus mode (bool) is going to be set to false
-	only 0.5 seconds ater the popup is hiding.
-	This timer is here for that.
-	"""
+	#To resolve a silly bug, the creature focus mode (bool) is going to be set to false
+	#only 0.5 seconds ater the popup is hiding.
+	#This timer is here for that.
+	
 	creature_focus_timer = Timer.new()
 	creature_focus_timer.name = "Timer"
 	creature_focus_timer.connect("timeout",self,"_on_creature_focus_timer_timeout") 
 	creature_focus_timer.set_wait_time(0.5)
 	add_child(creature_focus_timer) #to process
 	creature_focus_timer.start() #to start
+"""
 
+"""
 func _on_creature_focus_timer_timeout():
-	"""
-	Called when the timer timeout. Only set the bool to false, and delete the node to avoid conflicts
-	"""
+	#Called when the timer timeout. Only set the bool to false, and delete the node to avoid conflicts
+	
 	if not $Side_Popup.visible:
 		creature_focus_mode = false
 		get_node("Timer").queue_free()
-
+"""
 
 func get_creature_by_id(creature_id):
 	if player.uniq_ids_list[creature_id][player.SELF_SIDE]:
@@ -188,6 +188,7 @@ func creature_pressed(creature_id):
 	
 	if creature_focus_mode:
 		apply_effect_to_creature(creature_id)
+		
 		
 		
 func apply_effect_to_creature(creature_id):

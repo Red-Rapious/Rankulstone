@@ -29,9 +29,6 @@ func create_client(ip: String):
 	"""
 	Create a client on the PORT port, with the given argument IP
 	"""
-	get_tree().connect("connected_to_server", self, "_connected")
-	get_tree().connect("connected_to_server", get_tree().get_current_scene(), "_connected")
-	get_tree().connect("connection_failed", self, "_failed")
 	
 	var peer = NetworkedMultiplayerENet.new()
 	
@@ -40,6 +37,9 @@ func create_client(ip: String):
 	# macbook: 82.255.203.114
 	
 	get_tree().set_network_peer(peer)
+	
+	
+	
 
 func delete_network():
 	# simply delete network in order to avoid confilcts
@@ -68,15 +68,6 @@ func _player_connected(id):
 	
 func _player_disconnected(id):
 	opponent_disconnected()
-
-
-func _connected():
-	#print("Successfully connected to the server!")
-	pass
-	
-func _failed():
-	#print("Connection failed...")
-	pass
 	
 	
 remote func launch_game():
