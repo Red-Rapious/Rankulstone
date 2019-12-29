@@ -45,13 +45,21 @@ func delete_network():
 	# simply delete network in order to avoid confilcts
 	get_tree().set_network_peer(null)
 	
+	
+	
 func quit_game():
-	#rpc("opponent_disconnected")
-	delete_network()
+	if get_tree().get_network_peer() != null:
+		rpc("opponent_disconnected")
+		delete_network()
+		OS.delay_msec(100)
+	get_tree().quit()
+	
+	
 	
 remote func opponent_disconnected():
 	print("Opponent disconnected")
-	get_tree().change_scene("Scenes/Menus/Title_Screen.tscn")
+	global.opponent_surrend = true
+	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
 	delete_network()
 	
 func _player_connected(id):
@@ -59,8 +67,7 @@ func _player_connected(id):
 	rpc("send_version", global.VERSION) # send version to the client, in order to version-check
 	
 func _player_disconnected(id):
-	#print("Player ", id, " leaved the game")
-	pass
+	opponent_disconnected()
 
 
 func _connected():
@@ -77,6 +84,7 @@ remote func launch_game():
 	Go to the BattleScreen scene
 	Called by the client on both client and server
 	"""
+	
 	get_tree().change_scene("Scenes/Battle_Screen.tscn")
 	#emit_signal("network_game_start")
 	
@@ -104,6 +112,7 @@ remote func send_version(version):
 		send_self_infos()
 		rpc("send_self_infos")
 		
+		get_tree().set_refuse_new_network_connections(true)
 		launch_game()
 		rpc("launch_game")
 	else:

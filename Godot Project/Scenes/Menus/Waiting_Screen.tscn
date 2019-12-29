@@ -42,10 +42,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Quit_Button" type="Button" parent="All/Buttons"]
-margin_left = 282.0
-margin_top = 74.0
-margin_right = 340.0
-margin_bottom = 94.0
+margin_left = 275.0
+margin_top = 71.0
+margin_right = 348.0
+margin_bottom = 97.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Quitter"
@@ -62,10 +62,10 @@ alignment = 1
 script = ExtResource( 5 )
 
 [node name="IP_Button" type="Button" parent="All/Buttons/IP_Buttons"]
-margin_left = 162.0
-margin_top = 74.0
-margin_right = 327.0
-margin_bottom = 94.0
+margin_left = 126.0
+margin_top = 71.0
+margin_right = 339.0
+margin_bottom = 97.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Afficher mon adresse IP"
@@ -73,10 +73,10 @@ text = "Afficher mon adresse IP"
 [node name="HTTPRequest" type="HTTPRequest" parent="All/Buttons/IP_Buttons"]
 
 [node name="Button" type="Button" parent="All/Buttons/IP_Buttons"]
-margin_left = 357.0
-margin_top = 74.0
-margin_right = 460.0
-margin_bottom = 94.0
+margin_left = 369.0
+margin_top = 71.0
+margin_right = 496.0
+margin_bottom = 97.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Copier mon IP"

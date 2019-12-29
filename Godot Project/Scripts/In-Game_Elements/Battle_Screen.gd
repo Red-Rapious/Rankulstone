@@ -151,7 +151,6 @@ func _on_Side_Popup_popup_hide():
 	create_creature_focus_timer()
 
 
-
 func create_creature_focus_timer():
 	"""
 	To resolve a silly bug, the creature focus mode (bool) is going to be set to false

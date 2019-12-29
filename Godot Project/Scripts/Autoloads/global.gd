@@ -21,6 +21,7 @@ var information_loaded = false # if it has been set by the First time screen
 var change_informations = false
 
 var win = false
+var opponent_surrend = false
 
 var self_icon = 0
 var opponent_icon = 0
@@ -33,4 +34,4 @@ func _ready():
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		network.quit_game() # say to the opponent we resign
-		get_tree().quit()
+		#get_tree().quit()
