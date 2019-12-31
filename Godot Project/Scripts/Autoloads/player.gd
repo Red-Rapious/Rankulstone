@@ -95,20 +95,21 @@ func init():
 	
 	set_self_pv(BASE_PV)
 	
+	emit_init_signals()
+	
+	
+	if options.options_dico["request_attention"]:
+		OS.request_attention()
+		
+func emit_init_signals():
 	emit_signal("self_mana_max_changed")
 	emit_signal("opponent_mana_max_changed")
 	emit_signal("self_mana_changed")
 	emit_signal("opponent_mana_changed")
 	
 	emit_signal("game_started")
-	
-	if options.options_dico["request_attention"]:
-		OS.request_attention()
 
-func load_library():
-	for card in decks.load_deck(decks.actual_deck)["cards"]:
-		for i in range(card["number"]):
-			library.append(card["node_name"])
+
 
 """
 Some self signals implementation
@@ -146,8 +147,8 @@ func _on_self_creature_fight(data):
 	emit_signal("self_creature_hp_changed", [data[global.OPPONENT_CREATURE_DATA]["uniq_id"], -data[global.SELF_CREATURE_DATA]["attack_value"]])
 	rpc("opponent_creature_fight", data)
 
-func _on_self_creature_hp_changed(data):
-	rpc("opponent_creature_hp_changed", data)
+func _on_self_creature_hp_changed(creature_dico):
+	rpc("opponent_creature_hp_changed", creature_dico)
 	
 func _on_ask_creature_kill(creature_id):
 	rpc("opponent_ask_creature_kill", creature_id)
@@ -180,7 +181,7 @@ func pv_check():
 # end
 
 
-# some drawing functions
+# some drawing cards functions
 func draw_hand(size=7):
 	"""
 	Draw a hand, by default of 7 cards
@@ -209,10 +210,14 @@ func draw_card(signalised=true):
 			emit_signal("self_hand_changed")
 			
 			
+func load_library():
+	for card in decks.load_deck(decks.actual_deck)["cards"]:
+		for i in range(card["number"]):
+			library.append(card["node_name"])
+			
 func shuffle_library():
 	randomize()
 	library.shuffle()
-# end
 
 remote func add_card_to_hand(card_name):
 	hand.append(card_name)
@@ -224,6 +229,8 @@ func add_card_to_opponent_hand(card_name):
 func delete_hand_card(card_name):
 	hand.erase(card_name)
 	emit_signal("self_hand_changed")
+# end
+
 
 """
 Functions called via rpc by the opponent
@@ -278,8 +285,8 @@ remote func opponent_mana_max_changed(new_value: int):
 remote func opponent_creature_fight(data):
 	emit_signal("opponent_creature_fight", data)
 	
-remote func opponent_creature_hp_changed(data):
-	emit_signal("opponent_creature_hp_changed", data)
+remote func opponent_creature_hp_changed(creature_dico):
+	emit_signal("opponent_creature_hp_changed", creature_dico)
 	
 remote func opponent_ask_creature_kill(creature_id):
 	emit_signal("opponent_ask_creature_kill", creature_id)
@@ -333,14 +340,14 @@ remote func opponent_end_of_turn():
 	your_turn = true
 	emit_signal("self_tour_begin")
 	
-func creature_died(data):
+func creature_died(creature_dico):
 	"""
 	Called when a creature died
 	"""
-	if data["is_self_side"]:
-		emit_signal("self_creature_died", data)
+	if creature_dico["is_self_side"]:
+		emit_signal("self_creature_died", creature_dico)
 	else:
-		emit_signal("opponent_creature_died", data)
+		emit_signal("opponent_creature_died", creature_dico)
 
 
 func _on_self_tour_begin():
