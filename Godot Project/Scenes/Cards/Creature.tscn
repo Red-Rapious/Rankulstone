@@ -1,29 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Cards/Creature.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=3]
 
-[node name="Creature" index="0" groups=[
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 3 )
+
+[node name="Creature" groups=[
 "Creature",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Creature"
-keywords = [ "Neutre" ]
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Creature"
 
-[node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 80.0
-margin_bottom = 92.0
+[node name="Keywords" type="Label" parent="VBoxContainer" index="1"]
+margin_top = 50.0
+margin_right = 110.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 1 )
+text = "Alpha, Guinsoo"
+align = 1
+valign = 1
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 85.0
+margin_bottom = 97.0
 text = ""
 
-[node name="Under_text" parent="VBoxContainer" index="2"]
+[node name="Under_text" parent="VBoxContainer" index="3"]
 margin_top = 118.0
 margin_bottom = 149.0
 text = "La mere de toutes les creatures"
 
-[node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="3"]
+[node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="4"]
 margin_top = 153.0
 margin_right = 110.0
 margin_bottom = 169.0

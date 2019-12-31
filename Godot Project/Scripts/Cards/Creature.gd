@@ -7,7 +7,7 @@ var can_attack = false # attack is false by default to simulate invocation sickn
 
 export var pv = 1
 export var attack = 1
-export var keywords = [] # Alpha, Guinsoo...
+export var keywords = [] # Alpha, Guinsoo, Indestructible...
 var pv_max = pv
 
 var has_enter_battlefield_focus = false
@@ -53,7 +53,8 @@ func add_attack(value: int):
 	
 # some pv & pv_max setters
 func set_pv(new_value: int):
-	pv = new_value
+	if not "Indestructible" in keywords:
+		pv = new_value
 	check_pv()
 	emit_signal("pv_changed")
 	
@@ -93,6 +94,7 @@ func play_card(id):
 	name = str(uniq_id)
 	on_board = true
 	enter_battlefield_effect()
+	update_labels()
 	emit_signal("played")
 	
 	
@@ -101,6 +103,13 @@ func update_labels():
 	See Card.update_labels
 	"""
 	$VBoxContainer/Top/Name.text = NAME
+	var keywords_text = ""
+	
+	for i in keywords:
+		keywords_text = keywords_text + i + ","
+	keywords_text.substr(0, len(keywords_text)-1)
+	
+	$VBoxContainer/Keywords.text = keywords_text
 	
 	if on_board: # if on board, dont show mana cost
 		$VBoxContainer/Top/Mana_cost.visible = false
