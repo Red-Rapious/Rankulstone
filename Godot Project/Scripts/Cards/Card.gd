@@ -9,7 +9,7 @@ var node_name
 export var MANA_COST = 1
 export var tribe = ["Neutre"]
 
-export var on_collection = false
+var on_collection = false
 
 var uniq_id = -1
 

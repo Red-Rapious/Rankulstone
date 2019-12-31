@@ -1,19 +1,25 @@
 extends "res://Scripts/Cards/Card.gd"
 tool
 
-var on_board = false
-var is_self_side
-var can_attack = false # attack is false by default to simulate invocation sickness
+
 
 export var pv = 1
 export var attack = 1
 export var keywords = [] # Alpha, Guinsoo, Indestructible...
-var pv_max = pv
 
-var has_enter_battlefield_focus = false
+var pv_max = pv
+var has_enter_battlefield_focus = false # if this card have a effect who focus a creature when enter the battlefield
+var on_board = false
+var is_self_side
+var can_attack = false # attack is false by default to simulate invocation sickness
 
 # keywords
 var guinsoo_available = true
+
+# one turn effects
+var one_turn_keywords = []
+var one_turn_attack = 0
+var one_turn_pv = 0
 
 
 signal enter_battlefield
@@ -47,8 +53,9 @@ func set_attack(new_value: int):
 	emit_signal("attack_changed")
 	
 func add_attack(value: int):
-	attack += value
-	emit_signal("attack_changed")
+	set_attack(attack + value)
+	
+	
 	
 	
 # some pv & pv_max setters
@@ -59,9 +66,15 @@ func set_pv(new_value: int):
 	emit_signal("pv_changed")
 	
 func add_pv(value: int):
-	set_pv(pv + value)
-	
-	
+	if value >= 0:
+		set_pv(pv + value)
+	else:
+		if -value <= one_turn_pv:
+			add_one_turn_pv(value)
+		else:
+			set_pv(pv + value + one_turn_pv)
+			set_one_turn_pv(0)
+			
 	
 func set_pv_max(new_value: int, fill=true):
 	pv_max = new_value
@@ -80,7 +93,32 @@ func check_pv(): # a function that checks if pv is under 0
 		die()
 	if pv > pv_max:
 		pv = pv_max
+		
+func add_keyword(keyword: String):
+	keywords.append(keyword)
+	update_labels()
 
+
+# one-turn setters functions
+func set_one_turn_attack(new_value: int):
+	one_turn_attack = new_value
+	emit_signal("attack_changed")
+	
+func add_one_turn_attack(value: int):
+	set_one_turn_attack(one_turn_attack + value)
+	
+	
+func set_one_turn_pv(new_value: int):
+	one_turn_pv = new_value
+	check_pv()
+	emit_signal("pv_changed")
+	
+func add_one_turn_pv(value: int):
+	set_one_turn_pv(one_turn_pv + value)
+
+func add_one_turn_keyword(keyword: String):
+	one_turn_keywords.append(keyword)
+	update_labels()
 
 
 
@@ -103,13 +141,16 @@ func update_labels():
 	See Card.update_labels
 	"""
 	$VBoxContainer/Top/Name.text = NAME
-	var keywords_text = ""
 	
+	#
+	var keywords_text = ""
 	for i in keywords:
 		keywords_text = keywords_text + i + ","
-	keywords_text.substr(0, len(keywords_text)-1)
-	
+	for i in one_turn_keywords:
+		keywords_text = keywords_text + i + ","
+	keywords_text.substr(0, len(keywords_text)-1) # delete last coma
 	$VBoxContainer/Keywords.text = keywords_text
+	#
 	
 	if on_board: # if on board, dont show mana cost
 		$VBoxContainer/Top/Mana_cost.visible = false
@@ -118,8 +159,8 @@ func update_labels():
 	else:
 		$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
 		
-	$VBoxContainer/Bottom/PV.text = str(pv)
-	$VBoxContainer/Bottom/Attack.text = str(attack)
+	$VBoxContainer/Bottom/PV.text = str(pv+one_turn_pv)
+	$VBoxContainer/Bottom/Attack.text = str(attack+one_turn_attack)
 
 
 
@@ -195,8 +236,12 @@ func _on_self_tour_begin():
 	Called when the tour begin
 	Do some routine, like attack reset
 	"""
+	one_turn_attack = 0
+	one_turn_pv = 0
+	one_turn_keywords = []
 	can_attack = true
 	guinsoo_available = true
+	update_labels()
 	tour_begin_effect()
 	
 	

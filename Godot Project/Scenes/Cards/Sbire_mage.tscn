@@ -9,7 +9,6 @@ texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Sbire Mage"
 tribe = [  ]
-keywords = [ "Indestructible" ]
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Sbire Mage"
