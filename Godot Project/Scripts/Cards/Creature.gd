@@ -1,11 +1,17 @@
 extends "res://Scripts/Cards/Card.gd"
 tool
 
-
-
 export var pv = 1
 export var attack = 1
-export var keywords = [] # Alpha, Guinsoo, Indestructible...
+export var keywords = []
+
+"""
+Keywords:
+	-Alpha
+	-Guinsoo
+	-Indestructble
+	-Gel
+"""
 
 var pv_max = pv
 var has_enter_battlefield_focus = false # if this card have a effect who focus a creature when enter the battlefield
@@ -15,6 +21,7 @@ var can_attack = false # attack is false by default to simulate invocation sickn
 
 # keywords
 var guinsoo_available = true
+var remaining_gel_turns = 0
 
 # one turn effects
 var one_turn_keywords = []
@@ -60,7 +67,7 @@ func add_attack(value: int):
 	
 # some pv & pv_max setters
 func set_pv(new_value: int):
-	if not "Indestructible" in keywords:
+	if not ("Indestructible" in keywords or "Indestructible" in one_turn_keywords):
 		pv = new_value
 	check_pv()
 	emit_signal("pv_changed")
@@ -239,8 +246,11 @@ func _on_self_tour_begin():
 	one_turn_attack = 0
 	one_turn_pv = 0
 	one_turn_keywords = []
-	can_attack = true
-	guinsoo_available = true
+	if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
+		can_attack = true
+		guinsoo_available = true
+	else:
+		remaining_gel_turns -= 1
 	update_labels()
 	tour_begin_effect()
 	
@@ -254,7 +264,7 @@ func _on_creature_attack_something(data):
 	"""
 	if data["uniq_id"] == uniq_id:
 		attack_effect()
-		if "Guinsoo" in keywords and guinsoo_available:
+		if ("Guinsoo" in keywords or "Guinsoo" in one_turn_keywords) and guinsoo_available:
 			guinsoo_available = false
 		else:
 			can_attack = false
