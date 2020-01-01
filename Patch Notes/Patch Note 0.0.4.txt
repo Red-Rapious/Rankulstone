@@ -1,0 +1,25 @@
+RANKULSTONE - PATCH NOTE 0.0.4
+
+Release date: --/--/2020
+
+New features:
+  - a brand new deck management feature (deck creation, modification, etc)
+  - Added fonts to the menus & battlefield
+  - Now hand do not mess up when there is to many cards in!
+  - Added icons selection & icons display to the battlefield
+  - Added options menu with a few options (like fullscreen toggle)
+  - Added mana progress bars
+  - Added temporary attack & pv buffs, used in cards like Rage
+  - Added cards tribes (Neutre, Sbire, Miko)
+  - Added target specific spells (like Range Top)
+  - Electrocution can now focus both players
+
+New cards:
+  - Range Top
+  - Rage
+  + New keywords: Indestructible, Gel
+
+Bugs fixed:
+  - Randomized stuff now properly works
+  - Can now play multiples games one after the others without encounter errors
+  - Now inform the opponent when quit the game
