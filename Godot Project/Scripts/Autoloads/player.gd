@@ -61,6 +61,11 @@ signal ask_side_popup
 signal ask_creature_kill
 signal opponent_ask_creature_kill
 
+signal add_keyword
+signal add_one_turn_keyword
+signal add_one_turn_attack
+signal add_one_turn_pv
+
 
 func _ready():
 	connect("self_hand_changed", self, "_on_self_hand_changed")
@@ -85,8 +90,6 @@ func init():
 	Called when a 1v1 game start.
 	Connect signals, draw a hand, and temporarly create library
 	"""
-	
-	
 	load_library()
 	shuffle_library()
 	
@@ -94,12 +97,11 @@ func init():
 	draw_hand()
 	
 	set_self_pv(BASE_PV)
-	
 	emit_init_signals()
-	
 	
 	if options.options_dico["request_attention"]:
 		OS.request_attention()
+		
 		
 func emit_init_signals():
 	emit_signal("self_mana_max_changed")
@@ -290,8 +292,25 @@ remote func opponent_creature_hp_changed(creature_dico):
 	
 remote func opponent_ask_creature_kill(creature_id):
 	emit_signal("opponent_ask_creature_kill", creature_id)
+	
+	
+# for the 4 following func, dat is a list where data[0] is creature_id, and data[1] is keyword/value
+remote func opponent_add_keyword(data):
+	emit_signal("add_keyword", data)
+	
+remote func opponent_add_one_turn_keyword(data):
+	emit_signal("add_one_turn_keyword", data)
+	
+remote func opponent_add_one_turn_attack(data):
+	emit_signal("add_one_turn_attack", data)
+	
+remote func opponent_add_one_turn_pv(data):
+	emit_signal("add_one_turn_pv", data)
 
 """ End """
+
+
+
 
 
 func card_played_from_hand(card_name, mana_cost):
@@ -359,7 +378,7 @@ func _on_first_player_tour():
 	Specific lines for the player who play first
 	"""
 	your_turn = true
-	set_self_mana_max(1) # add an initial mana, else he cant play
+	set_self_mana_max(1) # add an initial mana, else he can't play
 # end
 
 
@@ -427,7 +446,7 @@ func end_game(win: bool):
 	
 	
 	
-	
+""" Request from cards/BattleScreen """
 func self_card_attack_opponent(creature_dico):
 	"""
 	Called by BattleScreen when an attack against the opponent has been requested
@@ -444,23 +463,6 @@ func fight_requested(double_creature_dico):
 	emit_signal("self_creature_fight", double_creature_dico)
 	
 	
-	
-	
-func ask_new_uniq_id(self_side: bool, node_name):
-	"""
-	Create a new uniq id for a card, and add it to the uniq_ids_list
-	"""
-	uniq_ids_counter += 1
-	uniq_ids_list.append([self_side, node_name])
-	return uniq_ids_counter
-	
-	
-	
-func ask_side_popup(text):
-	emit_signal("ask_side_popup", text)
-	
-	
-	
 func change_creature_hp(creature_id, value):
 	"""
 	Called when a specific creature hp need to change
@@ -471,3 +473,40 @@ func change_creature_hp(creature_id, value):
 func kill_creature(creature_id):
 	emit_signal("ask_creature_kill", creature_id)
 	
+	
+	
+func add_keyword(creature_id, keyword):
+	var data = [creature_id, keyword]
+	rpc("opponent_add_keyword", data)
+	emit_signal("add_keyword", data)
+	
+func add_one_turn_keyword(creature_id, keyword):
+	var data = [creature_id, keyword]
+	rpc("opponent_add_one_turn_keyword", data)
+	emit_signal("add_one_turn_keyword",data)
+	
+func add_one_turn_attack(creature_id, value):
+	var data = [creature_id, value]
+	rpc("opponent_add_one_turn_attack", data)
+	emit_signal("add_one_turn_attack", data)
+	
+func add_one_turn_pv(creature_id, value):
+	var data = [creature_id, value]
+	rpc("opponent_add_one_turn_pv", data)
+	emit_signal("add_one_turn_pv", data)
+	
+# end
+	
+	
+	
+	
+func ask_new_uniq_id(self_side: bool, node_name):
+	"""
+	Create a new uniq id for a card, and add it to the uniq_ids_list
+	"""
+	uniq_ids_counter += 1
+	uniq_ids_list.append([self_side, node_name])
+	return uniq_ids_counter
+	
+func ask_side_popup(text):
+	emit_signal("ask_side_popup", text)

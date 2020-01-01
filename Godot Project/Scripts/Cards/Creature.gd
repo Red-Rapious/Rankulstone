@@ -7,10 +7,10 @@ export var keywords = []
 
 """
 Keywords:
-	-Alpha
-	-Guinsoo
-	-Indestructble
-	-Gel
+	-Alpha = can attack at first tour
+	-Guinsoo = can attack twice by turn
+	-Indestructble = can't take damages
+	-Gel = dont reset can_attack at tour begin
 """
 
 var pv_max = pv
@@ -41,9 +41,8 @@ signal pv_max_changed
 func _ready():
 	type = CREATURE
 	node_name = NAME
-	player.connect("self_tour_begin", self, "_on_self_tour_begin")
-	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
-	player.connect("self_creature_fight", self, "_on_creature_fight")
+	
+	connect_signals()
 	
 	if "Alpha" in keywords:
 		can_attack = true # disable invocation sickness
@@ -52,7 +51,10 @@ func _ready():
 	pv_max = pv
 	check_pv()
 
-
+func connect_signals():
+	player.connect("self_tour_begin", self, "_on_self_tour_begin")
+	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
+	player.connect("self_creature_fight", self, "_on_creature_fight")
 
 # some attacks setters
 func set_attack(new_value: int):
@@ -214,10 +216,8 @@ func get_drag_data(_pos): # called when dragged
 		
 func create_drop_dico():
 	if on_board:
-		#return {"uniq_id": uniq_id,"drag_type":1, "card_name": NAME, "node_name": name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
 	else:
-		#return {"uniq_id": uniq_id,"drag_type":0, "card_name": NAME, "node_name": name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 
 func can_drop_data(_pos, card_dico):
@@ -251,6 +251,8 @@ func _on_self_tour_begin():
 		guinsoo_available = true
 	else:
 		remaining_gel_turns -= 1
+		if remaining_gel_turns <= 0 and "Gel" in keywords:
+			keywords.remove("Gel")
 	update_labels()
 	tour_begin_effect()
 	
