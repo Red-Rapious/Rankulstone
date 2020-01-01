@@ -5,13 +5,7 @@ var waiting_spell = null
 var creature_focus_timer
 
 func _ready():
-	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
-	player.connect("self_hand_changed", self, "_on_self_hand_changed")
-	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
-	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
-	player.connect("ask_side_popup", self, "_on_ask_side_popup")
-	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
-	player.connect("opponent_ask_creature_kill", self, "_on_opponent_ask_creature_kill")
+	connect_signals()
 	
 	if options.options_dico["toggle_fullscreen"]:
 		OS.window_fullscreen = true
@@ -19,11 +13,25 @@ func _ready():
 	player.init()
 	_on_self_hand_changed() # update hand
 	
+func connect_signals():
+	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
+	player.connect("self_hand_changed", self, "_on_self_hand_changed")
+	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
+	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
+	player.connect("ask_side_popup", self, "_on_ask_side_popup")
+	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
+	
+	player.connect("add_keyword", self, "_on_add_keyword")
+	player.connect("add_one_turn_keyword", self, "_on_add_one_turn_keyword")
+	player.connect("add_one_turn_attack", self, "_on_add_one_turn_attack")
+	player.connect("add_one_turn_pv", self, "_on_add_one_turn_pv")
+	
+"""
 func _process(delta):
 	# quit game if escape is pressed
 	if Input.is_action_pressed("ui_escape"):
 		get_tree().quit()
-
+"""
 
 # some hand interactions methods
 func load_hand():
@@ -214,12 +222,23 @@ func apply_effect_to_creature(creature_id):
 		
 func _on_ask_creature_kill(creature_id):
 	get_creature_by_id(creature_id).die()
-	
-func _on_opponent_ask_creature_kill(creature_id):
-	get_creature_by_id(creature_id).die()
 
 func _on_Opponent_pressed():
 	creature_pressed(-1) # -1 id = opponent
 
 func _on_Self_pressed():
 	creature_pressed(-2) # -2 id = self
+	
+
+# for the 4 following func, data is a list where data[0] is creature_id, and data[1] is keyword/value
+func _on_add_keyword(data):
+	get_creature_by_id(data[0]).add_keyword(data[1])
+	
+func _on_add_one_turn_keyword(data):
+	get_creature_by_id(data[0]).add_one_turn_keyword(data[1])
+	
+func _on_add_one_turn_attack(data):
+	get_creature_by_id(data[0]).add_one_turn_attack(data[1])
+	
+func _on_add_one_turn_pv(data):
+	get_creature_by_id(data[0]).add_one_turn_pv(data[1])

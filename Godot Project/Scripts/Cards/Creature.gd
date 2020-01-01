@@ -51,8 +51,11 @@ func _ready():
 	pv_max = pv
 	check_pv()
 
+
+
 func connect_signals():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
+	player.connect("self_end_of_turn", self, "_on_self_end_of_turn")
 	player.connect("self_creature_attack_opponent", self, "_on_creature_attack_something")
 	player.connect("self_creature_fight", self, "_on_creature_fight")
 
@@ -154,10 +157,12 @@ func update_labels():
 	#
 	var keywords_text = ""
 	for i in keywords:
-		keywords_text = keywords_text + i + ","
+		keywords_text = keywords_text + i + ", "
+		
 	for i in one_turn_keywords:
-		keywords_text = keywords_text + i + ","
-	keywords_text.substr(0, len(keywords_text)-1) # delete last coma
+		keywords_text = keywords_text + i + ", "
+		
+	keywords_text = keywords_text.substr(0, len(keywords_text)-2) # delete last coma
 	$VBoxContainer/Keywords.text = keywords_text
 	#
 	
@@ -246,6 +251,7 @@ func _on_self_tour_begin():
 	one_turn_attack = 0
 	one_turn_pv = 0
 	one_turn_keywords = []
+	
 	if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
 		can_attack = true
 		guinsoo_available = true
@@ -255,6 +261,15 @@ func _on_self_tour_begin():
 			keywords.remove("Gel")
 	update_labels()
 	tour_begin_effect()
+	
+	
+func _on_self_end_of_turn():
+	one_turn_attack = 0
+	one_turn_pv = 0
+	one_turn_keywords = []
+	
+	update_labels()
+	end_turn_effect()
 	
 	
 	
@@ -275,17 +290,19 @@ func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
 
 func _on_Creature_pressed():
+	
 	# CHANGE THIS LATER
 	if on_board:
 		get_node("../../../../../").creature_pressed(uniq_id) # tell to the BattleScreen that this creature is pressed
-
-
 
 """
 These are the functions which inherited creature will implement
 """
 
 func tour_begin_effect():
+	pass
+	
+func end_turn_effect():
 	pass
 
 func attack_effect():

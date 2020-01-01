@@ -59,7 +59,6 @@ signal opponent_creature_hp_changed
 
 signal ask_side_popup
 signal ask_creature_kill
-signal opponent_ask_creature_kill
 
 signal add_keyword
 signal add_one_turn_keyword
@@ -291,10 +290,10 @@ remote func opponent_creature_hp_changed(creature_dico):
 	emit_signal("opponent_creature_hp_changed", creature_dico)
 	
 remote func opponent_ask_creature_kill(creature_id):
-	emit_signal("opponent_ask_creature_kill", creature_id)
+	emit_signal("ask_creature_kill", creature_id)
 	
 	
-# for the 4 following func, dat is a list where data[0] is creature_id, and data[1] is keyword/value
+# for the 4 following func, data is a list where data[0] is creature_id, and data[1] is keyword/value
 remote func opponent_add_keyword(data):
 	emit_signal("add_keyword", data)
 	
