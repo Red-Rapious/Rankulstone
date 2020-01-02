@@ -122,7 +122,6 @@ script = ExtResource( 6 )
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 890.0
 margin_bottom = 182.0
-rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -130,7 +129,6 @@ size_flags_vertical = 3
 margin_top = 186.0
 margin_right = 890.0
 margin_bottom = 369.0
-rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -253,6 +251,7 @@ margin_left = -100.0
 margin_top = -35.0
 margin_right = 100.0
 margin_bottom = 35.0
+[connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="pressed" from="All/Left/Opponent" to="." method="_on_Opponent_pressed"]
 [connection signal="pressed" from="All/Left/Self" to="." method="_on_Self_pressed"]
 [connection signal="card_dropped" from="All/Center/Board" to="." method="_on_Board_card_dropped"]

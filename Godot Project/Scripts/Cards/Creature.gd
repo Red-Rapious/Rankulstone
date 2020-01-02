@@ -176,6 +176,11 @@ func update_labels():
 		
 	$VBoxContainer/Bottom/PV.text = str(pv+one_turn_pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack+one_turn_attack)
+	
+	if on_board and can_attack and is_self_side:
+		$Border.visible = true
+	else:
+		$Border.visible = false
 
 
 
@@ -231,7 +236,7 @@ func create_drop_dico():
 
 func can_drop_data(_pos, card_dico):
 	""" --> bool
-	When a card is dragged on top of a creature this function is called.
+	When a card is dragged on top of this creature this function is called.
 	Return true if creature can be dropped for engage a fight, false if it can't, 
 	depending on the turn and if the card as already attacked
 	"""
@@ -252,28 +257,30 @@ func _on_self_tour_begin():
 	Called when the tour begin
 	Do some routine, like attack reset
 	"""
-	one_turn_attack = 0
-	one_turn_pv = 0
-	one_turn_keywords = []
-	
-	if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
-		can_attack = true
-		guinsoo_available = true
-	else:
-		remaining_gel_turns -= 1
-		if remaining_gel_turns <= 0 and "Gel" in keywords:
-			keywords.remove("Gel")
-	update_labels()
-	tour_begin_effect()
+	if is_self_side:
+		one_turn_attack = 0
+		one_turn_pv = 0
+		one_turn_keywords = []
+		
+		if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
+			can_attack = true
+			guinsoo_available = true
+		else:
+			remaining_gel_turns -= 1
+			if remaining_gel_turns <= 0 and "Gel" in keywords:
+				keywords.remove("Gel")
+		update_labels()
+		tour_begin_effect()
 	
 	
 func _on_self_end_of_turn():
-	one_turn_attack = 0
-	one_turn_pv = 0
-	one_turn_keywords = []
+	if is_self_side:
+		one_turn_attack = 0
+		one_turn_pv = 0
+		one_turn_keywords = []
 	
-	update_labels()
-	end_turn_effect()
+		update_labels()
+		end_turn_effect()
 	
 	
 	
@@ -289,6 +296,8 @@ func _on_creature_attack_something(data):
 			guinsoo_available = false
 		else:
 			can_attack = false
+	
+		update_labels()
 		
 func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
