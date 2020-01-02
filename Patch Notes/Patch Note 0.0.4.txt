@@ -17,7 +17,7 @@ New features:
 New cards:
   - Range Top
   - Rage
-  + New keywords: Indestructible, Gel
+  + New keywords: Indestructible, Gel, Defenseur
 
 Bugs fixed:
   - Randomized stuff now properly works

@@ -1,7 +1,7 @@
 extends Node
 
 const PASS = "rankulstone"
-var actual_deck = "deck1"
+var actual_deck = ""
 var saved_decks = []
 
 func _ready():

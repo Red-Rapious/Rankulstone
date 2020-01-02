@@ -11,6 +11,7 @@ Keywords:
 	-Guinsoo = can attack twice by turn
 	-Indestructble = can't take damages
 	-Gel = dont reset can_attack at tour begin
+	-Defenseur = cant attack
 """
 
 var pv_max = pv
@@ -216,12 +217,15 @@ func get_drag_data(_pos): # called when dragged
 		
 	else: # if the card is still in the hand
 		set_drag_preview(create_play_drag_clone())
+		
 	return create_drop_dico()
 		
 		
 func create_drop_dico():
+	var has_defenseur = "Defenseur" in keywords or "Defenseur" in one_turn_keywords
+	
 	if on_board:
-		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack, "attack_value": attack, "is_self_side": is_self_side}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack and not has_defenseur, "attack_value": attack, "is_self_side": is_self_side}
 	else:
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 

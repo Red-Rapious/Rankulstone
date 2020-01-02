@@ -1,6 +1,6 @@
 extends Control
 
-var selected_deck = null
+var selected_deck = ""
 
 func _ready():
 	update_deck_collection()
@@ -17,7 +17,13 @@ func update_deck_collection():
 		scene_instance.deck_name = deck
 		scene_instance.connect("deck_pressed", self, "set_selected_deck")
 		$All/Deck_ScrollContainer/HBoxContainer.add_child(scene_instance)
-	
+		
+	if $All/Deck_ScrollContainer/HBoxContainer.get_children() == []:
+		var label = Label.new()
+		label.text = "Aucun deck, veuillez en créer un pour commencer à jouer"
+		label.size_flags_horizontal = Label.SIZE_EXPAND_FILL
+		label.align = Label.ALIGN_CENTER
+		$All/Deck_ScrollContainer/HBoxContainer.add_child(label)
 	
 func clean_deck_collection():
 	for deck in $All/Deck_ScrollContainer/HBoxContainer.get_children():
@@ -29,7 +35,21 @@ func set_selected_deck(new_deck: String):
 	decks.actual_deck = selected_deck
 	
 	for deck in $All/Deck_ScrollContainer/HBoxContainer.get_children():
-		if deck.deck_name == selected_deck:
-			deck.set_border(true)
-		else:
-			deck.set_border(false)
+		if not deck is Label:
+			if deck.deck_name == selected_deck:
+				deck.set_border(true)
+			else:
+				deck.set_border(false)
+			
+			
+func _on_Create_Button_pressed():
+	if selected_deck != "":
+		get_tree().change_scene("Scenes/Menus/Waiting_Screen.tscn")
+	
+func _on_Join_Button_pressed():
+	if selected_deck != "":
+		get_tree().change_scene("Scenes/Menus/Join_Screen.tscn")
+
+
+func _on_Open_deck_collection_Button_pressed():
+	get_tree().change_scene("Scenes/Menus/Deck_collection_Screen.tscn")
