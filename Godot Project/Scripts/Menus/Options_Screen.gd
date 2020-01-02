@@ -5,7 +5,9 @@ func _ready():
 	update_player_profil()
 	
 func apply_options():
-	$All/Center/Options_List/VBoxContainer/CheckBox.pressed = options.options_dico["toggle_fullscreen"]
+	$All/Center/Options_List/VBoxContainer/Fullscreen.pressed = options.options_dico["toggle_fullscreen"]
+	$All/Center/Options_List/VBoxContainer/Attention.pressed = options.options_dico["request_attention"]
+	$All/Center/Options_List/VBoxContainer/Border.pressed = options.options_dico["show_attack_border"]
 
 func _on_Button_pressed():
 	options.save_options()
@@ -21,9 +23,16 @@ func _on_Update_profil_Button_pressed():
 	get_tree().change_scene("Scenes/Menus/First_time_Screen.tscn")
 
 
+
+
+
+# Options checkbox
 func _on_Attention_toggled(button_pressed):
 	options.options_dico["request_attention"] = button_pressed
 
-
 func _on_Fullscreen_toggled(button_pressed):
 	options.options_dico["toggle_fullscreen"] = button_pressed
+
+func _on_Border_toggled(button_pressed):
+	options.options_dico["show_attack_border"] = button_pressed
+# end

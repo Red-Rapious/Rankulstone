@@ -1,6 +1,6 @@
 extends Node
 
-var options_dico = {"toggle_fullscreen": false, "request_attention": false}
+var options_dico = {"toggle_fullscreen": false, "request_attention": false, "show_attack_border": true}
 
 func _ready():
 	load_options()
