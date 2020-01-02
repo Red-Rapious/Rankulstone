@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Themes/Opponent_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/In-Game_Elements/Opponent.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Menus/GUI/Mana_Bar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Icons/0.jpg" type="Texture" id=4]
+[ext_resource path="res://Scripts/Buttons/Opponent_icon_TextureButton.gd" type="Script" id=5]
 
 [node name="Opponent" type="VBoxContainer"]
 margin_right = 217.0
@@ -19,7 +20,7 @@ margin_right = 217.0
 margin_bottom = 34.0
 text = "Mana : 0/0"
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Opponent_icon_TextureButton" type="TextureButton" parent="."]
 margin_top = 52.0
 margin_right = 217.0
 margin_bottom = 294.0
@@ -29,6 +30,7 @@ size_flags_stretch_ratio = 5.0
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
+script = ExtResource( 5 )
 
 [node name="Pseudo" type="Label" parent="."]
 margin_top = 298.0
@@ -39,4 +41,4 @@ size_flags_vertical = 7
 text = "--Error--"
 align = 1
 valign = 1
-[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Opponent_icon_TextureButton" to="." method="_on_TextureButton_pressed"]

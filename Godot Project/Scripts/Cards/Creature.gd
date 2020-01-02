@@ -215,7 +215,7 @@ func _on_Creature_pv_changed():
 	update_labels()
 	
 
-# drag&drop functions
+# self drag&drop functions
 func get_drag_data(_pos): # called when dragged
 	if on_board:
 		set_drag_preview(create_attack_drag_clone())
@@ -233,7 +233,10 @@ func create_drop_dico():
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack and not has_defenseur, "attack_value": attack, "is_self_side": is_self_side}
 	else:
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
+# end
 
+
+# Drop reception
 func can_drop_data(_pos, card_dico):
 	""" --> bool
 	When a card is dragged on top of this creature this function is called.
@@ -242,12 +245,13 @@ func can_drop_data(_pos, card_dico):
 	"""
 	return (not is_self_side) and card_dico["is_self_side"] and card_dico["drag_type"]==global.ATTACK and card_dico["can_attack"] and player.your_turn 
 	
+	
 func drop_data(_pos, other_creature_dico):
 	"""
 	Called when another creature is dragged on this creature
 	"""
 	player.fight_requested([create_drop_dico(), other_creature_dico]) # request a fight between this creature and the one who was dragged
-	
+# end
 	
 	
 	

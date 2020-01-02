@@ -23,7 +23,7 @@ func _on_opponent_mana_changed():
 	
 
 func update_icons():
-	$TextureButton.texture_normal = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")
+	$Opponent_icon_TextureButton.texture_normal = load("res://Assets/Icons/"+str(global.opponent_icon)+".jpg")
 
 
 
@@ -33,7 +33,7 @@ func can_drop_data(_pos, data):
 	Return true if item can be dropped, false if it can't, 
 	depending on the turn and if the card as already attacked
 	"""
-	
+
 	return data["is_self_side"] and data["drag_type"]==global.ATTACK and data["can_attack"] and player.your_turn 
 	
 func drop_data(_pos, data):
