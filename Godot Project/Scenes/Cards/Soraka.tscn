@@ -14,6 +14,7 @@ pv = 2
 attack = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
+modulate = Color( 0.0156863, 0.309804, 0, 1 )
 margin_right = 99.0
 text = "Soraka"
 
@@ -21,21 +22,30 @@ text = "Soraka"
 margin_left = 103.0
 text = "3"
 
-[node name="Action_Text" parent="VBoxContainer" index="1"]
+[node name="Keywords" parent="VBoxContainer" index="1"]
+margin_top = 40.0
+margin_bottom = 54.0
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+modulate = Color( 0, 0, 0, 1 )
 margin_top = 58.0
 margin_bottom = 115.0
 text = "Quand Soraka arrive sur le champ de bataille, vos créatures se soignent de 3 PV"
 
-[node name="Under_text" parent="VBoxContainer" index="2"]
+[node name="Under_text" parent="VBoxContainer" index="3"]
+modulate = Color( 0, 0, 0, 1 )
 margin_top = 119.0
 margin_bottom = 150.0
+text = "Criez le nom d'un fruit à coque"
 
-[node name="Bottom" parent="VBoxContainer" index="3"]
+[node name="Bottom" parent="VBoxContainer" index="4"]
 margin_top = 154.0
 margin_bottom = 170.0
 
 [node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+modulate = Color( 0.0117647, 0.172549, 0.00392157, 1 )
 text = "2"
 
 [node name="PV" parent="VBoxContainer/Bottom" index="1"]
+modulate = Color( 0.0117647, 0.172549, 0.00392157, 1 )
 text = "2"

@@ -13,10 +13,12 @@ New features:
   - Added cards tribes (Neutre, Sbire, Miko)
   - Added target specific spells (like Range Top)
   - Electrocution can now focus both players
+  - Show description, under text and keywords on creatures
 
 New cards:
   - Range Top
   - Rage
+  - Julien OTP Kayle
   + New keywords: Indestructible, Gel, Defenseur
 
 Bugs fixed:

@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/Kayle.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Julien_OTP_Kayle.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 4 )
+
+[node name="Julien_OTP_Kayle" index="0" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Julien OTP Kayle"
+MANA_COST = 3
+tribe = [ "Julien" ]
+pv = 4
+attack = 2
+
+[node name="Top" parent="VBoxContainer" index="0"]
+margin_right = 113.0
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 1.0
+margin_right = 102.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "Julien OTP Kayle"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 106.0
+margin_right = 113.0
+text = "3"
+
+[node name="Keywords" parent="VBoxContainer" index="1"]
+margin_top = 57.0
+margin_right = 113.0
+margin_bottom = 71.0
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 75.0
+margin_right = 113.0
+margin_bottom = 132.0
+text = "Losque Kayle entre sur le terrain, la créature ciblée deviens invincible pour 1 tour."
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 136.0
+margin_right = 113.0
+margin_bottom = 150.0
+text = "Je te couvre mon pote"
+
+[node name="Bottom" parent="VBoxContainer" index="4"]
+margin_top = 154.0
+margin_right = 113.0
+margin_bottom = 170.0
+
+[node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 54.0
+text = "2"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 58.0
+margin_right = 113.0
+text = "4"

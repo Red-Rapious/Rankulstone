@@ -308,7 +308,6 @@ func _on_creature_fight(data):
 
 func _on_Creature_pressed():
 	#print("i am ",uniq_id)
-	
 	# CHANGE THIS LATER
 	if on_board:
 		get_node("../../../../../").creature_pressed(uniq_id) # tell to the BattleScreen that this creature is pressed
