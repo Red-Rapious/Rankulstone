@@ -177,7 +177,7 @@ func update_labels():
 	$VBoxContainer/Bottom/PV.text = str(pv+one_turn_pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack+one_turn_attack)
 	
-	if on_board and can_attack and is_self_side:
+	if on_board and can_attack and is_self_side and options.options_dico["show_attack_border"]:
 		$Border.visible = true
 	else:
 		$Border.visible = false
@@ -307,6 +307,7 @@ func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
 
 func _on_Creature_pressed():
+	#print("i am ",uniq_id)
 	
 	# CHANGE THIS LATER
 	if on_board:

@@ -59,6 +59,7 @@ signal opponent_creature_hp_changed
 
 signal ask_side_popup
 signal ask_creature_kill
+#signal opponent_ask_creature_kill
 
 signal add_keyword
 signal add_one_turn_keyword
@@ -80,8 +81,6 @@ func _ready():
 	
 	connect("self_creature_fight", self, "_on_self_creature_fight")
 	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
-	
-	connect("ask_creature_kill", self, "_on_ask_creature_kill")
 
 
 func init():
@@ -133,7 +132,6 @@ func _on_self_creature_played(new_card_name: String):
 	rpc("opponent_creature_played", new_card_name)
 	
 func _on_self_creature_died(creature_dico):
-	#self_board.append(card_name)
 	rpc("opponent_creature_died", creature_dico)
 	
 	
@@ -150,9 +148,6 @@ func _on_self_creature_fight(data):
 
 func _on_self_creature_hp_changed(creature_dico):
 	rpc("opponent_creature_hp_changed", creature_dico)
-	
-func _on_ask_creature_kill(creature_id):
-	rpc("opponent_ask_creature_kill", creature_id)
 	
 """ End """
 
@@ -272,7 +267,6 @@ remote func opponent_creature_died(creature_dico):
 	"""
 	Called by the player who loose a creature, on the opponent side
 	"""
-	#opponent_board.append(card_name)
 	emit_signal("opponent_creature_died", creature_dico)
 
 remote func opponent_mana_changed(new_value: int):
@@ -471,6 +465,7 @@ func change_creature_hp(creature_id, value):
 	
 func kill_creature(creature_id):
 	emit_signal("ask_creature_kill", creature_id)
+	rpc("opponent_ask_creature_kill", creature_id)
 	
 	
 	
