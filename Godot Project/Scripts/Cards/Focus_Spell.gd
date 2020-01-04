@@ -1,4 +1,4 @@
-extends "res://Scripts/Cards/Card.gd"
+extends "res://Scripts/Cards/Spell.gd"
 tool
 
 const OPPONENT = -1

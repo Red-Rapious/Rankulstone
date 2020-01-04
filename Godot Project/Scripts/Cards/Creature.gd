@@ -16,6 +16,8 @@ Keywords:
 
 var pv_max = pv
 var has_enter_battlefield_focus = false # if this card have a effect who focus a creature when enter the battlefield
+export var turns_before_effect = 0
+
 var on_board = false
 var is_self_side
 var can_attack = false # attack is false by default to simulate invocation sickness
@@ -110,6 +112,7 @@ func check_pv(): # a function that checks if pv is under 0
 func add_keyword(keyword: String):
 	keywords.append(keyword)
 	update_labels()
+	
 
 
 # one-turn setters functions
@@ -132,6 +135,8 @@ func add_one_turn_pv(value: int):
 func add_one_turn_keyword(keyword: String):
 	one_turn_keywords.append(keyword)
 	update_labels()
+	
+	
 
 func reset_one_turn_values():
 	one_turn_attack = 0
@@ -266,8 +271,6 @@ func _on_self_tour_begin():
 	Do some routine, like attack reset
 	"""
 	
-	reset_one_turn_values()
-	
 	if is_self_side:
 		if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
 			can_attack = true
@@ -281,7 +284,6 @@ func _on_self_tour_begin():
 	
 	
 func _on_self_end_of_turn():
-	reset_one_turn_values()
 	
 	if is_self_side:
 		end_turn_effect()

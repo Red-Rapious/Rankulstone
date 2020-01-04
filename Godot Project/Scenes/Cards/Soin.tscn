@@ -12,5 +12,13 @@ NAME = "Soin"
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Soin"
 
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+modulate = Color( 0.00784314, 0.254902, 0, 1 )
+margin_top = 88.0
+margin_bottom = 115.0
+text = "Vous gagnez 5 points de vie"
+
 [node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 138.0
+margin_bottom = 169.0
 text = "LE meilleur spell sur Master Yi Jungle"

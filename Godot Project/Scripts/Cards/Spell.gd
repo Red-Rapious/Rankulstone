@@ -1,5 +1,7 @@
 extends "res://Scripts/Cards/Card.gd"
 
+export var turns_before_effect = 0
+
 func _ready():
 	type = SPELL
 

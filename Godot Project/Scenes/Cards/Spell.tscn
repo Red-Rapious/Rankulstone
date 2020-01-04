@@ -11,7 +11,8 @@ NAME = "Spell"
 text = "Spell"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 114.0
+margin_top = 109.0
+margin_bottom = 121.0
 text = ""
 
 [node name="Under_text" parent="VBoxContainer" index="2"]

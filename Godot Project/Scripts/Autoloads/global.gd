@@ -5,11 +5,13 @@ enum {PLAY, ATTACK} # differents drag types
 enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array will be passed, containing both creatures data
 
 var card_index = [
+"Tentative_de_reconnection",
 "Julien_OTP_Kayle",
 "Rage",
 "Range_top",
 "Electrocution",
 "Flash_kick",
+"Soin",
 "Sylas",
 "Soraka",
 "Sbire_mage",
@@ -18,7 +20,7 @@ var card_index = [
 "Vol"
 ]
 
-const VERSION = "0.0.4"
+const VERSION = "0.0.5"
 var information_loaded = false # if it has been set by the First time screen
 var change_informations = false
 

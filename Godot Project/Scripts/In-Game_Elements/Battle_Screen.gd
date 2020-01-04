@@ -4,6 +4,8 @@ var creature_focus_mode = false
 var waiting_spell = null
 var creature_focus_timer
 
+var spells_in_turn_wait = []
+
 func _ready():
 	connect_signals()
 	
@@ -25,6 +27,9 @@ func connect_signals():
 	player.connect("add_one_turn_keyword", self, "_on_add_one_turn_keyword")
 	player.connect("add_one_turn_attack", self, "_on_add_one_turn_attack")
 	player.connect("add_one_turn_pv", self, "_on_add_one_turn_pv")
+	
+	player.connect("self_tour_begin", self, "_on_self_tour_begin")
+	player.connect("opponent_turn_begin", self, "_on_opponent_turn_begin")
 	
 """
 func _process(delta):
@@ -100,12 +105,28 @@ func play_card_from_hand(node_name: String):
 			player.ask_side_popup("Sélectionne\nune créture")
 		
 	elif card.type == card.SPELL:
-		card.play_card(-10)
+		apply_spell_effect(card)
 		player.spell_played_from_hand(card.node_name , card.MANA_COST)
 		
 	elif card.type == card.FOCUS_SPELL:
 		waiting_spell = card
 		player.ask_side_popup("Sélectionne\nune créture")
+
+
+func apply_spell_effect(spell, creature_id= -10):
+	if spell.turns_before_effect == 0:
+		if spell.type == spell.SPELL or spell.type == spell.FOCUS_SPELL:
+			spell.play_card(-10) # no uniq id
+		if [spell, creature_id] in spells_in_turn_wait:
+			spells_in_turn_wait.erase([spell, creature_id])
+			
+		if spell.type == spell.FOCUS_SPELL or spell.type == spell.CREATURE:
+			waiting_spell.apply_effect_to_creature(creature_id)
+		
+	else:
+		spell.turns_before_effect -= 1
+		spells_in_turn_wait.append([spell, creature_id])
+
 
 
 func _on_opponent_creature_played(card_name):
@@ -156,30 +177,8 @@ func _on_Side_Popup_popup_hide():
 	yield(get_tree().create_timer(1.0), "timeout") # see creature focus timer
 	if not $Side_Popup.visible:
 		creature_focus_mode = false
-
-
-"""
-func create_creature_focus_timer():
-	#To resolve a silly bug, the creature focus mode (bool) is going to be set to false
-	#only 0.5 seconds ater the popup is hiding.
-	#This timer is here for that.
-	
-	creature_focus_timer = Timer.new()
-	creature_focus_timer.name = "Timer"
-	creature_focus_timer.connect("timeout",self,"_on_creature_focus_timer_timeout") 
-	creature_focus_timer.set_wait_time(0.5)
-	add_child(creature_focus_timer) #to process
-	creature_focus_timer.start() #to start
-"""
-
-"""
-func _on_creature_focus_timer_timeout():
-	#Called when the timer timeout. Only set the bool to false, and delete the node to avoid conflicts
-	
-	if not $Side_Popup.visible:
-		creature_focus_mode = false
-		get_node("Timer").queue_free()
-"""
+		
+		
 
 func get_creature_by_id(creature_id):
 	if player.uniq_ids_list[creature_id][player.SELF_SIDE]:
@@ -203,7 +202,7 @@ func apply_effect_to_creature(creature_id):
 	if waiting_spell != null:
 		
 		if waiting_spell.is_target_ok(creature_id): # if target is good
-			waiting_spell.apply_effect_to_creature(creature_id)
+			apply_spell_effect(waiting_spell, creature_id)
 		
 		
 			if waiting_spell.type == waiting_spell.CREATURE:
@@ -213,7 +212,7 @@ func apply_effect_to_creature(creature_id):
 				
 			else:
 				# if its a focus spell
-				player.card_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+				player.spell_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
 		
 		else: # if target isn't good
 			pass
@@ -242,3 +241,24 @@ func _on_add_one_turn_attack(data):
 	
 func _on_add_one_turn_pv(data):
 	get_creature_by_id(data[0]).add_one_turn_pv(data[1])
+
+
+
+func _on_self_tour_begin():
+	reset_all_creatures_one_turn_values()
+	play_waiting_turn_spells()
+	
+func _on_opponent_turn_begin():
+	reset_all_creatures_one_turn_values()
+	play_waiting_turn_spells()
+	
+func reset_all_creatures_one_turn_values():
+	for creature in $All/Center/Board/Self_Board.get_children():
+		creature.reset_one_turn_values()
+		
+	for creature in $All/Center/Board/Opponent_Board.get_children():
+		creature.reset_one_turn_values()
+	
+func play_waiting_turn_spells():
+	for spell in spells_in_turn_wait:
+		apply_spell_effect(spell[0], spell[1])

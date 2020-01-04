@@ -48,6 +48,7 @@ signal opponent_mana_max_changed
 signal self_end_of_turn
 signal opponent_end_of_turn
 signal self_tour_begin
+signal opponent_turn_begin
 
 signal self_creature_fight
 signal opponent_creature_fight
@@ -331,7 +332,6 @@ func spell_played_from_hand(spell_name, mana_cost):
 	Delete a card from the hand array
 	"""
 	card_played_from_hand(spell_name, mana_cost)
-	#emit_signal("self_creature_played", spell_name)
 
 
 # functions about tour end 
@@ -352,6 +352,9 @@ remote func opponent_end_of_turn():
 	your_turn = true
 	emit_signal("self_tour_begin")
 	
+remote func opponent_turn_begin():
+	emit_signal("opponent_turn_begin")
+	
 func creature_died(creature_dico):
 	"""
 	Called when a creature died
@@ -363,6 +366,7 @@ func creature_died(creature_dico):
 
 
 func _on_self_tour_begin():
+	rpc("opponent_turn_begin")
 	draw_card()
 	set_self_mana_max(self_mana_max+1)
 
