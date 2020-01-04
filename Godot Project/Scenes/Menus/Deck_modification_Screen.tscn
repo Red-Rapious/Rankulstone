@@ -102,6 +102,7 @@ align = 1
 valign = 1
 
 [node name="Foot" type="HBoxContainer" parent="All"]
+editor/display_folded = true
 margin_top = 614.0
 margin_right = 1240.0
 margin_bottom = 720.0

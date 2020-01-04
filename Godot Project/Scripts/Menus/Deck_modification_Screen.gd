@@ -11,10 +11,21 @@ func _ready():
 	update_cards_labels()
 	update_card_collection()
 	
+	
 func update_deck_name_label():
 	$All/Header/Deck_name.text = "Modification en cours : " + decks.actual_deck.capitalize()
 	
 func grid_card_pressed(node_name, card_name):
+	"""
+	Called by a card in the collection when it's pressed
+	Add a card to the deck
+	"""
+	
+	add_card_to_in_deck(node_name, card_name)
+	update_cards_labels()
+	
+	
+func add_card_to_in_deck(node_name, card_name):
 	var contains = false
 	for i in cards_in_deck:
 		if i["node_name"] == node_name:
@@ -24,9 +35,6 @@ func grid_card_pressed(node_name, card_name):
 			
 	if not contains:
 		cards_in_deck.append({"node_name": node_name, "card_name": card_name, "number": 1})
-	update_cards_labels()
-	
-	
 	
 	
 func update_cards_labels():
@@ -44,7 +52,7 @@ func update_cards_labels():
 		card_total += i["number"]
 	
 	$All/Modifications/In_deck/Down_Label.text = "Total : "+str(card_total)+"/30"
-
+	
 func clean_cards_labels():
 	for child in $All/Modifications/In_deck/Cards_ScrollContainer/Cards.get_children():
 		child.queue_free()
@@ -64,14 +72,13 @@ func update_card_collection():
 func clean_card_collection():
 	for child in $All/Modifications/ScrollContainer/Collection.get_children():
 		child.queue_free()
-
-
-
-
+	
+	
+	
 func _on_Save_pressed():
 	decks.save_deck(decks.actual_deck, 0, cards_in_deck)
-
-
+	
+	
 func _on_Quit_pressed():
 	get_tree().change_scene("Scenes/Menus/Title_Screen.tscn")
 	

@@ -48,6 +48,7 @@ margin_right = 272.0
 margin_bottom = 69.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+disabled = true
 text = "Ouvrir le deck"
 
 [node name="Delete_deck_Button" type="Button" parent="VBoxContainer/Foot"]
@@ -57,6 +58,7 @@ margin_right = 706.0
 margin_bottom = 69.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+disabled = true
 text = "Supprimer le deck"
 
 [node name="Delete_all_Button" type="Button" parent="VBoxContainer/Foot"]
@@ -69,7 +71,7 @@ size_flags_vertical = 6
 text = "Supprimer tout les decks"
 
 [node name="Popup" type="PopupPanel" parent="."]
-visible = true
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

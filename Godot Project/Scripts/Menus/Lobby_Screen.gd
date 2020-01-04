@@ -43,11 +43,11 @@ func set_selected_deck(new_deck: String):
 			
 			
 func _on_Create_Button_pressed():
-	if selected_deck != "":
+	if selected_deck != "" and decks.saved_decks!=[]:
 		get_tree().change_scene("Scenes/Menus/Waiting_Screen.tscn")
 	
 func _on_Join_Button_pressed():
-	if selected_deck != "":
+	if selected_deck != "" and decks.saved_decks!=[]:
 		get_tree().change_scene("Scenes/Menus/Join_Screen.tscn")
 
 

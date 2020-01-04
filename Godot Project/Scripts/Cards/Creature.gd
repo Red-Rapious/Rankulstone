@@ -133,7 +133,11 @@ func add_one_turn_keyword(keyword: String):
 	one_turn_keywords.append(keyword)
 	update_labels()
 
-
+func reset_one_turn_values():
+	one_turn_attack = 0
+	one_turn_pv = 0
+	one_turn_keywords = []
+	update_labels()
 
 func play_card(id):
 	"""
@@ -261,11 +265,10 @@ func _on_self_tour_begin():
 	Called when the tour begin
 	Do some routine, like attack reset
 	"""
+	
+	reset_one_turn_values()
+	
 	if is_self_side:
-		one_turn_attack = 0
-		one_turn_pv = 0
-		one_turn_keywords = []
-		
 		if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
 			can_attack = true
 			guinsoo_available = true
@@ -278,12 +281,9 @@ func _on_self_tour_begin():
 	
 	
 func _on_self_end_of_turn():
-	if is_self_side:
-		one_turn_attack = 0
-		one_turn_pv = 0
-		one_turn_keywords = []
+	reset_one_turn_values()
 	
-		update_labels()
+	if is_self_side:
 		end_turn_effect()
 	
 	
@@ -307,15 +307,20 @@ func _on_creature_fight(data):
 	_on_creature_attack_something(data[global.OPPONENT_CREATURE_DATA]) # return the other creature (I dont now why but it works)
 
 func _on_Creature_pressed():
+	# DEBUG
 	#print("i am ",uniq_id)
+	
 	# CHANGE THIS LATER
 	if on_board:
 		get_node("../../../../../").creature_pressed(uniq_id) # tell to the BattleScreen that this creature is pressed
 
+
+
+
+
 """
 These are the functions which inherited creature will implement
 """
-
 func tour_begin_effect():
 	pass
 	
