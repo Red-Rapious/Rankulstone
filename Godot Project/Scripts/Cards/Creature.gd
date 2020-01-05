@@ -10,7 +10,6 @@ Keywords:
 	-Alpha = can attack at first tour
 	-Guinsoo = can attack twice by turn
 	-Indestructble = can't take damages
-	-Gel = dont reset can_attack at tour begin
 	-Defenseur = cant attack
 """
 
@@ -24,7 +23,6 @@ var can_attack = false # attack is false by default to simulate invocation sickn
 
 # keywords
 var guinsoo_available = true
-var remaining_gel_turns = 0
 
 # one turn effects
 var one_turn_keywords = []
@@ -272,13 +270,8 @@ func _on_self_tour_begin():
 	"""
 	
 	if is_self_side:
-		if (not ("Gel" in keywords or "Gel" in one_turn_keywords)) or remaining_gel_turns == 0:
-			can_attack = true
-			guinsoo_available = true
-		else:
-			remaining_gel_turns -= 1
-			if remaining_gel_turns <= 0 and "Gel" in keywords:
-				keywords.remove("Gel")
+		can_attack = true
+		guinsoo_available = true
 		update_labels()
 		tour_begin_effect()
 	
