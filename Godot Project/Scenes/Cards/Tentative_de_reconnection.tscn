@@ -11,7 +11,7 @@ font_data = ExtResource( 3 )
 [node name="Tentative_de_reconnection" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Tentative de reconnection"
-turns_before_effect = 1
+turns_before_effect = 2
 
 [node name="Top" parent="VBoxContainer" index="0"]
 margin_right = 111.0
@@ -28,10 +28,10 @@ margin_left = 106.0
 margin_right = 111.0
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 88.0
+margin_top = 80.0
 margin_right = 111.0
-margin_bottom = 115.0
-text = "La créature ciblée est gelée au prochain tour"
+margin_bottom = 122.0
+text = "La créature ciblée ne peut pas attaquer au prochain tour"
 
 [node name="Under_text" parent="VBoxContainer" index="2"]
 margin_top = 138.0

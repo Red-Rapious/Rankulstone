@@ -5,6 +5,7 @@ var waiting_spell = null
 var creature_focus_timer
 
 var spells_in_turn_wait = []
+var creatures_in_turn_wait = []
 
 func _ready():
 	connect_signals()
@@ -59,7 +60,7 @@ func _on_self_hand_changed():
 	# reset hand, by cleaning all and reloading the whole hand
 	clean_hand()
 	load_hand()
-
+# end
 
 
 
@@ -97,9 +98,12 @@ func play_card_from_hand(node_name: String):
 	
 	if card.type == card.CREATURE:
 		if not card.has_enter_battlefield_focus:
-			var card_uniq_id = player.ask_new_uniq_id(true, node_name)
-			add_card_to_board(true, card.node_name, card_uniq_id)
-			player.creature_played_from_hand(card.node_name, card.MANA_COST)
+			
+			play_self_creature(card)
+			#var card_uniq_id = player.ask_new_uniq_id(true, node_name)
+			#add_card_to_board(true, card.node_name, card_uniq_id)
+			#player.creature_played_from_hand(card.node_name, card.MANA_COST)
+			
 		else:
 			waiting_spell = card
 			player.ask_side_popup("Sélectionne\nune créture")
@@ -114,6 +118,7 @@ func play_card_from_hand(node_name: String):
 
 
 func apply_spell_effect(spell, creature_id= -10):
+	print("turns left ", spell.turns_before_effect)
 	if spell.turns_before_effect == 0:
 		if spell.type == spell.SPELL or spell.type == spell.FOCUS_SPELL:
 			spell.play_card(-10) # no uniq id
@@ -124,9 +129,42 @@ func apply_spell_effect(spell, creature_id= -10):
 			waiting_spell.apply_effect_to_creature(creature_id)
 		
 	else:
-		spell.turns_before_effect -= 1
-		spells_in_turn_wait.append([spell, creature_id])
+		if not spell in spells_in_turn_wait:
+			spell.turns_before_effect -= 1
+			spells_in_turn_wait.append([spell, creature_id])
+		else:
+			spells_in_turn_wait.find(spell).turns_before_effect -=1
 
+
+func apply_effect_to_creature(creature_id):
+	if waiting_spell != null:
+		
+		if waiting_spell.is_target_ok(creature_id): # if target is good
+			apply_spell_effect(waiting_spell, creature_id)
+		
+		
+			if waiting_spell.type == waiting_spell.CREATURE:
+				play_self_creature(waiting_spell)
+				#var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
+				#add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
+				#player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+				
+			else:
+				# if its a focus spell
+				player.spell_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
+		
+		else: # if target isn't good
+			pass
+			#player.ask_side_popup("Choisissez une créature") # relaunch
+		
+
+func play_self_creature(creature):
+	if creature.turns_before_appear == 0:
+		var card_uniq_id = player.ask_new_uniq_id(true, creature.node_name)
+		add_card_to_board(true, creature.node_name, card_uniq_id)
+		player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
+	else:
+		pass
 
 
 func _on_opponent_creature_played(card_name):
@@ -201,26 +239,7 @@ func creature_pressed(creature_id):
 		
 		
 		
-func apply_effect_to_creature(creature_id):
-	if waiting_spell != null:
-		
-		if waiting_spell.is_target_ok(creature_id): # if target is good
-			apply_spell_effect(waiting_spell, creature_id)
-		
-		
-			if waiting_spell.type == waiting_spell.CREATURE:
-				var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
-				add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
-				player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
-				
-			else:
-				# if its a focus spell
-				player.spell_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
-		
-		else: # if target isn't good
-			pass
-			#player.ask_side_popup("Choisissez une créature") # relaunch
-		
+
 		
 func _on_ask_creature_kill(creature_id):
 	get_creature_by_id(creature_id).die()
@@ -263,5 +282,6 @@ func reset_all_creatures_one_turn_values():
 		creature.reset_one_turn_values()
 	
 func play_waiting_turn_spells():
+	print("len : ",len(spells_in_turn_wait))
 	for spell in spells_in_turn_wait:
 		apply_spell_effect(spell[0], spell[1])

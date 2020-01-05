@@ -15,7 +15,9 @@ Keywords:
 
 var pv_max = pv
 var has_enter_battlefield_focus = false # if this card have a effect who focus a creature when enter the battlefield
+
 export var turns_before_effect = 0
+export var turns_before_appear = 0
 
 var on_board = false
 var is_self_side
