@@ -11,7 +11,7 @@ font_data = ExtResource( 3 )
 [node name="Tentative_de_reconnection" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Tentative de reconnection"
-turns_before_effect = 2
+turns_before_effect = 1
 
 [node name="Top" parent="VBoxContainer" index="0"]
 margin_right = 111.0

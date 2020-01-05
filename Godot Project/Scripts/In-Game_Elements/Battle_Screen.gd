@@ -118,7 +118,6 @@ func play_card_from_hand(node_name: String):
 
 
 func apply_spell_effect(spell, creature_id= -10):
-	print("turns left ", spell.turns_before_effect)
 	if spell.turns_before_effect == 0:
 		if spell.type == spell.SPELL or spell.type == spell.FOCUS_SPELL:
 			spell.play_card(-10) # no uniq id
@@ -129,11 +128,11 @@ func apply_spell_effect(spell, creature_id= -10):
 			waiting_spell.apply_effect_to_creature(creature_id)
 		
 	else:
-		if not spell in spells_in_turn_wait:
+		if not [spell, creature_id] in spells_in_turn_wait:
 			spell.turns_before_effect -= 1
 			spells_in_turn_wait.append([spell, creature_id])
 		else:
-			spells_in_turn_wait.find(spell).turns_before_effect -=1
+			spells_in_turn_wait[spells_in_turn_wait.find([spell, creature_id])][0].turns_before_effect -=1
 
 
 func apply_effect_to_creature(creature_id):
@@ -282,6 +281,6 @@ func reset_all_creatures_one_turn_values():
 		creature.reset_one_turn_values()
 	
 func play_waiting_turn_spells():
-	print("len : ",len(spells_in_turn_wait))
-	for spell in spells_in_turn_wait:
+	var spells_to_treat = spells_in_turn_wait.duplicate()
+	for spell in spells_to_treat:
 		apply_spell_effect(spell[0], spell[1])
