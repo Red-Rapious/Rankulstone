@@ -6,6 +6,7 @@ var creature_focus_timer
 
 var spells_in_turn_wait = []
 var creatures_in_turn_wait = []
+var opponent_creatures_in_turn_wait = []
 
 func _ready():
 	connect_signals()
@@ -100,9 +101,6 @@ func play_card_from_hand(node_name: String):
 		if not card.has_enter_battlefield_focus:
 			
 			play_self_creature(card)
-			#var card_uniq_id = player.ask_new_uniq_id(true, node_name)
-			#add_card_to_board(true, card.node_name, card_uniq_id)
-			#player.creature_played_from_hand(card.node_name, card.MANA_COST)
 			
 		else:
 			waiting_spell = card
@@ -144,10 +142,6 @@ func apply_effect_to_creature(creature_id):
 		
 			if waiting_spell.type == waiting_spell.CREATURE:
 				play_self_creature(waiting_spell)
-				#var card_uniq_id = player.ask_new_uniq_id(true, waiting_spell.node_name)
-				#add_card_to_board(true, waiting_spell.node_name, card_uniq_id)
-				#player.creature_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
-				
 			else:
 				# if its a focus spell
 				player.spell_played_from_hand(waiting_spell.node_name, waiting_spell.MANA_COST)
@@ -161,19 +155,31 @@ func play_self_creature(creature):
 	if creature.turns_before_appear == 0:
 		var card_uniq_id = player.ask_new_uniq_id(true, creature.node_name)
 		add_card_to_board(true, creature.node_name, card_uniq_id)
-		player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
+		player.self_creature_enter_battlefield(creature.node_name)
+		#player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
 	else:
-		pass
+		if not creature in creatures_in_turn_wait:
+			player.creature_played_from_hand(creature.node_name, creature.MANA_COST, creature.turns_before_appear)
+			creature.turns_before_appear -= 1
+			creatures_in_turn_wait.append(creature)
+		else:
+			creatures_in_turn_wait[creatures_in_turn_wait.find(creature)].turns_before_appear -=1
 
 
-func _on_opponent_creature_played(card_name):
+func play_opponent_creature(creature_name):
+	var card_uniq_id = player.ask_new_uniq_id(false, creature_name)
+	add_card_to_board(false, creature_name, card_uniq_id) # "false" to put in the opponent side
+
+
+
+func _on_opponent_creature_played(creature_name):
 	"""
 	Called when the opponent plays a card
 	Simply add the card to the board
 	"""
-	var card_uniq_id = player.ask_new_uniq_id(false, card_name)
-	add_card_to_board(false, card_name, card_uniq_id) # "false" to put in the opponent side
-	
+	#var card_uniq_id = player.ask_new_uniq_id(false, creature_name)
+	#add_card_to_board(false, creature_name, card_uniq_id) # "false" to put in the opponent side
+	play_opponent_creature(creature_name)
 	
 
 func _on_Opponent_card_attacked(data):
@@ -268,10 +274,12 @@ func _on_add_one_turn_pv(data):
 func _on_self_tour_begin():
 	reset_all_creatures_one_turn_values()
 	play_waiting_turn_spells()
+	play_waiting_turn_creatures()
 	
 func _on_opponent_turn_begin():
 	reset_all_creatures_one_turn_values()
 	play_waiting_turn_spells()
+	play_waiting_turn_creatures()
 	
 func reset_all_creatures_one_turn_values():
 	for creature in $All/Center/Board/Self_Board.get_children():
@@ -284,3 +292,8 @@ func play_waiting_turn_spells():
 	var spells_to_treat = spells_in_turn_wait.duplicate()
 	for spell in spells_to_treat:
 		apply_spell_effect(spell[0], spell[1])
+		
+func play_waiting_turn_creatures():
+	var creatures_to_treat = creatures_in_turn_wait.duplicate()
+	for creature in creatures_to_treat:
+		play_self_creature(creature)

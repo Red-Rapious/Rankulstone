@@ -16,7 +16,6 @@ text = "Sbire Mage"
 [node name="Keywords" parent="VBoxContainer" index="1"]
 margin_top = 59.0
 margin_bottom = 73.0
-text = "Defenseur"
 
 [node name="Action_Text" parent="VBoxContainer" index="2"]
 margin_top = 98.0
