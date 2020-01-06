@@ -156,10 +156,10 @@ func play_self_creature(creature):
 		var card_uniq_id = player.ask_new_uniq_id(true, creature.node_name)
 		add_card_to_board(true, creature.node_name, card_uniq_id)
 		player.self_creature_enter_battlefield(creature.node_name)
-		#player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
+		player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
 	else:
 		if not creature in creatures_in_turn_wait:
-			player.creature_played_from_hand(creature.node_name, creature.MANA_COST, creature.turns_before_appear)
+			player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
 			creature.turns_before_appear -= 1
 			creatures_in_turn_wait.append(creature)
 		else:
