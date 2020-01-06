@@ -317,7 +317,7 @@ func card_played_from_hand(card_name, mana_cost):
 	emit_signal("self_hand_changed")
 
 
-func creature_played_from_hand(creature_name, mana_cost, turns_before_appear):
+func creature_played_from_hand(creature_name, mana_cost):
 	"""
 	Called by BattleScreen when a creature is played via d&d
 	Delete a card from the hand array

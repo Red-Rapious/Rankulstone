@@ -2,7 +2,6 @@ extends "res://Scripts/Cards/Creature.gd"
 tool
 
 func _ready():
-	has_enter_battlefield_focus = true
 	node_name = "Sylas"
 
 func is_target_ok(target_id):

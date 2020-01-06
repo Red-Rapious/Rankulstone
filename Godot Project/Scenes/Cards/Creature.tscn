@@ -9,7 +9,7 @@
 size = 13
 font_data = ExtResource( 3 )
 
-[node name="Creature" groups=[
+[node name="Creature" index="0" groups=[
 "Creature",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )

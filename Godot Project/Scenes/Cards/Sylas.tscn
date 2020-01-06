@@ -11,6 +11,7 @@ NAME = "Sylas, le voleur"
 MANA_COST = 4
 pv = 3
 attack = 3
+has_enter_battlefield_focus = true
 
 [node name="Top" parent="VBoxContainer" index="0"]
 editor/display_folded = true
