@@ -1,6 +1,6 @@
 RANKULSTONE - PATCH NOTE 0.0.4
 
-Release date: --/--/2020
+Release date: 01/04/2020
 
 New features:
   - a brand new deck management feature (deck creation, modification, etc)
