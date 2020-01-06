@@ -60,7 +60,6 @@ signal opponent_creature_hp_changed
 
 signal ask_side_popup
 signal ask_creature_kill
-#signal opponent_ask_creature_kill
 
 signal add_keyword
 signal add_one_turn_keyword
@@ -494,7 +493,6 @@ func add_one_turn_pv(creature_id, value):
 	var data = [creature_id, value]
 	rpc("opponent_add_one_turn_pv", data)
 	emit_signal("add_one_turn_pv", data)
-	
 # end
 	
 	

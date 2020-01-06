@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Mme_Jean.gd" type="Script" id=2]
+
+[node name="Mme_Jean" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Mme Jean"
+MANA_COST = 3
+tribe = [ "Prof" ]
+turns_before_effect = 1
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
+text = "Mme Jean"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "3"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 94.0
+margin_bottom = 136.0
+text = "Les ennemis ne peuvent pas taper au prochain tour"
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+text = "Invoque une pression folle"

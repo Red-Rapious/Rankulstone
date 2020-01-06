@@ -297,3 +297,4 @@ func play_waiting_turn_creatures():
 	var creatures_to_treat = creatures_in_turn_wait.duplicate()
 	for creature in creatures_to_treat:
 		play_self_creature(creature)
+		
