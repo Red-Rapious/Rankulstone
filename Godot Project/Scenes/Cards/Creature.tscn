@@ -14,6 +14,7 @@ font_data = ExtResource( 3 )
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Creature"
+node_name = "Creature"
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 text = "Creature"

@@ -193,6 +193,20 @@ func update_labels():
 	$VBoxContainer/Bottom/PV.text = str(pv+one_turn_pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack+one_turn_attack)
 	
+	if one_turn_pv > 0:
+		$VBoxContainer/Bottom/PV.modulate = Color("#00ff09")
+	elif one_turn_pv == 0:
+		$VBoxContainer/Bottom/PV.modulate = Color("#ffffff")
+	elif one_turn_pv < 0:
+		$VBoxContainer/Bottom/PV.modulate = Color("#ff0000")
+		
+	if one_turn_attack > 0:
+		$VBoxContainer/Bottom/Attack.modulate = Color("#00ff09")
+	elif one_turn_attack == 0:
+		$VBoxContainer/Bottom/Attack.modulate = Color("#ffffff")
+	elif one_turn_attack < 0:
+		$VBoxContainer/Bottom/Attack.modulate = Color("#ff0000")
+	
 	if on_board and can_attack and is_self_side and options.options_dico["show_attack_border"]:
 		$Border.visible = true
 	else:
