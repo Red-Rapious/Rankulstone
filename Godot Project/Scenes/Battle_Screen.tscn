@@ -89,18 +89,24 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="Opponent_Hand" type="HBoxContainer" parent="All/Center"]
+[node name="Opponent_Hand_ScrollContainer" type="ScrollContainer" parent="All/Center"]
+margin_right = 890.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.77
+
+[node name="Opponent_Hand" type="HBoxContainer" parent="All/Center/Opponent_Hand_ScrollContainer"]
 editor/display_folded = true
 margin_right = 890.0
-margin_bottom = 92.0
+margin_bottom = 132.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
 alignment = 1
 script = ExtResource( 4 )
 
-[node name="Opponent_hand_Label" type="Label" parent="All/Center/Opponent_Hand"]
+[node name="Opponent_hand_Label" type="Label" parent="All/Center/Opponent_Hand_ScrollContainer/Opponent_Hand"]
 visible = false
 margin_top = 39.0
 margin_right = 869.0
@@ -111,9 +117,9 @@ align = 1
 script = ExtResource( 5 )
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
-margin_top = 96.0
+margin_top = 136.0
 margin_right = 890.0
-margin_bottom = 465.0
+margin_bottom = 480.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -121,19 +127,19 @@ script = ExtResource( 6 )
 
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 890.0
-margin_bottom = 182.0
+margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Board" type="HBoxContainer" parent="All/Center/Board"]
-margin_top = 186.0
+margin_top = 174.0
 margin_right = 890.0
-margin_bottom = 369.0
+margin_bottom = 344.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Self_Hand_ScrollContainer" type="ScrollContainer" parent="All/Center"]
-margin_top = 469.0
+margin_top = 484.0
 margin_right = 890.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
@@ -142,7 +148,7 @@ size_flags_stretch_ratio = 1.25
 
 [node name="Self_Hand" type="HBoxContainer" parent="All/Center/Self_Hand_ScrollContainer"]
 margin_right = 890.0
-margin_bottom = 231.0
+margin_bottom = 216.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
