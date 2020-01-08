@@ -65,6 +65,8 @@ signal add_keyword
 signal add_one_turn_keyword
 signal add_one_turn_attack
 signal add_one_turn_pv
+signal add_attack
+signal add_pv_max
 
 
 func _ready():
@@ -88,6 +90,7 @@ func init():
 	Called when a 1v1 game start.
 	Connect signals, draw a hand, and temporarly create library
 	"""
+	library = Array()
 	load_library()
 	shuffle_library()
 	
@@ -299,6 +302,12 @@ remote func opponent_add_one_turn_attack(data):
 	
 remote func opponent_add_one_turn_pv(data):
 	emit_signal("add_one_turn_pv", data)
+	
+remote func opponent_add_attack(data):
+	emit_signal("add_attack", data)
+	
+remote func opponent_add_pv_max(data):
+	emit_signal("add_pv_max", data)
 
 """ End """
 
@@ -493,6 +502,17 @@ func add_one_turn_pv(creature_id, value):
 	var data = [creature_id, value]
 	rpc("opponent_add_one_turn_pv", data)
 	emit_signal("add_one_turn_pv", data)
+	
+	
+func add_attack(creature_id, value):
+	var data = [creature_id, value]
+	rpc("opponent_add_attack", data)
+	emit_signal("add_attack", data)
+	
+func add_pv_max(creature_id, value):
+	var data = [creature_id, value]
+	rpc("opponent_add_pv_max", data)
+	emit_signal("add_pv_max", data)
 # end
 	
 	

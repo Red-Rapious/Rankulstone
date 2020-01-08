@@ -29,6 +29,8 @@ func connect_signals():
 	player.connect("add_one_turn_keyword", self, "_on_add_one_turn_keyword")
 	player.connect("add_one_turn_attack", self, "_on_add_one_turn_attack")
 	player.connect("add_one_turn_pv", self, "_on_add_one_turn_pv")
+	player.connect("add_attack", self, "_on_add_attack")
+	player.connect("add_pv_max", self, "_on_add_pv_max")
 	
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("opponent_turn_begin", self, "_on_opponent_turn_begin")
@@ -269,7 +271,13 @@ func _on_add_one_turn_attack(data):
 func _on_add_one_turn_pv(data):
 	get_creature_by_id(data[0]).add_one_turn_pv(data[1])
 
-
+func _on_add_attack(data):
+	get_creature_by_id(data[0]).add_attack(data[1])
+	
+func _on_add_pv_max(data):
+	get_creature_by_id(data[0]).add_pv_max(data[1])
+	
+	
 
 func _on_self_tour_begin():
 	reset_all_creatures_one_turn_values()

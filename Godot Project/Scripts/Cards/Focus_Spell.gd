@@ -5,7 +5,6 @@ const OPPONENT = -1
 const SELF = -2
 
 func _ready():
-	node_name = "Focus_Spell"
 	type = FOCUS_SPELL
 
 func play_card(id):

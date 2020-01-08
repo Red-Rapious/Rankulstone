@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Cards/Focus_Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Insulte_pas_mature.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 3 )
+
+[node name="Insulte_pas_mature" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Insulte pas mature"
+node_name = "Insulte pas mature"
+MANA_COST = 2
+tribe = [ "MiniLudo" ]
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_top = 1.0
+margin_right = 99.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "Insulte pas mature"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "2"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 94.0
+margin_bottom = 136.0
+text = "Donne +2/0 et la Provocation à la créature ciblée"

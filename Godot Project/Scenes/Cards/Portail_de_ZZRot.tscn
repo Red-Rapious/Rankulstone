@@ -17,7 +17,7 @@ node_name = "Portail_de_ZZRot"
 MANA_COST = 5
 pv = 4
 attack = 0
-keywords = [ "Defenseur" ]
+base_keywords = [ "Defenseur" ]
 
 [node name="Top" parent="VBoxContainer" index="0"]
 margin_right = 112.0
@@ -38,7 +38,6 @@ text = "5"
 margin_top = 59.0
 margin_right = 112.0
 margin_bottom = 73.0
-text = "Defenseur"
 
 [node name="Action_Text" parent="VBoxContainer" index="2"]
 margin_top = 98.0

@@ -3,7 +3,8 @@ tool
 
 export var pv = 1
 export var attack = 1
-export var keywords = []
+export var base_keywords = []
+var keywords = []
 
 """
 Keywords:
@@ -11,6 +12,7 @@ Keywords:
 	-Guinsoo = can attack twice by turn
 	-Indestructble = can't take damages
 	-Defenseur = cant attack
+	-Provocation = useless for now
 """
 
 var pv_max = pv
@@ -42,6 +44,9 @@ signal pv_max_changed
 
 
 func _ready():
+	keywords = []
+	if base_keywords != []: # weird engine bug
+		keywords = base_keywords
 	type = CREATURE
 	node_name = NAME
 	
@@ -110,8 +115,10 @@ func check_pv(): # a function that checks if pv is under 0
 		pv = pv_max
 		
 func add_keyword(keyword: String):
-	keywords.append(keyword)
+	if not keyword in keywords:
+		keywords.append(keyword)
 	update_labels()
+	
 	
 
 
@@ -190,6 +197,9 @@ func update_labels():
 		$Border.visible = true
 	else:
 		$Border.visible = false
+		
+		
+	#print(NAME, "   ", keywords)
 
 
 
@@ -306,6 +316,8 @@ func _on_creature_fight(data):
 func _on_Creature_pressed():
 	# DEBUG
 	#print("i am ",uniq_id)
+	
+	update_labels()
 	
 	# CHANGE THIS LATER
 	if on_board:
