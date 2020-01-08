@@ -239,7 +239,7 @@ func create_drop_dico():
 	var has_defenseur = "Defenseur" in keywords or "Defenseur" in one_turn_keywords
 	
 	if on_board:
-		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack and not has_defenseur, "attack_value": attack, "is_self_side": is_self_side}
+		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":1, "card_name": node_name, "can_attack": can_attack and not has_defenseur, "attack_value": attack + one_turn_attack, "is_self_side": is_self_side}
 	else:
 		return {"mana_cost": MANA_COST,"uniq_id": uniq_id,"drag_type":0, "card_name": node_name, "can_attack": false, "attack_value": 0, "is_self_side": false}
 # end

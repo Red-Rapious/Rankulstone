@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/ZZRot.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Portail_de_ZZRot.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 4 )
+
+[node name="Portail_de_ZZRot" index="0" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Portail de ZZ'Rot"
+node_name = "Portail_de_ZZRot"
+MANA_COST = 5
+pv = 4
+attack = 0
+keywords = [ "Defenseur" ]
+
+[node name="Top" parent="VBoxContainer" index="0"]
+margin_right = 112.0
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_top = 1.0
+margin_right = 100.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "Portail de ZZ'Rot"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 104.0
+margin_right = 112.0
+text = "5"
+
+[node name="Keywords" parent="VBoxContainer" index="1"]
+margin_top = 59.0
+margin_right = 112.0
+margin_bottom = 73.0
+text = "Defenseur"
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 98.0
+margin_right = 112.0
+margin_bottom = 110.0
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+margin_top = 136.0
+margin_right = 112.0
+margin_bottom = 150.0
+text = ""
+
+[node name="Bottom" parent="VBoxContainer" index="4"]
+margin_top = 154.0
+margin_right = 112.0
+margin_bottom = 170.0
+
+[node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+margin_right = 54.0
+text = "0"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+margin_left = 58.0
+margin_right = 112.0
+text = "4"

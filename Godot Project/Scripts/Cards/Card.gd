@@ -5,7 +5,7 @@ enum {NONE, CREATURE, SPELL, FOCUS_SPELL} # differents kinds of cards
 
 var type = NONE
 export var NAME = "Card"
-var node_name
+export var node_name = "Card"
 export var MANA_COST = 1
 export var tribe = ["Neutre"]
 
