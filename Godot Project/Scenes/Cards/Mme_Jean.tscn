@@ -6,6 +6,7 @@
 [node name="Mme_Jean" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Mme Jean"
+node_name = "Mme_Jean"
 MANA_COST = 3
 tribe = [ "Prof" ]
 turns_before_effect = 1

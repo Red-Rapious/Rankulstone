@@ -55,9 +55,6 @@ signal opponent_creature_fight
 
 signal self_creature_attack_opponent
 
-signal self_creature_hp_changed
-signal opponent_creature_hp_changed
-
 signal ask_side_popup
 signal ask_creature_kill
 
@@ -67,6 +64,7 @@ signal add_one_turn_attack
 signal add_one_turn_pv
 signal add_attack
 signal add_pv_max
+signal add_pv_to_creature
 
 
 func _ready():
@@ -82,7 +80,6 @@ func _ready():
 	connect("self_mana_max_changed", self, "_on_self_mana_max_changed")
 	
 	connect("self_creature_fight", self, "_on_self_creature_fight")
-	connect("self_creature_hp_changed", self, "_on_self_creature_hp_changed")
 
 
 func init():
@@ -145,12 +142,8 @@ func _on_self_mana_max_changed():
 	rpc("opponent_mana_max_changed", self_mana_max)
 	
 func _on_self_creature_fight(data):
-	emit_signal("self_creature_hp_changed", [data[global.SELF_CREATURE_DATA]["uniq_id"], -data[global.OPPONENT_CREATURE_DATA]["attack_value"]])
-	emit_signal("self_creature_hp_changed", [data[global.OPPONENT_CREATURE_DATA]["uniq_id"], -data[global.SELF_CREATURE_DATA]["attack_value"]])
-	rpc("opponent_creature_fight", data)
-
-func _on_self_creature_hp_changed(creature_dico):
-	rpc("opponent_creature_hp_changed", creature_dico)
+	add_pv_to_creature(data[global.SELF_CREATURE_DATA]["uniq_id"], -data[global.OPPONENT_CREATURE_DATA]["attack_value"])
+	add_pv_to_creature(data[global.OPPONENT_CREATURE_DATA]["uniq_id"], -data[global.SELF_CREATURE_DATA]["attack_value"])
 	
 """ End """
 
@@ -283,9 +276,6 @@ remote func opponent_mana_max_changed(new_value: int):
 remote func opponent_creature_fight(data):
 	emit_signal("opponent_creature_fight", data)
 	
-remote func opponent_creature_hp_changed(creature_dico):
-	emit_signal("opponent_creature_hp_changed", creature_dico)
-	
 remote func opponent_ask_creature_kill(creature_id):
 	emit_signal("ask_creature_kill", creature_id)
 	
@@ -309,6 +299,8 @@ remote func opponent_add_attack(data):
 remote func opponent_add_pv_max(data):
 	emit_signal("add_pv_max", data)
 
+remote func opponent_add_pv_to_creature(data):
+	emit_signal("add_pv_to_creature", data)
 """ End """
 
 
@@ -470,55 +462,53 @@ func fight_requested(double_creature_dico):
 	emit_signal("self_creature_fight", double_creature_dico)
 	
 	
-func change_creature_hp(creature_id, value):
-	"""
-	Called when a specific creature hp need to change
-	"""
-	emit_signal("self_creature_hp_changed", [creature_id, value])
-	
-	
-func kill_creature(creature_id):
+func kill_creature(creature_id: int):
 	emit_signal("ask_creature_kill", creature_id)
 	rpc("opponent_ask_creature_kill", creature_id)
 	
 	
 	
-func add_keyword(creature_id, keyword):
+func add_keyword(creature_id: int, keyword: String):
 	var data = [creature_id, keyword]
 	rpc("opponent_add_keyword", data)
 	emit_signal("add_keyword", data)
 	
-func add_one_turn_keyword(creature_id, keyword):
+func add_one_turn_keyword(creature_id: int, keyword: String):
 	var data = [creature_id, keyword]
 	rpc("opponent_add_one_turn_keyword", data)
 	emit_signal("add_one_turn_keyword",data)
 	
-func add_one_turn_attack(creature_id, value):
+func add_one_turn_attack(creature_id: int, value: int):
 	var data = [creature_id, value]
 	rpc("opponent_add_one_turn_attack", data)
 	emit_signal("add_one_turn_attack", data)
 	
-func add_one_turn_pv(creature_id, value):
+func add_one_turn_pv(creature_id: int, value: int):
 	var data = [creature_id, value]
 	rpc("opponent_add_one_turn_pv", data)
 	emit_signal("add_one_turn_pv", data)
 	
 	
-func add_attack(creature_id, value):
+func add_attack(creature_id: int, value: int):
 	var data = [creature_id, value]
 	rpc("opponent_add_attack", data)
 	emit_signal("add_attack", data)
 	
-func add_pv_max(creature_id, value):
+func add_pv_max(creature_id: int, value: int):
 	var data = [creature_id, value]
 	rpc("opponent_add_pv_max", data)
 	emit_signal("add_pv_max", data)
+	
+func add_pv_to_creature(creature_id: int, value: int):
+	var data = [creature_id, value]
+	rpc("opponent_add_pv_to_creature", data)
+	emit_signal("add_pv_to_creature", data)
 # end
 	
 	
 	
 	
-func ask_new_uniq_id(self_side: bool, node_name):
+func ask_new_uniq_id(self_side: bool, node_name: String):
 	"""
 	Create a new uniq id for a card, and add it to the uniq_ids_list
 	"""
@@ -526,5 +516,5 @@ func ask_new_uniq_id(self_side: bool, node_name):
 	uniq_ids_list.append([self_side, node_name])
 	return uniq_ids_counter
 	
-func ask_side_popup(text):
+func ask_side_popup(text: String):
 	emit_signal("ask_side_popup", text)

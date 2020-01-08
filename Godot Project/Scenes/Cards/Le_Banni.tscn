@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Focus_Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Le_Banni.gd" type="Script" id=2]
+
+[node name="Le_Banni" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Le Banni"
+node_name = "Le_Banni"
+MANA_COST = 3
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
+text = "Le Banni"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "3"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 101.0
+margin_bottom = 128.0
+text = "La créature ciblée gagne -5/-5"

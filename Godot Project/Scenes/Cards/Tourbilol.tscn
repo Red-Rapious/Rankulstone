@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Cards/Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Cards/Tourbilol.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Tourbilol.gd" type="Script" id=3]
+
+[node name="Tourbilol" index="0" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+NAME = "Tourbilol"
+node_name = "Tourbilol"
+MANA_COST = 3
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
+text = "Tourbilol"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "3"
+
+[node name="Action_Text" parent="VBoxContainer" index="1"]
+margin_top = 125.0
+margin_bottom = 152.0
+size_flags_vertical = 10
+text = "Inflige 3 blessures à tous les serviteurs"

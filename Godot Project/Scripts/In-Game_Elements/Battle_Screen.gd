@@ -20,8 +20,6 @@ func _ready():
 func connect_signals():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
-	player.connect("self_creature_hp_changed", self, "_on_creature_hp_changed")
-	player.connect("opponent_creature_hp_changed", self, "_on_creature_hp_changed")
 	player.connect("ask_side_popup", self, "_on_ask_side_popup")
 	player.connect("ask_creature_kill", self, "_on_ask_creature_kill")
 	
@@ -31,6 +29,7 @@ func connect_signals():
 	player.connect("add_one_turn_pv", self, "_on_add_one_turn_pv")
 	player.connect("add_attack", self, "_on_add_attack")
 	player.connect("add_pv_max", self, "_on_add_pv_max")
+	player.connect("add_pv_to_creature", self, "_on_add_pv_to_creature")
 	
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("opponent_turn_begin", self, "_on_opponent_turn_begin")
@@ -276,7 +275,8 @@ func _on_add_attack(data):
 func _on_add_pv_max(data):
 	get_creature_by_id(data[0]).add_pv_max(data[1])
 	
-	
+func _on_add_pv_to_creature(data):
+	get_creature_by_id(data[0]).add_pv(data[1])
 
 func _on_self_tour_begin():
 	reset_all_creatures_one_turn_values()

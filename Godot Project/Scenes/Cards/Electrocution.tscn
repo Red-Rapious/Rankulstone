@@ -8,6 +8,7 @@
 texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Electrocution"
+node_name = "Electrocution"
 MANA_COST = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
@@ -22,6 +23,3 @@ text = "2"
 margin_top = 94.0
 margin_bottom = 136.0
 text = "Inflige 3 blessures à la créature ou au joueur ciblé"
-
-[node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 156.0
