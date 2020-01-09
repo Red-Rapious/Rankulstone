@@ -160,7 +160,7 @@ func play_card(id):
 	uniq_id = id
 	name = str(uniq_id)
 	on_board = true
-	enter_battlefield_effect()
+	#enter_battlefield_effect()
 	update_labels()
 	emit_signal("played")
 	
@@ -329,7 +329,7 @@ func _on_creature_fight(data):
 
 func _on_Creature_pressed():
 	# DEBUG
-	#print("i am ",uniq_id)
+	print("i am ",uniq_id)
 	
 	update_labels()
 	

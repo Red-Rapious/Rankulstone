@@ -124,6 +124,7 @@ func play_self_creature(creature):
 	if creature.turns_before_appear == 0:
 		var card_uniq_id = player.ask_new_uniq_id(true, creature.node_name)
 		add_card_to_board(true, creature.node_name, card_uniq_id)
+		creature.enter_battlefield_effect()
 		player.self_creature_enter_battlefield(creature.node_name)
 		player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
 		
