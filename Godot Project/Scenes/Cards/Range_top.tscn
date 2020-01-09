@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Cards/Focus_Spell.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Cards/Range_top.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Cards/Range_top.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/Cards/Range_top.gd" type="Script" id=3]
 
 [node name="Range_top" index="0" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
 NAME = "Range top"
 MANA_COST = 2
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
+modulate = Color( 0.815686, 0.0235294, 0.0235294, 1 )
 margin_right = 99.0
 text = "Range top"
 
@@ -17,9 +20,4 @@ margin_left = 103.0
 text = "2"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 109.0
-margin_bottom = 121.0
 text = "Détruisez un Miko"
-
-[node name="Under_text" parent="VBoxContainer" index="2"]
-margin_top = 156.0

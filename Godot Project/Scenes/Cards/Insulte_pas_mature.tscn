@@ -9,9 +9,10 @@ size = 13
 font_data = ExtResource( 3 )
 
 [node name="Insulte_pas_mature" index="0" instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( 0, 0 )
 script = ExtResource( 2 )
 NAME = "Insulte pas mature"
-node_name = "Insulte pas mature"
+node_name = "Insulte_pas_mature"
 MANA_COST = 2
 tribe = [ "MiniLudo" ]
 
@@ -27,6 +28,10 @@ margin_left = 103.0
 text = "2"
 
 [node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 94.0
-margin_bottom = 136.0
+margin_top = 95.0
+margin_bottom = 137.0
 text = "Donne +2/0 et la Provocation à la créature ciblée"
+
+[node name="Under_text" parent="VBoxContainer" index="2"]
+margin_top = 158.0
+text = "C'est celui qui dit qui l'est"
