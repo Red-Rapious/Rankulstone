@@ -440,6 +440,7 @@ func end_game(win: bool):
 	"""
 	global.win=win
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
+	network.delete_network()
 # end
 	
 	

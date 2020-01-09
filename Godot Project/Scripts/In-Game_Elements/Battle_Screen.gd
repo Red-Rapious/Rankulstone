@@ -34,12 +34,12 @@ func connect_signals():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("opponent_turn_begin", self, "_on_opponent_turn_begin")
 	
-"""
+	
 func _process(delta):
 	# quit game if escape is pressed
 	if Input.is_action_pressed("ui_escape"):
-		get_tree().quit()
-"""
+		network.resign()
+		player.loose(false)
 
 # some hand interactions methods
 func load_hand():

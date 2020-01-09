@@ -55,13 +55,14 @@ func delete_network():
 	
 	
 func quit_game():
+	resign()
+	get_tree().quit()
+	
+func resign():
 	if get_tree().get_network_peer() != null:
 		rpc("opponent_disconnected")
 		#delete_network()
 		OS.delay_msec(100)
-	get_tree().quit()
-	
-	
 	
 remote func opponent_disconnected():
 	global.opponent_surrend = true
