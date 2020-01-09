@@ -222,7 +222,8 @@ func die():
 	Called when this creature die.
 	The only way to queue_free()
 	"""
-	die_effect()
+	if is_self_side:
+		die_effect()
 	emit_signal("quit_battlefield")
 	player.creature_died(create_drop_dico())
 	queue_free()
@@ -303,7 +304,6 @@ func _on_self_tour_begin():
 	
 	
 func _on_self_end_of_turn():
-	
 	if is_self_side:
 		end_turn_effect()
 	
@@ -316,7 +316,7 @@ func _on_creature_attack_something(data):
 	If the creature is self, do some can_attack set
 	"""
 	if data["uniq_id"] == uniq_id:
-		attack_effect()
+		#attack_effect()
 		if ("Guinsoo" in keywords or "Guinsoo" in one_turn_keywords) and guinsoo_available:
 			guinsoo_available = false
 		else:
@@ -329,7 +329,7 @@ func _on_creature_fight(data):
 
 func _on_Creature_pressed():
 	# DEBUG
-	print("i am ",uniq_id)
+	#print("i am ",uniq_id)
 	
 	update_labels()
 	

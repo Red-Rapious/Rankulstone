@@ -127,9 +127,9 @@ func _on_self_pv_changed():
 	rpc("opponent_pv_changed", self_pv)
 	pv_check() # see if after this pv change, the player loose
 	
-func _on_self_creature_played(new_card_name: String):
-	self_board.append(new_card_name)
-	rpc("opponent_creature_played", new_card_name)
+func _on_self_creature_played(data):
+	self_board.append(data[0])
+	rpc("opponent_creature_played", data)
 	
 func _on_self_creature_died(creature_dico):
 	rpc("opponent_creature_died", creature_dico)
@@ -251,13 +251,16 @@ remote func opponent_pv_changed(new_value: int):
 	opponent_pv = new_value
 	emit_signal("opponent_pv_changed")
 
-remote func opponent_creature_played(new_card_name: String):
+remote func opponent_creature_played(data):
 	"""
 	Called by the player who change board, on the opponent side, like when plays a card
 	"""
-	#add_self_pv(-10)
-	opponent_board.append(new_card_name)
-	emit_signal("opponent_creature_played", new_card_name)
+	
+	uniq_ids_counter += 1
+	uniq_ids_list.append([false, data[0]])
+	opponent_board.append(data[0])
+	
+	emit_signal("opponent_creature_played", data)
 	
 remote func opponent_creature_died(creature_dico):
 	"""
@@ -316,17 +319,18 @@ func card_played_from_hand(card_name, mana_cost):
 	add_self_mana(-mana_cost)
 	emit_signal("self_hand_changed")
 
-
+"""
 func creature_played_from_hand(creature_name, mana_cost):
-	"""
-	Called by BattleScreen when a creature is played via d&d
-	Delete a card from the hand array
-	"""
+	
+	#Called by BattleScreen when a creature is played via d&d
+	#Delete a card from the hand array
+	
 	card_played_from_hand(creature_name, mana_cost)
 	#emit_signal("self_creature_played", creature_name)
+"""
 	
-func self_creature_enter_battlefield(creature_name):
-	emit_signal("self_creature_played", creature_name)
+func self_creature_enter_battlefield(creature_name, creature_id):
+	emit_signal("self_creature_played", [creature_name, creature_id])
 	
 func spell_played_from_hand(spell_name, mana_cost):
 	"""

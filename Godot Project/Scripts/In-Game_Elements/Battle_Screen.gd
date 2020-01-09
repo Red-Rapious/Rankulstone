@@ -34,6 +34,8 @@ func connect_signals():
 	player.connect("self_tour_begin", self, "_on_self_tour_begin")
 	player.connect("opponent_turn_begin", self, "_on_opponent_turn_begin")
 	
+	player.connect("self_creature_fight", self, "_on_self_creature_fight")
+	
 	
 func _process(delta):
 	# quit game if escape is pressed
@@ -125,8 +127,8 @@ func play_self_creature(creature):
 		var card_uniq_id = player.ask_new_uniq_id(true, creature.node_name)
 		add_card_to_board(true, creature.node_name, card_uniq_id)
 		creature.enter_battlefield_effect()
-		player.self_creature_enter_battlefield(creature.node_name)
-		player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
+		player.self_creature_enter_battlefield(creature.node_name, card_uniq_id)
+		player.card_played_from_hand(creature.node_name, creature.MANA_COST)
 		
 	else:
 		if not creature in creatures_in_turn_wait:
@@ -137,12 +139,11 @@ func play_self_creature(creature):
 			creatures_in_turn_wait[creatures_in_turn_wait.find(creature)].turns_before_appear -=1
 
 
-func play_opponent_creature(creature_name: String):
+func play_opponent_creature(creature_name: String, creature_uniq_id: int):
 	""" Str --> void
 	Instantanely add the given creature to the opponent board
 	"""
-	var card_uniq_id = player.ask_new_uniq_id(false, creature_name)
-	add_card_to_board(false, creature_name, card_uniq_id) # "false" to put in the opponent side
+	add_card_to_board(false, creature_name, creature_uniq_id) # "false" to put in the opponent side
 
 
 func apply_spell_effect(spell, creature_id= -10):
@@ -189,14 +190,14 @@ func apply_effect_to_creature(creature_id: int):
 
 
 
-func _on_opponent_creature_played(creature_name: String):
+func _on_opponent_creature_played(data):
 	"""
 	Called when the opponent plays a card
 	Simply add the card to the board
 	"""
 	#var card_uniq_id = player.ask_new_uniq_id(false, creature_name)
 	#add_card_to_board(false, creature_name, card_uniq_id) # "false" to put in the opponent side
-	play_opponent_creature(creature_name)
+	play_opponent_creature(data[0], data[1])
 	
 
 func _on_Opponent_card_attacked(data):
@@ -248,7 +249,8 @@ func creature_pressed(creature_id):
 
 
 func _on_ask_creature_kill(creature_id):
-	get_creature_by_id(creature_id).die()
+	if get_creature_by_id(creature_id) != null:
+		get_creature_by_id(creature_id).die()
 
 func _on_Opponent_pressed():
 	creature_pressed(-1) # -1 id = opponent
@@ -299,6 +301,12 @@ func reset_all_creatures_one_turn_values():
 		
 	for creature in $All/Center/Board/Opponent_Board.get_children():
 		creature.reset_one_turn_values()
+	
+	
+func _on_self_creature_fight(double_creature_dico):
+	get_creature_by_id(double_creature_dico[global.SELF_CREATURE_DATA]["uniq_id"]).attack_effect()
+	
+	
 	
 	
 	

@@ -9,7 +9,7 @@
 size = 13
 font_data = ExtResource( 3 )
 
-[node name="Creature" groups=[
+[node name="Creature" index="0" groups=[
 "Creature",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -21,21 +21,21 @@ text = "Creature"
 autowrap = true
 
 [node name="Keywords" type="Label" parent="VBoxContainer" index="1"]
-margin_top = 50.0
+margin_top = 53.0
 margin_right = 110.0
-margin_bottom = 64.0
+margin_bottom = 67.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 autowrap = true
 
 [node name="Action_Text" parent="VBoxContainer" index="2"]
-margin_top = 85.0
-margin_bottom = 97.0
+margin_top = 89.0
+margin_bottom = 101.0
 text = ""
 
 [node name="Under_text" parent="VBoxContainer" index="3"]
-margin_top = 118.0
+margin_top = 124.0
 margin_bottom = 149.0
 text = "La mere de toutes les creatures"
 
