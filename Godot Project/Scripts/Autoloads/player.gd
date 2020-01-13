@@ -45,6 +45,8 @@ signal opponent_creature_died
 signal opponent_mana_changed
 signal opponent_mana_max_changed
 
+signal opponent_card_played_from_hand
+
 signal self_end_of_turn
 signal opponent_end_of_turn
 signal self_tour_begin
@@ -230,6 +232,10 @@ See _on_xxx_changed()
 
 Update the good variables
 """
+remote func opponent_card_played_from_hand(card_name):
+	emit_signal("opponent_card_played_from_hand", card_name)
+	
+	
 remote func opponent_hand_changed(new_value: int):
 	"""
 	Called by the player who changed hand (change size, etc) on his opponent side
@@ -317,6 +323,7 @@ func card_played_from_hand(card_name, mana_cost):
 	"""
 	delete_hand_card(card_name)
 	add_self_mana(-mana_cost)
+	rpc("opponent_card_played_from_hand", card_name)
 	emit_signal("self_hand_changed")
 
 """

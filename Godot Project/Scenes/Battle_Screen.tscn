@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=9]
 [ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/In-game-elements/Opponent_card_Popup.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -258,6 +259,12 @@ margin_left = -100.0
 margin_top = -35.0
 margin_right = 100.0
 margin_bottom = 35.0
+
+[node name="Opponent_card_Popup" parent="." instance=ExtResource( 12 )]
+margin_left = 16.8421
+margin_top = 222.106
+margin_right = 196.842
+margin_bottom = 492.106
 [connection signal="card_attacked" from="All/Left/Opponent" to="." method="_on_Opponent_card_attacked"]
 [connection signal="pressed" from="All/Left/Opponent" to="." method="_on_Opponent_pressed"]
 [connection signal="pressed" from="All/Left/Self" to="." method="_on_Self_pressed"]
