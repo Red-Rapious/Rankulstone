@@ -23,6 +23,8 @@ func set_border(border_on):
 		
 func update_border():
 	if border:
-		$Label.text = "--- "+deck_name.capitalize()+" ---"
+		#$Label.text = "--- "+deck_name.capitalize()+" ---"
+		$Border.visible = true
 	else:
-		$Label.text = deck_name.capitalize()
+		#$Label.text = deck_name.capitalize()
+		$Border.visible = false
