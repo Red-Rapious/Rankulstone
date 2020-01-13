@@ -21,7 +21,6 @@ anchor_bottom = 1.0
 margin_right = -1160.0
 margin_bottom = -540.0
 rect_min_size = Vector2( 120, 180 )
-rect_pivot_offset = Vector2( 60, 90 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme = ExtResource( 1 )

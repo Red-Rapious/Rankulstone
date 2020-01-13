@@ -12,13 +12,19 @@ func _on_opponent_card_played_from_hand(card_name):
 	
 
 func _on_Opponent_card_Popup_about_to_show():
-	for i in $All.get_children():
-		if not i is Label:
+	for i in get_children():
+		if not i is Label and not i is Panel:
 			i.queue_free()
 			
 	var scene = load("res://Scenes/Cards/"+remaining_cards[0]+".tscn")
 	var instance = scene.instance()
-	$All.add_child(instance)
+	#instance.rect_position = Vector2(30,70)
+	
+	instance.name = "Card"
+	instance.margin_left = 30
+	instance.margin_top = 70
+	add_child(instance)
+
 	remaining_cards.remove(0)
 
 func _on_Opponent_card_Popup_popup_hide():
