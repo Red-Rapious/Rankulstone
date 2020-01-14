@@ -5,6 +5,7 @@ enum {PLAY, ATTACK} # differents drag types
 enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array will be passed, containing both creatures data
 
 var card_index = [
+"Reproduction_imparfaite",
 "Miko_le_BG",
 "Grosse_Berta",
 "Tourbilol",
@@ -48,3 +49,9 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		network.quit_game() # say to the opponent we resign
 		#get_tree().quit()
+		
+		
+func get_creature_by_id(creature_id: int):
+	if get_tree().get_current_scene().name == "Battle_Screen":
+		return get_tree().get_current_scene().get_creature_by_id(creature_id)
+		
