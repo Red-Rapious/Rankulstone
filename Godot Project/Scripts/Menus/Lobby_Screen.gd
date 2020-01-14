@@ -12,7 +12,7 @@ func update_deck_collection():
 	clean_deck_collection()
 	
 	for deck in decks.saved_decks:
-		var scene = load("res://Scenes/Menus/GUI/Deck_button.tscn")
+		var scene = load("res://Scenes/Buttons/Deck_button.tscn")
 		var scene_instance = scene.instance()
 		scene_instance.deck_name = deck
 		scene_instance.connect("deck_pressed", self, "set_selected_deck")

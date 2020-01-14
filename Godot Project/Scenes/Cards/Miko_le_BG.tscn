@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Miko_le_BG.gd" type="Script" id=2]
+
+[node name="Miko_le_BG" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Miko le BG"
+node_name = "Miko le BG"
+MANA_COST = 3
+tribe = [ "Miko" ]
+pv = 3
+attack = 3
+base_keywords = [ "Alpha" ]
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
+text = "Miko le BG"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "3"
+
+[node name="Keywords" parent="VBoxContainer" index="1"]
+margin_top = 60.0
+margin_bottom = 74.0
+text = "Alpha"
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 85.0
+margin_bottom = 127.0
+text = "A 50% de chance de mettre un coup critique qui double ses dégâts"
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+margin_top = 138.0
+text = ""
+
+[node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+text = "3"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+text = "3"
