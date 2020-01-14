@@ -8,34 +8,38 @@
 texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Sylas, le voleur"
+node_name = "Sylas"
 MANA_COST = 4
 pv = 3
 attack = 3
 has_enter_battlefield_focus = true
 
 [node name="Top" parent="VBoxContainer" index="0"]
-editor/display_folded = true
+margin_bottom = 35.0
 
 [node name="Name" parent="VBoxContainer/Top" index="0"]
 margin_right = 97.0
+margin_bottom = 35.0
 text = "Sylas, le voleur"
 
 [node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
 margin_left = 101.0
+margin_bottom = 35.0
+size_flags_vertical = 7
 text = "4"
 
 [node name="Keywords" parent="VBoxContainer" index="1"]
-margin_top = 42.0
-margin_bottom = 56.0
+margin_top = 45.0
+margin_bottom = 59.0
 
 [node name="Action_Text" parent="VBoxContainer" index="2"]
-margin_top = 60.0
-margin_bottom = 132.0
+margin_top = 63.0
+margin_bottom = 135.0
 size_flags_vertical = 4
 text = "Quand Sylas arrive sur le champ de bataille, mettez la créature ciblée dans votre main"
 
 [node name="Under_text" parent="VBoxContainer" index="3"]
-margin_top = 136.0
+margin_top = 139.0
 margin_bottom = 150.0
 text = ""
 
