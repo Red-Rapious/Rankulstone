@@ -5,7 +5,15 @@
 [node name="In_deck_card_Button" type="Button"]
 margin_right = 288.0
 margin_bottom = 20.0
-text = "3x Card"
+text = "     Card"
 align = 0
 script = ExtResource( 1 )
+
+[node name="Number" type="Label" parent="."]
+margin_top = 1.58112
+margin_right = 32.0
+margin_bottom = 22.5811
+text = "3x"
+align = 1
+valign = 1
 [connection signal="pressed" from="." to="." method="_on_In_deck_card_Button_pressed"]

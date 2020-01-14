@@ -30,7 +30,8 @@ func add_card_to_in_deck(node_name, card_name):
 	for i in cards_in_deck:
 		if i["node_name"] == node_name:
 			contains=true
-			i["number"] = i["number"]+1
+			if i["number"] < 4 and calculate_card_total() < 30: # max identic cards = 4, max total cards = 30
+				i["number"] = i["number"]+1
 			break
 			
 	if not contains:
@@ -40,6 +41,12 @@ func add_card_to_in_deck(node_name, card_name):
 func update_cards_labels():
 	clean_cards_labels()
 	
+	var card_total = calculate_card_total()
+	
+	$All/Modifications/In_deck/Down_Label.text = "Total : "+str(card_total)+"/30"
+	
+	
+func calculate_card_total():
 	var card_total = 0
 	
 	for i in cards_in_deck:
@@ -48,10 +55,10 @@ func update_cards_labels():
 		scene_instance.init(i["card_name"], i["number"])
 		$All/Modifications/In_deck/Cards_ScrollContainer/Cards.add_child(scene_instance)
 		
-		
 		card_total += i["number"]
 	
-	$All/Modifications/In_deck/Down_Label.text = "Total : "+str(card_total)+"/30"
+	return card_total
+	
 	
 func clean_cards_labels():
 	for child in $All/Modifications/In_deck/Cards_ScrollContainer/Cards.get_children():
