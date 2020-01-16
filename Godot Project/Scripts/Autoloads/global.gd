@@ -5,7 +5,7 @@ enum {PLAY, ATTACK} # differents drag types
 enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array will be passed, containing both creatures data
 
 var card_index = [
-#"Larme_de_la_deesse",
+"Larme_de_la_deesse",
 "Reproduction_imparfaite",
 "Miko_le_BG",
 "Grosse_Berta",
