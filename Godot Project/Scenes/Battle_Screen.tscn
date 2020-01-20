@@ -1,24 +1,26 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/In-game-elements/Self.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/In-Game_Elements/Opponent_Hand.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=6]
-[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=9]
-[ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/In-game-elements/Opponent_card_Popup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Menus/GUI/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Backgrounds/background1.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/In-game-elements/Self.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/In-Game_Elements/Opponent_Hand.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/In-Game_Elements/Opponent_hand_Label.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/In-Game_Elements/Board.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scripts/In-Game_Elements/Right.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Cards/Default.jpg" type="Texture" id=11]
+[ext_resource path="res://Scenes/In-game-elements/Side_Popup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/In-game-elements/Your_turn_Popup.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/In-game-elements/Opponent_card_Popup.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 7 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="Theme" id=3]
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
@@ -47,6 +49,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
+[node name="Background" parent="." instance=ExtResource( 2 )]
+margin_right = 0.0
+margin_bottom = 0.0
+texture = ExtResource( 3 )
+stretch_mode = 1
+
 [node name="All" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,7 +72,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.65
 custom_constants/separation = 30
 
-[node name="Opponent" parent="All/Left" instance=ExtResource( 2 )]
+[node name="Opponent" parent="All/Left" instance=ExtResource( 4 )]
 margin_right = 192.0
 margin_bottom = 318.0
 
@@ -73,7 +81,7 @@ margin_top = 348.0
 margin_right = 192.0
 margin_bottom = 352.0
 
-[node name="Self" parent="All/Left" instance=ExtResource( 3 )]
+[node name="Self" parent="All/Left" instance=ExtResource( 5 )]
 margin_top = 382.0
 margin_right = 192.0
 
@@ -106,7 +114,7 @@ rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="Opponent_hand_Label" type="Label" parent="All/Center/Opponent_Hand_ScrollContainer/Opponent_Hand"]
 visible = false
@@ -116,7 +124,7 @@ margin_bottom = 53.0
 size_flags_horizontal = 3
 text = "Cartes ennemis : 7"
 align = 1
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="Board" type="VBoxContainer" parent="All/Center"]
 margin_top = 136.0
@@ -125,7 +133,7 @@ margin_bottom = 480.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 
 [node name="Opponent_Board" type="HBoxContainer" parent="All/Center/Board"]
 margin_right = 890.0
@@ -170,7 +178,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme = SubResource( 3 )
-script = ExtResource( 8 )
+script = ExtResource( 10 )
 
 [node name="Opponent_PV" type="Label" parent="All/Right"]
 margin_top = 34.0
@@ -187,7 +195,7 @@ margin_top = 89.0
 margin_right = 150.0
 margin_bottom = 260.0
 size_flags_vertical = 3
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 expand = true
 stretch_mode = 6
 
@@ -217,7 +225,7 @@ margin_top = 439.0
 margin_right = 150.0
 margin_bottom = 610.0
 size_flags_vertical = 3
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 expand = true
 stretch_mode = 6
 
@@ -244,13 +252,13 @@ size_flags_stretch_ratio = 0.5
 text = "PV : --Error--"
 align = 1
 
-[node name="Side_Popup" parent="." instance=ExtResource( 10 )]
+[node name="Side_Popup" parent="." instance=ExtResource( 12 )]
 margin_left = 1119.58
 margin_top = 391.356
 margin_right = 1239.58
 margin_bottom = 641.356
 
-[node name="Your_turn_Popup" parent="." instance=ExtResource( 11 )]
+[node name="Your_turn_Popup" parent="." instance=ExtResource( 13 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -260,7 +268,8 @@ margin_top = -35.0
 margin_right = 100.0
 margin_bottom = 35.0
 
-[node name="Opponent_card_Popup" parent="." instance=ExtResource( 12 )]
+[node name="Opponent_card_Popup" parent="." instance=ExtResource( 14 )]
+visible = false
 margin_left = 16.8421
 margin_top = 222.106
 margin_right = 196.842
