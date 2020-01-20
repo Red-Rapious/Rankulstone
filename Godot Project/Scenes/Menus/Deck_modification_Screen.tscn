@@ -52,6 +52,8 @@ margin_bottom = 527.0
 rect_pivot_offset = Vector2( 390, 173 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 15
+custom_constants/hseparation = 15
 columns = 6
 
 [node name="VSeparator" type="VSeparator" parent="All/Modifications"]
