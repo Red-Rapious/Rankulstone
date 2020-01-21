@@ -1,14 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Menus/Deck_modification_Screen.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Buttons/In_deck_card_Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menus/GUI/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Backgrounds/bloodmoon2.jpg" type="Texture" id=4]
+[ext_resource path="res://Scenes/Buttons/In_deck_card_Button.tscn" type="PackedScene" id=5]
 
 [node name="Deck_modification_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -9.0
+margin_top = -7.0
+margin_right = 8.0
+margin_bottom = 9.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+margin_right = -1.0
+margin_bottom = 0.0
+texture = ExtResource( 4 )
 
 [node name="All" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -17,15 +28,15 @@ margin_left = 20.0
 margin_right = -20.0
 
 [node name="Header" type="HBoxContainer" parent="All"]
-margin_right = 1240.0
-margin_bottom = 79.0
+margin_right = 1257.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 
 [node name="Deck_name" type="Label" parent="All/Header"]
-margin_right = 1240.0
-margin_bottom = 79.0
+margin_right = 1257.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Modification en cours : --Error--"
@@ -33,22 +44,22 @@ align = 1
 valign = 1
 
 [node name="Modifications" type="HBoxContainer" parent="All"]
-margin_top = 83.0
-margin_right = 1240.0
-margin_bottom = 610.0
+margin_top = 84.0
+margin_right = 1257.0
+margin_bottom = 623.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 22
 
 [node name="ScrollContainer" type="ScrollContainer" parent="All/Modifications"]
-margin_right = 916.0
-margin_bottom = 527.0
+margin_right = 930.0
+margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Collection" type="GridContainer" parent="All/Modifications/ScrollContainer"]
-margin_right = 916.0
-margin_bottom = 527.0
+margin_right = 930.0
+margin_bottom = 539.0
 rect_pivot_offset = Vector2( 390, 173 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -57,20 +68,20 @@ custom_constants/hseparation = 15
 columns = 6
 
 [node name="VSeparator" type="VSeparator" parent="All/Modifications"]
-margin_left = 938.0
-margin_right = 942.0
-margin_bottom = 527.0
+margin_left = 952.0
+margin_right = 956.0
+margin_bottom = 539.0
 
 [node name="In_deck" type="VBoxContainer" parent="All/Modifications"]
-margin_left = 964.0
-margin_right = 1240.0
-margin_bottom = 527.0
+margin_left = 978.0
+margin_right = 1257.0
+margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 
 [node name="Top_Label" type="Label" parent="All/Modifications/In_deck"]
-margin_right = 276.0
+margin_right = 279.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 text = "Dans le deck :"
@@ -79,25 +90,25 @@ valign = 1
 
 [node name="Cards_ScrollContainer" type="ScrollContainer" parent="All/Modifications/In_deck"]
 margin_top = 44.0
-margin_right = 276.0
-margin_bottom = 483.0
+margin_right = 279.0
+margin_bottom = 495.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Cards" type="VBoxContainer" parent="All/Modifications/In_deck/Cards_ScrollContainer"]
-margin_right = 276.0
-margin_bottom = 439.0
+margin_right = 279.0
+margin_bottom = 451.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="In_deck_card_Button" parent="All/Modifications/In_deck/Cards_ScrollContainer/Cards" instance=ExtResource( 3 )]
-margin_right = 276.0
+[node name="In_deck_card_Button" parent="All/Modifications/In_deck/Cards_ScrollContainer/Cards" instance=ExtResource( 5 )]
+margin_right = 279.0
 margin_bottom = 26.0
 
 [node name="Down_Label" type="Label" parent="All/Modifications/In_deck"]
-margin_top = 487.0
-margin_right = 276.0
-margin_bottom = 527.0
+margin_top = 499.0
+margin_right = 279.0
+margin_bottom = 539.0
 rect_min_size = Vector2( 0, 40 )
 text = "Total : --Error--/30"
 align = 1
@@ -105,27 +116,27 @@ valign = 1
 
 [node name="Foot" type="HBoxContainer" parent="All"]
 editor/display_folded = true
-margin_top = 614.0
-margin_right = 1240.0
-margin_bottom = 720.0
+margin_top = 627.0
+margin_right = 1257.0
+margin_bottom = 736.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
 [node name="Save" type="Button" parent="All/Foot"]
-margin_left = 217.0
-margin_top = 40.0
-margin_right = 400.0
-margin_bottom = 66.0
+margin_left = 221.0
+margin_top = 41.0
+margin_right = 404.0
+margin_bottom = 67.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Sauvergarder le deck"
 
 [node name="Quit" type="Button" parent="All/Foot"]
-margin_left = 894.0
-margin_top = 40.0
-margin_right = 967.0
-margin_bottom = 66.0
+margin_left = 907.0
+margin_top = 41.0
+margin_right = 980.0
+margin_bottom = 67.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Quitter"

@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Menus/Deck_collection_Screen.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menus/GUI/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Backgrounds/bloodmoon2.jpg" type="Texture" id=4]
+[ext_resource path="res://Scenes/Menus/Group/Top.tscn" type="PackedScene" id=5]
 
 [node name="Deck_collection_Screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+margin_left = -21.2872
+margin_top = -21.4046
+margin_right = 11.7128
+margin_bottom = 53.5954
+texture = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -18,7 +27,7 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
 
-[node name="Top" parent="VBoxContainer" instance=ExtResource( 3 )]
+[node name="Top" parent="VBoxContainer" instance=ExtResource( 5 )]
 margin_right = 1260.0
 margin_bottom = 130.0
 size_flags_vertical = 1

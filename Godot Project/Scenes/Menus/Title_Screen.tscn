@@ -35,7 +35,7 @@ margin_left = 40.0
 margin_right = -40.0
 
 [node name="Rankulstone_Logo" type="Label" parent="All"]
-modulate = Color( 0.945098, 0.192157, 0.192157, 1 )
+modulate = Color( 0.756863, 0.0235294, 0.0235294, 1 )
 margin_right = 1200.0
 margin_bottom = 237.0
 size_flags_vertical = 7
@@ -89,7 +89,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="Version" type="Label" parent="All/Down_text"]
-modulate = Color( 0.945098, 0.192157, 0.192157, 1 )
+modulate = Color( 0.756863, 0.0235294, 0.0235294, 1 )
 margin_top = 45.0
 margin_right = 598.0
 margin_bottom = 73.0
@@ -100,7 +100,7 @@ align = 1
 valign = 1
 
 [node name="Copyright" type="Label" parent="All/Down_text"]
-modulate = Color( 0.945098, 0.192157, 0.192157, 1 )
+modulate = Color( 0.756863, 0.0235294, 0.0235294, 1 )
 margin_left = 602.0
 margin_top = 45.0
 margin_right = 1200.0
