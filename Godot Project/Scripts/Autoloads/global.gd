@@ -34,6 +34,8 @@ var card_index = [
 "Vol"
 ]
 
+const SKIP_HAND_PRESENTATION = false
+
 const VERSION = "0.0.5"
 var information_loaded = false # if it has been set by the First time screen
 var change_informations = false

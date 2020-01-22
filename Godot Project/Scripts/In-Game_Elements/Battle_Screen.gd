@@ -14,7 +14,7 @@ func _ready():
 	if options.options_dico["toggle_fullscreen"]:
 		OS.window_fullscreen = true
 	
-	player.init()
+	player.init() #moved to hand presentation screen
 	_on_self_hand_changed() # update hand
 	
 func connect_signals():

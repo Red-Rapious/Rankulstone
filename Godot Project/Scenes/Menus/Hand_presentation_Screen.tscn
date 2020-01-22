@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Themes/Theme1.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menus/Hand_presentation_Screen.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/GUI/Background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Backgrounds/background1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 37
+font_data = ExtResource( 5 )
+
+[node name="Hand_presentation_Screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+margin_right = 0.0
+margin_bottom = 0.0
+texture = ExtResource( 4 )
+
+[node name="All" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="All"]
+margin_right = 1280.0
+margin_bottom = 237.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 1 )
+text = "Votre main :
+(5)"
+align = 1
+valign = 1
+
+[node name="Hand_Container" type="HBoxContainer" parent="All"]
+margin_top = 241.0
+margin_right = 1280.0
+margin_bottom = 478.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_constants/separation = -100
+
+[node name="Card" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 74.0
+margin_top = 28.0
+margin_right = 194.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card2" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 242.0
+margin_top = 28.0
+margin_right = 362.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card3" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 410.0
+margin_top = 28.0
+margin_right = 530.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card4" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 578.0
+margin_top = 28.0
+margin_right = 698.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card5" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 746.0
+margin_top = 28.0
+margin_right = 866.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card6" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 914.0
+margin_top = 28.0
+margin_right = 1034.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Card7" parent="All/Hand_Container" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1084.0
+margin_top = 28.0
+margin_right = 1204.0
+margin_bottom = 208.0
+NAME = "Card"
+node_name = "Card"
+MANA_COST = 1
+tribe = [ "Neutre" ]
+
+[node name="Buttons_Container" type="HBoxContainer" parent="All"]
+editor/display_folded = true
+margin_top = 482.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+
+[node name="Keep" type="Button" parent="All/Buttons_Container"]
+margin_left = 254.0
+margin_top = 106.0
+margin_right = 384.0
+margin_bottom = 132.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Garder la main"
+
+[node name="Muligan" type="Button" parent="All/Buttons_Container"]
+margin_left = 924.0
+margin_top = 106.0
+margin_right = 998.0
+margin_bottom = 132.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Mulligan"

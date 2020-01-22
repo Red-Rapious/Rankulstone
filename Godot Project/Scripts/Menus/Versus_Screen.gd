@@ -5,6 +5,9 @@ var time_remaining = TIME_BEFORE_AUTO_DECLINE
 var have_made_a_choice
 
 func _ready():
+	if options.options_dico["request_attention"]:
+		OS.request_attention()
+		
 	network.connect("network_infos_get", self, "update_players_informations")
 	update_players_informations()
 	

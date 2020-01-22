@@ -93,8 +93,7 @@ func init():
 	load_library()
 	shuffle_library()
 	
-	clean_hand()
-	draw_hand()
+	#draw_new_hand()
 	
 	set_self_pv(BASE_PV)
 	emit_init_signals()
@@ -102,6 +101,9 @@ func init():
 	if options.options_dico["request_attention"]:
 		OS.request_attention()
 		
+func draw_new_hand():
+	clean_hand()
+	draw_hand()
 		
 func emit_init_signals():
 	emit_signal("self_mana_max_changed")

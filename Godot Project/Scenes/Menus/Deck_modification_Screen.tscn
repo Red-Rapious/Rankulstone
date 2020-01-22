@@ -29,14 +29,14 @@ margin_right = -20.0
 
 [node name="Header" type="HBoxContainer" parent="All"]
 margin_right = 1257.0
-margin_bottom = 80.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.2
 
 [node name="Deck_name" type="Label" parent="All/Header"]
 margin_right = 1257.0
-margin_bottom = 80.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Modification en cours : --Error--"
@@ -44,22 +44,22 @@ align = 1
 valign = 1
 
 [node name="Modifications" type="HBoxContainer" parent="All"]
-margin_top = 84.0
+margin_top = 108.0
 margin_right = 1257.0
-margin_bottom = 623.0
+margin_bottom = 627.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 22
 
 [node name="ScrollContainer" type="ScrollContainer" parent="All/Modifications"]
 margin_right = 930.0
-margin_bottom = 539.0
+margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Collection" type="GridContainer" parent="All/Modifications/ScrollContainer"]
 margin_right = 930.0
-margin_bottom = 539.0
+margin_bottom = 519.0
 rect_pivot_offset = Vector2( 390, 173 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -70,12 +70,12 @@ columns = 6
 [node name="VSeparator" type="VSeparator" parent="All/Modifications"]
 margin_left = 952.0
 margin_right = 956.0
-margin_bottom = 539.0
+margin_bottom = 519.0
 
 [node name="In_deck" type="VBoxContainer" parent="All/Modifications"]
 margin_left = 978.0
 margin_right = 1257.0
-margin_bottom = 539.0
+margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
@@ -91,13 +91,13 @@ valign = 1
 [node name="Cards_ScrollContainer" type="ScrollContainer" parent="All/Modifications/In_deck"]
 margin_top = 44.0
 margin_right = 279.0
-margin_bottom = 495.0
+margin_bottom = 475.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Cards" type="VBoxContainer" parent="All/Modifications/In_deck/Cards_ScrollContainer"]
 margin_right = 279.0
-margin_bottom = 451.0
+margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -106,9 +106,9 @@ margin_right = 279.0
 margin_bottom = 26.0
 
 [node name="Down_Label" type="Label" parent="All/Modifications/In_deck"]
-margin_top = 499.0
+margin_top = 479.0
 margin_right = 279.0
-margin_bottom = 539.0
+margin_bottom = 519.0
 rect_min_size = Vector2( 0, 40 )
 text = "Total : --Error--/30"
 align = 1
@@ -116,7 +116,7 @@ valign = 1
 
 [node name="Foot" type="HBoxContainer" parent="All"]
 editor/display_folded = true
-margin_top = 627.0
+margin_top = 631.0
 margin_right = 1257.0
 margin_bottom = 736.0
 size_flags_horizontal = 3
@@ -125,18 +125,18 @@ size_flags_stretch_ratio = 0.2
 
 [node name="Save" type="Button" parent="All/Foot"]
 margin_left = 221.0
-margin_top = 41.0
+margin_top = 39.0
 margin_right = 404.0
-margin_bottom = 67.0
+margin_bottom = 65.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Sauvergarder le deck"
 
 [node name="Quit" type="Button" parent="All/Foot"]
 margin_left = 907.0
-margin_top = 41.0
+margin_top = 39.0
 margin_right = 980.0
-margin_bottom = 67.0
+margin_bottom = 65.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Quitter"

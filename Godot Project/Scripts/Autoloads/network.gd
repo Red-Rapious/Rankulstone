@@ -144,7 +144,10 @@ func set_self_accepted(yes):
 func check_accepted():
 	if opponent_accepted != null and self_accepted != null:
 		if self_accepted and opponent_accepted:
-			get_tree().change_scene("Scenes/Battle_Screen.tscn")
+			if not global.SKIP_HAND_PRESENTATION:
+				get_tree().change_scene("Scenes/Menus/Hand_presentation_Screen.tscn")
+			else:
+				get_tree().change_scene("Scenes/Battle_screen.tscn")
 		else:
 			global.last_game_result = global.GAME_DECLINE
 			get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
