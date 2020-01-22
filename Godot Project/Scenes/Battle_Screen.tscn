@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/In-Game_Elements/Battle_Screen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menus/GUI/Background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Backgrounds/background1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Backgrounds/background2.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/In-game-elements/Opponent.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/In-game-elements/Self.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/In-Game_Elements/Opponent_Hand.gd" type="Script" id=6]

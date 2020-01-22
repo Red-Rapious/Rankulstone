@@ -449,7 +449,11 @@ func end_game(win: bool):
 	Called by win() or loose()
 	Save the result of the game for the EndGameScreen
 	"""
-	global.win=win
+	#global.win=win
+	if win:
+		global.last_game_result = global.WIN
+	else:
+		global.last_game_result = global.LOOSE
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
 	network.delete_network()
 # end

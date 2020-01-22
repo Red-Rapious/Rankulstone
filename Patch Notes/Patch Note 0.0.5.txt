@@ -2,7 +2,7 @@ RANKULSTONE - PATCH NOTE 0.0.5
 
 Release date: --/--/2020
 
-New cards :
+New cards:
 	- Julien OTP Anivia
 	- Portail de ZZ'Rot
 	- Mme Jean
@@ -13,3 +13,8 @@ New cards :
 	- Grosse Berta
 	- Miko le BG
 	- Reproduction imparfaite
+	- Garen !!!
+
+New features:
+	- Now have background images!!
+	- Added a versus screen to accept or decline a game

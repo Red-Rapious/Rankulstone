@@ -24,16 +24,16 @@ anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
 margin_right = -15.0
-margin_bottom = -15.0
+margin_bottom = -161.0
 
 [node name="Top" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_right = 1250.0
-margin_bottom = 196.0
+margin_bottom = 154.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 200.0
+margin_top = 158.0
 margin_right = 1250.0
-margin_bottom = 690.0
+margin_bottom = 544.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 2.5

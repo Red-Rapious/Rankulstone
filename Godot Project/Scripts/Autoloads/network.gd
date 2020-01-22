@@ -4,6 +4,9 @@ const PORT = 5000
 
 signal network_infos_get
 
+var self_accepted = null
+var opponent_accepted = null
+
 
 func create_server():
 	"""
@@ -65,7 +68,8 @@ func resign():
 		OS.delay_msec(100)
 	
 remote func opponent_disconnected():
-	global.opponent_surrend = true
+	#global.opponent_surrend = true
+	global.last_game_result = global.OPP_SURREND
 	get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")
 	delete_network()
 	
@@ -80,11 +84,11 @@ func _player_disconnected(id):
 	
 remote func launch_game():
 	"""
-	Go to the BattleScreen scene
+	Go to the Versus_Screen scene
 	Called by the client on both client and server
 	"""
 	
-	get_tree().change_scene("Scenes/Battle_Screen.tscn")
+	get_tree().change_scene("Scenes/Menus/Versus_Screen.tscn")
 	
 remote func start_first(yes: bool):
 	if yes:
@@ -116,7 +120,8 @@ remote func send_version(version):
 	else:
 		print("Version conflict, you or your opponent need to update Rankulstone to the last version. Game canceled.")
 		delete_network() # close the server
-		get_tree().change_scene("Scenes/Menus/Lobby_Screen.tscn") # go back to the lobby
+		global.last_game_result = global.VERSION_CONFLICT
+		get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn") # go back to the lobby
 		
 remote func send_self_infos():
 	rpc("get_opponent_infos", [global.self_pseudo, global.self_icon])
@@ -125,3 +130,21 @@ remote func get_opponent_infos(infos):
 	global.opponent_pseudo = infos[0]
 	global.opponent_icon = infos[1]
 	emit_signal("network_infos_get")
+	
+	
+remote func set_opponent_accepted(yes):
+	opponent_accepted = yes
+	check_accepted()
+	
+func set_self_accepted(yes):
+	self_accepted = yes
+	rpc("set_opponent_accepted", yes)
+	check_accepted()
+	
+func check_accepted():
+	if opponent_accepted != null and self_accepted != null:
+		if self_accepted and opponent_accepted:
+			get_tree().change_scene("Scenes/Battle_Screen.tscn")
+		else:
+			global.last_game_result = global.GAME_DECLINE
+			get_tree().change_scene("Scenes/Menus/End_game_Screen.tscn")

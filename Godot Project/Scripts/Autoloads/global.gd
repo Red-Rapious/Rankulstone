@@ -4,6 +4,8 @@ enum {PLAY, ATTACK} # differents drag types
 #enum {DRAG_TYPE, CARD_NAME, NODE_NAME, CAN_ATTACK, ATTACK_VALUE, IS_SELF_SIDE} # the array passed with d&d description
 enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array will be passed, containing both creatures data
 
+enum {LOOSE, WIN, OPP_SURREND, GAME_DECLINE, VERSION_CONFLICT}
+
 var card_index = [
 "Garen",
 "Larme_de_la_deesse",
@@ -38,6 +40,8 @@ var change_informations = false
 
 var win = false
 var opponent_surrend = false
+
+var last_game_result = 0
 
 var self_icon = 0
 var opponent_icon = 0
