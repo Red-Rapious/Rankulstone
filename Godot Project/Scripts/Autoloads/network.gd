@@ -7,6 +7,8 @@ signal network_infos_get
 var self_accepted = null
 var opponent_accepted = null
 
+var is_start_first = null
+
 
 func create_server():
 	"""
@@ -91,10 +93,9 @@ remote func launch_game():
 	get_tree().change_scene("Scenes/Menus/Versus_Screen.tscn")
 	
 remote func start_first(yes: bool):
+	is_start_first = yes
 	if yes:
 		player._on_first_player_tour()
-	else:
-		pass
 	
 remote func send_version(version):
 	"""

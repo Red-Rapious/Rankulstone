@@ -1,6 +1,6 @@
 extends Control
 
-const TIME_BEFORE_AUTO_DECLINE = 5
+const TIME_BEFORE_AUTO_DECLINE = 10
 var time_remaining = TIME_BEFORE_AUTO_DECLINE
 var have_made_a_choice
 

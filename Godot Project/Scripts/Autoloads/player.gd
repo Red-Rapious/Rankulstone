@@ -89,11 +89,6 @@ func init():
 	Called when a 1v1 game start.
 	Connect signals, draw a hand, and temporarly create library
 	"""
-	library = Array()
-	load_library()
-	shuffle_library()
-	
-	#draw_new_hand()
 	
 	set_self_pv(BASE_PV)
 	emit_init_signals()
@@ -101,7 +96,11 @@ func init():
 	if options.options_dico["request_attention"]:
 		OS.request_attention()
 		
-func draw_new_hand():
+func init_hand():
+	library = Array()
+	load_library()
+	shuffle_library()
+	
 	clean_hand()
 	draw_hand()
 		
