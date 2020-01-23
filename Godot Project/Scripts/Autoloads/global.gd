@@ -7,6 +7,8 @@ enum {SELF_CREATURE_DATA, OPPONENT_CREATURE_DATA} # for fight data, an array wil
 enum {LOOSE, WIN, OPP_SURREND, GAME_DECLINE, VERSION_CONFLICT}
 
 var card_index = [
+"Rabadon",
+"Guinsoo",
 "Garen",
 "Larme_de_la_deesse",
 "Reproduction_imparfaite",

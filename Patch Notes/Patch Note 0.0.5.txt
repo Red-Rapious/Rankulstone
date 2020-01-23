@@ -1,8 +1,10 @@
 RANKULSTONE - PATCH NOTE 0.0.5
 
 Release date: --/--/2020
+Total cards when released: 27
 
-New cards:
+
+New cards: (13)
 	- Julien OTP Anivia
 	- Portail de ZZ'Rot
 	- Mme Jean
@@ -14,7 +16,10 @@ New cards:
 	- Miko le BG
 	- Reproduction imparfaite
 	- Garen !!!
+	- Lame enragée de Guinsoo
+	- Coiffe de Rabadon
 
 New features:
 	- Now have background images!!
 	- Added a versus screen to accept or decline a game
+	- Added a menu to show cards before game start, and add the feature to mulligan
