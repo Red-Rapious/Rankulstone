@@ -7,11 +7,11 @@
 [ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/Icons/0.jpg" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 41
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 34
 font_data = ExtResource( 5 )
 
@@ -39,7 +39,7 @@ margin_right = 1280.0
 margin_bottom = 98.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Match trouvé !"
 align = 1
 valign = 1
@@ -77,7 +77,7 @@ margin_top = 397.0
 margin_right = 638.0
 margin_bottom = 432.0
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "--Error--"
 align = 1
 
@@ -107,7 +107,7 @@ margin_top = 397.0
 margin_right = 638.0
 margin_bottom = 432.0
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "--Error--"
 align = 1
 
@@ -120,14 +120,14 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.25
 
 [node name="Accept_Button" type="Button" parent="All/Buttons"]
-margin_left = 211.0
+margin_left = 207.0
 margin_top = 46.0
-margin_right = 426.0
+margin_right = 431.0
 margin_bottom = 76.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 3 )
-text = "Accepter le match  (5)"
+text = "Accepter le match  (10)"
 
 [node name="Decline_Button" type="Button" parent="All/Buttons"]
 margin_left = 877.0
