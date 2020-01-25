@@ -49,7 +49,7 @@ func read_infos():
 
 
 func load_icons_buttons():
-	for child in $VBoxContainer/Icons_ScrollContainer/HBoxContainer.get_children():
+	for child in $All/Icons_ScrollContainer/HBoxContainer.get_children():
 		child.queue_free()
 
 
@@ -57,7 +57,7 @@ func load_icons_buttons():
 	for i in ICON_NUMBER:
 		var instance = scene.instance()
 		instance.icon_number = i
-		$VBoxContainer/Icons_ScrollContainer/HBoxContainer.add_child(instance)
+		$All/Icons_ScrollContainer/HBoxContainer.add_child(instance)
 
 
 func _on_Pseudo_field_text_entered(new_text):
@@ -67,7 +67,7 @@ func _on_Pseudo_field_text_entered(new_text):
 
 func check_if_button_clickable():
 	if entered_pseudo != null and choosed_icon != null:
-		$VBoxContainer/Button.disabled = false
+		$All/Button.disabled = false
 
 func _on_Button_pressed():
 	save_infos()
@@ -78,7 +78,7 @@ func icon_pressed(icon_num):
 	check_if_button_clickable()
 
 func update_icon_borders():
-	for child in $VBoxContainer/Icons_ScrollContainer/HBoxContainer.get_children():
+	for child in $All/Icons_ScrollContainer/HBoxContainer.get_children():
 		if child.icon_number == choosed_icon:
 			child.set_select(true)
 		else:

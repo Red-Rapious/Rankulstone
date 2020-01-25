@@ -169,19 +169,8 @@ func update_labels():
 	""" 
 	See Card.update_labels
 	"""
-	$VBoxContainer/Top/Name.text = NAME
-	
-	#
-	var keywords_text = ""
-	for i in keywords:
-		keywords_text = keywords_text + i + ", "
-		
-	for i in one_turn_keywords:
-		keywords_text = keywords_text + i + ", "
-		
-	keywords_text = keywords_text.substr(0, len(keywords_text)-2) # delete last coma
-	$VBoxContainer/Keywords.text = keywords_text
-	#
+	update_name()
+	update_keywords()
 	
 	if on_board: # if on board, dont show mana cost
 		$VBoxContainer/Top/Mana_cost.visible = false
@@ -193,6 +182,30 @@ func update_labels():
 	$VBoxContainer/Bottom/PV.text = str(pv+one_turn_pv)
 	$VBoxContainer/Bottom/Attack.text = str(attack+one_turn_attack)
 	
+	update_stats_labels_colors()
+	update_border()
+	update_tribe_label()
+
+func update_keywords():
+	#
+	var keywords_text = ""
+	for i in keywords:
+		keywords_text = keywords_text + i + ", "
+		
+	for i in one_turn_keywords:
+		keywords_text = keywords_text + i + ", "
+		
+	keywords_text = keywords_text.substr(0, len(keywords_text)-2) # delete last coma
+	$VBoxContainer/Keywords.text = keywords_text
+	#
+
+func update_border():
+	if on_board and can_attack and is_self_side and options.options_dico["show_attack_border"]:
+		$Border.visible = true
+	else:
+		$Border.visible = false
+
+func update_stats_labels_colors():
 	if one_turn_pv > 0:
 		$VBoxContainer/Bottom/PV.modulate = Color("#00ff09")
 	elif one_turn_pv == 0:
@@ -206,14 +219,7 @@ func update_labels():
 		$VBoxContainer/Bottom/Attack.modulate = Color("#ffffff")
 	elif one_turn_attack < 0:
 		$VBoxContainer/Bottom/Attack.modulate = Color("#ff0000")
-	
-	if on_board and can_attack and is_self_side and options.options_dico["show_attack_border"]:
-		$Border.visible = true
-	else:
-		$Border.visible = false
-		
-		
-	#print(NAME, "   ", keywords)
+
 
 
 

@@ -23,8 +23,24 @@ func update_labels():
 	""" --> void
 	Simply update all the card labels
 	"""
-	$VBoxContainer/Top/Name.text = NAME
+	
+	update_name()
 	$VBoxContainer/Top/Mana_cost.text = str(MANA_COST)
+	
+	update_tribe_label()
+	
+func update_name():
+	$VBoxContainer/Top/Name.text = NAME
+
+func update_tribe_label():
+	var final_text = ""
+	for i in tribe:
+		final_text = final_text + i +", "
+		
+	
+	final_text = final_text.substr(0, len(final_text)-2) # delete last coma
+			
+	$VBoxContainer/Tribe.text = final_text
 
 func play_card(id):
 	"""

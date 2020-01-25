@@ -20,30 +20,30 @@ node_name = "Creature"
 text = "Creature"
 autowrap = true
 
-[node name="Keywords" type="Label" parent="VBoxContainer" index="1"]
-margin_top = 53.0
+[node name="Tribe" parent="VBoxContainer" index="1"]
+text = "Neutre"
+
+[node name="Keywords" type="Label" parent="VBoxContainer" index="2"]
+margin_top = 36.0
 margin_right = 110.0
-margin_bottom = 67.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
 custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 autowrap = true
 
-[node name="Action_Text" parent="VBoxContainer" index="2"]
-margin_top = 89.0
-margin_bottom = 101.0
+[node name="Action_Text" parent="VBoxContainer" index="3"]
+margin_top = 94.0
+margin_bottom = 106.0
 text = ""
-
-[node name="Under_text" parent="VBoxContainer" index="3"]
-margin_top = 124.0
-margin_bottom = 149.0
-text = "La mere de toutes les creatures"
 
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer" index="4"]
 editor/display_folded = true
-margin_top = 153.0
+margin_top = 124.0
 margin_right = 110.0
-margin_bottom = 169.0
+margin_bottom = 140.0
 
 [node name="Attack" type="Label" parent="VBoxContainer/Bottom" index="0"]
 margin_right = 53.0
@@ -60,6 +60,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "1"
 align = 2
+
+[node name="Under_text" parent="VBoxContainer" index="5"]
+margin_top = 144.0
+margin_bottom = 169.0
+text = "La mere de toutes les creatures"
 
 [node name="Border" type="TextureRect" parent="." index="1"]
 visible = false
