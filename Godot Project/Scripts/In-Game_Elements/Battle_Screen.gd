@@ -132,7 +132,7 @@ func play_self_creature(creature):
 		
 	else:
 		if not creature in creatures_in_turn_wait:
-			player.creature_played_from_hand(creature.node_name, creature.MANA_COST)
+			player.card_played_from_hand(creature.node_name, creature.MANA_COST)
 			creature.turns_before_appear -= 1
 			creatures_in_turn_wait.append(creature)
 		else:

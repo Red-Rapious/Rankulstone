@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Cards/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cards/Victor_en_retard.gd" type="Script" id=2]
+
+[node name="Victor_en_retard" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+NAME = "Victor en retard"
+node_name = "Victor_en_retard"
+MANA_COST = 3
+tribe = [ "Victor" ]
+pv = 8
+attack = 8
+base_keywords = [ "Alpha" ]
+turns_before_appear = 4
+
+[node name="Top" parent="VBoxContainer" index="0"]
+margin_bottom = 35.0
+
+[node name="Name" parent="VBoxContainer/Top" index="0"]
+margin_right = 99.0
+margin_bottom = 35.0
+text = "Victor en retard"
+
+[node name="Mana_cost" parent="VBoxContainer/Top" index="1"]
+margin_left = 103.0
+text = "3"
+
+[node name="Keywords" parent="VBoxContainer" index="1"]
+text = "Alpha"
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 74.0
+margin_bottom = 116.0
+text = "Apparaît 2 tours alliés après son invocation"
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+text = "C'est vous qui êtes en avance"
+
+[node name="Attack" parent="VBoxContainer/Bottom" index="0"]
+text = "8"
+
+[node name="PV" parent="VBoxContainer/Bottom" index="1"]
+text = "8"
