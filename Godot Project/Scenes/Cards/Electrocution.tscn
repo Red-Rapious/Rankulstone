@@ -19,7 +19,7 @@ text = "Electrocution"
 margin_left = 103.0
 text = "2"
 
-[node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 94.0
-margin_bottom = 136.0
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 58.0
+margin_bottom = 100.0
 text = "Inflige 3 blessures à la créature ou au joueur ciblé"

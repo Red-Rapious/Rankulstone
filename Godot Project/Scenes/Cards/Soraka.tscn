@@ -22,23 +22,25 @@ text = "Soraka"
 margin_left = 103.0
 text = "3"
 
-[node name="Keywords" parent="VBoxContainer" index="1"]
-margin_top = 40.0
-margin_bottom = 54.0
+[node name="Tribe" parent="VBoxContainer" index="1"]
+modulate = Color( 0, 0.12549, 0.0352941, 1 )
 
-[node name="Action_Text" parent="VBoxContainer" index="2"]
+[node name="Keywords" parent="VBoxContainer" index="2"]
+margin_bottom = 60.0
+
+[node name="Action_Text" parent="VBoxContainer" index="3"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 58.0
-margin_bottom = 115.0
+margin_top = 64.0
+margin_bottom = 121.0
 text = "Quand Soraka arrive sur le champ de bataille, vos créatures se soignent de 3 PV"
 
-[node name="Under_text" parent="VBoxContainer" index="3"]
+[node name="Under_text" parent="VBoxContainer" index="4"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 119.0
+margin_top = 125.0
 margin_bottom = 150.0
 text = "Criez le nom d'un fruit à coque"
 
-[node name="Bottom" parent="VBoxContainer" index="4"]
+[node name="Bottom" parent="VBoxContainer" index="5"]
 margin_top = 154.0
 margin_bottom = 170.0
 

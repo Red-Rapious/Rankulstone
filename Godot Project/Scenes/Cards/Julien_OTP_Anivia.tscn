@@ -9,10 +9,11 @@
 size = 12
 font_data = ExtResource( 4 )
 
-[node name="Julien_OTP_Anivia" instance=ExtResource( 1 )]
+[node name="Julien_OTP_Anivia" index="0" instance=ExtResource( 1 )]
 texture_normal = ExtResource( 2 )
 script = ExtResource( 3 )
 NAME = "Julien OTP Anivia"
+node_name = "Julien_OTP_Anivia"
 MANA_COST = 3
 tribe = [ "Julien" ]
 pv = 4
@@ -32,30 +33,31 @@ text = "Julien OTP Anivia"
 margin_left = 103.0
 text = "3"
 
-[node name="Keywords" parent="VBoxContainer" index="1"]
-margin_top = 42.0
-margin_bottom = 56.0
+[node name="Tribe" parent="VBoxContainer" index="1"]
+modulate = Color( 0.227451, 0.137255, 0.137255, 1 )
+text = "Julien"
 
-[node name="Action_Text" parent="VBoxContainer" index="2"]
+[node name="Keywords" parent="VBoxContainer" index="2"]
+margin_bottom = 58.0
+
+[node name="Action_Text" parent="VBoxContainer" index="3"]
 modulate = Color( 0.2, 0.0745098, 0, 1 )
-margin_top = 60.0
-margin_bottom = 132.0
+margin_top = 62.0
+margin_bottom = 134.0
 text = "Lorsque Anivia entre sur le terrain, la créature ciblée ne peut pas attaquer au prochain tour"
 
-[node name="Under_text" parent="VBoxContainer" index="3"]
-modulate = Color( 0.545098, 0.192157, 0, 1 )
-margin_top = 136.0
-margin_bottom = 150.0
-text = "Tout est dans l auto attaque"
-
 [node name="Bottom" parent="VBoxContainer" index="4"]
-margin_top = 154.0
-margin_bottom = 170.0
+margin_top = 138.0
+margin_bottom = 154.0
 
 [node name="Attack" parent="VBoxContainer/Bottom" index="0"]
-modulate = Color( 0.784314, 0.32549, 0.0509804, 1 )
 text = "2"
 
 [node name="PV" parent="VBoxContainer/Bottom" index="1"]
-modulate = Color( 0.784314, 0.32549, 0.0509804, 1 )
 text = "4"
+
+[node name="Under_text" parent="VBoxContainer" index="5"]
+modulate = Color( 0.545098, 0.192157, 0, 1 )
+margin_top = 158.0
+margin_bottom = 170.0
+text = "Tout est dans l auto attaque"

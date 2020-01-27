@@ -6,7 +6,7 @@
 [node name="Miko_le_BG" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 NAME = "Miko le BG"
-node_name = "Miko le BG"
+node_name = "Miko_le_BG"
 MANA_COST = 3
 tribe = [ "Miko" ]
 pv = 3
@@ -21,22 +21,31 @@ text = "Miko le BG"
 margin_left = 103.0
 text = "3"
 
-[node name="Keywords" parent="VBoxContainer" index="1"]
-margin_top = 60.0
-margin_bottom = 74.0
+[node name="Tribe" parent="VBoxContainer" index="1"]
+text = "Miko"
+
+[node name="Keywords" parent="VBoxContainer" index="2"]
+margin_bottom = 78.0
 text = "Alpha"
 
-[node name="Action_Text" parent="VBoxContainer" index="2"]
-margin_top = 85.0
-margin_bottom = 127.0
+[node name="Action_Text" parent="VBoxContainer" index="3"]
+margin_top = 82.0
+margin_bottom = 124.0
 text = "A 50% de chance de mettre un coup critique qui double ses dégâts"
 
-[node name="Under_text" parent="VBoxContainer" index="3"]
-margin_top = 138.0
-text = ""
+[node name="Bottom" parent="VBoxContainer" index="4"]
+editor/display_folded = false
+margin_top = 128.0
+margin_bottom = 144.0
+size_flags_vertical = 9
 
 [node name="Attack" parent="VBoxContainer/Bottom" index="0"]
 text = "3"
 
 [node name="PV" parent="VBoxContainer/Bottom" index="1"]
 text = "3"
+
+[node name="Under_text" parent="VBoxContainer" index="5"]
+margin_top = 148.0
+margin_bottom = 170.0
+text = ""

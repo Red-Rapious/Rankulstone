@@ -19,8 +19,12 @@ text = "Tourbilol"
 margin_left = 103.0
 text = "3"
 
-[node name="Action_Text" parent="VBoxContainer" index="1"]
-margin_top = 125.0
-margin_bottom = 152.0
+[node name="Action_Text" parent="VBoxContainer" index="2"]
+margin_top = 128.0
+margin_bottom = 155.0
 size_flags_vertical = 10
 text = "Inflige 3 blessures à tous les serviteurs"
+
+[node name="Under_text" parent="VBoxContainer" index="3"]
+margin_top = 159.0
+size_flags_vertical = 5

@@ -20,13 +20,15 @@ text = "Flash Kick"
 margin_left = 103.0
 text = "2"
 
-[node name="Action_Text" parent="VBoxContainer" index="1"]
+[node name="Tribe" parent="VBoxContainer" index="1"]
+modulate = Color( 0.658824, 0.027451, 0.027451, 1 )
+
+[node name="Action_Text" parent="VBoxContainer" index="2"]
 modulate = Color( 0.858824, 0.733333, 0.733333, 1 )
-margin_top = 95.0
-margin_bottom = 137.0
+margin_top = 58.0
+margin_bottom = 100.0
 text = "Renvoie la créature ciblée dans la main de son propriétaire"
 
-[node name="Under_text" parent="VBoxContainer" index="2"]
+[node name="Under_text" parent="VBoxContainer" index="3"]
 modulate = Color( 0.847059, 0.117647, 0.117647, 1 )
-margin_top = 158.0
 text = "OMG ce move"

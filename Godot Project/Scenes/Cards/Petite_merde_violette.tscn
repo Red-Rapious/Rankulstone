@@ -29,5 +29,5 @@ text = "Petite merde violette"
 margin_left = 101.0
 text = "0"
 
-[node name="Under_text" parent="VBoxContainer" index="3"]
+[node name="Under_text" parent="VBoxContainer" index="4"]
 text = "Invoquee par le Portail de ZZ Rot"
