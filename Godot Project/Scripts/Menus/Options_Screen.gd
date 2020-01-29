@@ -8,6 +8,7 @@ func apply_options():
 	$All/Center/Options_List/VBoxContainer/Fullscreen.pressed = options.options_dico["toggle_fullscreen"]
 	$All/Center/Options_List/VBoxContainer/Attention.pressed = options.options_dico["request_attention"]
 	$All/Center/Options_List/VBoxContainer/Border.pressed = options.options_dico["show_attack_border"]
+	$All/Center/Options_List/VBoxContainer/Camera_shake.pressed = options.options_dico["camera_shake"]
 
 func _on_Button_pressed():
 	options.save_options()
@@ -35,4 +36,6 @@ func _on_Fullscreen_toggled(button_pressed):
 
 func _on_Border_toggled(button_pressed):
 	options.options_dico["show_attack_border"] = button_pressed
-# end
+
+func _on_Camera_shake_toggled(button_pressed):
+	options.options_dico["camera_shake"] = button_pressed

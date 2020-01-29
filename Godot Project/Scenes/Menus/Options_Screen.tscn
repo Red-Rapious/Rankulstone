@@ -53,32 +53,43 @@ size_flags_vertical = 3
 
 [node name="Fullscreen" type="CheckBox" parent="All/Center/Options_List/VBoxContainer"]
 margin_right = 830.0
-margin_bottom = 144.0
+margin_bottom = 107.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Mettre en plein écran quand la partie se lance"
 flat = true
 
 [node name="Attention" type="CheckBox" parent="All/Center/Options_List/VBoxContainer"]
-margin_top = 148.0
+margin_top = 111.0
 margin_right = 830.0
-margin_bottom = 292.0
+margin_bottom = 218.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Signaler le début de votre tour (logo clignote)"
 flat = true
 
 [node name="Border" type="CheckBox" parent="All/Center/Options_List/VBoxContainer"]
-margin_top = 296.0
+margin_top = 222.0
+margin_right = 830.0
+margin_bottom = 329.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Afficher une bordure sur les serviteurs pouvant attaquer (Beta)"
+flat = true
+
+[node name="Camera_shake" type="CheckBox" parent="All/Center/Options_List/VBoxContainer"]
+margin_top = 333.0
 margin_right = 830.0
 margin_bottom = 441.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Afficher une bordure sur les serviteurs pouvant attaquer"
+text = "Activer les mouvements de caméra"
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player_infos" type="VBoxContainer" parent="All/Center"]
-editor/display_folded = true
 margin_left = 834.0
 margin_right = 1250.0
 margin_bottom = 441.0
@@ -133,5 +144,6 @@ text = "Sauvegarder"
 [connection signal="toggled" from="All/Center/Options_List/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_toggled"]
 [connection signal="toggled" from="All/Center/Options_List/VBoxContainer/Attention" to="." method="_on_Attention_toggled"]
 [connection signal="toggled" from="All/Center/Options_List/VBoxContainer/Border" to="." method="_on_Border_toggled"]
+[connection signal="toggled" from="All/Center/Options_List/VBoxContainer/Camera_shake" to="." method="_on_Camera_shake_toggled"]
 [connection signal="pressed" from="All/Center/Player_infos/Update_profil_Button" to="." method="_on_Update_profil_Button_pressed"]
 [connection signal="pressed" from="All/Button" to="." method="_on_Button_pressed"]

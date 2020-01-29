@@ -17,6 +17,7 @@ func _ready():
 	player.init() #moved to hand presentation screen
 	_on_self_hand_changed() # update hand
 	
+	
 func connect_signals():
 	player.connect("opponent_creature_played", self, "_on_opponent_creature_played")
 	player.connect("self_hand_changed", self, "_on_self_hand_changed")
@@ -90,6 +91,9 @@ func add_card_to_board(self_side, card_name, card_uniq_id):
 	scene_instance.play_card(card_uniq_id)
 	scene_instance.is_self_side = self_side
 	
+	if options.options_dico["camera_shake"]:
+		$Camera.shake(0.1, 50, 2)
+	
 
 func play_card_from_hand(node_name: String):
 	"""
@@ -116,6 +120,8 @@ func play_card_from_hand(node_name: String):
 	elif card.type == card.FOCUS_SPELL:
 		waiting_spell = card
 		player.ask_side_popup("Sélectionne\nune créture")
+		
+	
 
 
 
@@ -306,6 +312,8 @@ func reset_all_creatures_one_turn_values():
 func _on_self_creature_fight(double_creature_dico):
 	get_creature_by_id(double_creature_dico[global.SELF_CREATURE_DATA]["uniq_id"]).attack_effect()
 	
+	if options.options_dico["camera_shake"]:
+		$Camera.shake(0.4, 50, 4)
 	
 	
 	

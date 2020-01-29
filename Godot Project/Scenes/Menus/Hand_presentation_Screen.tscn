@@ -7,19 +7,19 @@
 [ext_resource path="res://Assets/Fonts/Mirage final.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scenes/Cards/Card.tscn" type="PackedScene" id=6]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 37
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 75
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 26
 font_data = ExtResource( 5 )
 
@@ -28,6 +28,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" parent="." instance=ExtResource( 3 )]
 margin_right = 0.0
@@ -57,7 +60,7 @@ margin_right = 1063.0
 margin_bottom = 140.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Vous commencez à jouer"
 align = 1
 valign = 1
@@ -69,7 +72,7 @@ margin_right = 1063.0
 margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Votre main :"
 align = 1
 valign = 2
@@ -81,8 +84,8 @@ margin_right = 1280.0
 margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
-text = "5"
+custom_fonts/font = SubResource( 3 )
+text = "8"
 align = 1
 valign = 1
 
@@ -194,7 +197,7 @@ margin_right = 402.0
 margin_bottom = 135.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Garder la main"
 
 [node name="Muligan" type="Button" parent="All/Buttons_Container"]
@@ -204,7 +207,7 @@ margin_right = 687.0
 margin_bottom = 88.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Mulligan"
 [connection signal="pressed" from="All/Buttons_Container/Keep" to="." method="_on_Keep_pressed"]
 [connection signal="pressed" from="All/Buttons_Container/Muligan" to="." method="_on_Muligan_pressed"]

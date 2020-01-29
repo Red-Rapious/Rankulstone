@@ -62,7 +62,7 @@ func load_deck(deck_name: String):
 	"""
 	var file = File.new()
 	if not file.file_exists("res://Saved_files/Decks/"+deck_name+".deck"):
-        save_deck(deck_name, 0, []) # create an empty deck 
+		save_deck(deck_name, 0, []) # create an empty deck 
 	
 	file.open_encrypted_with_pass("res://Saved_files/Decks/"+deck_name+".deck", File.READ, PASS)
 	var header = parse_json(file.get_line())

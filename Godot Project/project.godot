@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Rankulstone"
+config/description="A incredibly funny card game"
 run/main_scene="res://Scenes/Menus/First_time_Screen.tscn"
 config/icon="res://icon.png"
 config/auto_accept_quit=false
@@ -31,7 +32,6 @@ decks="*res://Scripts/Autoloads/decks.gd"
 [debug]
 
 gdscript/warnings/unused_variable=false
-gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
