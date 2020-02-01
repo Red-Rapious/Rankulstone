@@ -14,4 +14,5 @@ func _connected():
 	$All/Join_Label.text = "CHARGEMENT DE LA PARTIE EN COURS..."
 
 
-
+func _on_Paste_Button_pressed():
+	$All/HBoxContainer/LineEdit.text = OS.get_clipboard()
